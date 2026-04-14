@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Payment | NeoProEd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#F2F7FC;color:#071A2E;overflow-x:hidden;max-width:100vw;}
+
+/* NAV */
+nav{background:#06101A;border-bottom:1px solid #162638;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;flex-shrink:0;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-sp{flex:1;}
+.secure-badge{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;color:#3DB890;}
+.secure-badge-icon{font-size:13px;}
+
+/* STEP BAR */
+#step-bar{background:#FFFFFF;border-bottom:1px solid #C8DCF0;padding:14px 24px;}
+@media(min-width:900px){#step-bar{padding:14px 48px;}}
+.step-bar-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;}
+.step-item{display:flex;align-items:center;gap:7px;flex:1;}
+.sc{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;}
+.sc.done{background:#3DB890;color:#FFF;}
+.sc.active{background:#1860AA;color:#FFF;}
+.sc.pending{background:#FFFFFF;border:2px solid #C8DCF0;color:#8AAEC8;}
+.sl{font-size:11px;font-weight:700;}
+.sl.active{color:#071A2E;}
+.sl.done{color:#3DB890;}
+.sl.pending{color:#8AAEC8;}
+@media(max-width:500px){.sl{display:none;}}
+.step-con{height:2px;flex:1;margin:0 6px;}
+.step-con.done{background:#3DB890;}
+.step-con.active{background:#1860AA;}
+.step-con.pending{background:#C8DCF0;}
+
+/* LAYOUT */
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+#payment-main{padding:36px 0 56px;}
+.pay-layout{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:900px){.pay-layout{grid-template-columns:1fr 340px;align-items:start;}}
+
+/* PANELS */
+.pay-panel{display:none;}
+.pay-panel.active{display:block;}
+
+/* CARD */
+.card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;padding:26px;margin-bottom:14px;}
+.card-title{font-size:16px;font-weight:900;color:#071A2E;margin-bottom:4px;}
+.card-sub{font-size:13px;font-weight:600;color:#4A6A88;margin-bottom:18px;}
+.ey-lt{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#1860AA;margin-bottom:10px;}
+
+/* PAYMENT METHOD SELECTOR */
+.method-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.method-tab{display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 16px;border-radius:10px;border:2px solid #C8DCF0;cursor:pointer;min-width:80px;background:#FFFFFF;transition:all .15s;flex:1;}
+.method-tab:hover{border-color:#1860AA;}
+.method-tab.active{border-color:#1860AA;background:#F0F7FF;}
+.mt-icon{font-size:22px;}
+.mt-label{font-size:11px;font-weight:800;color:#071A2E;}
+
+/* PAYMENT PANELS */
+.method-panel{display:none;}
+.method-panel.active{display:block;}
+
+/* UPI */
+.upi-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+@media(min-width:600px){.upi-options{grid-template-columns:repeat(4,1fr);}}
+.upi-app{border:1.5px solid #C8DCF0;border-radius:9px;padding:12px 8px;text-align:center;cursor:pointer;background:#FFFFFF;transition:all .15s;}
+.upi-app:hover,.upi-app.selected{border-color:#1860AA;background:#F0F7FF;}
+.upi-app-icon{font-size:24px;margin-bottom:5px;}
+.upi-app-name{font-size:11px;font-weight:800;color:#071A2E;}
+.upi-id-box{background:#F2F7FC;border:1px solid #C8DCF0;border-radius:10px;padding:16px 18px;margin-bottom:14px;}
+.upi-id-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#4A6A88;margin-bottom:6px;}
+.upi-id-val{font-size:18px;font-weight:900;color:#071A2E;letter-spacing:.04em;margin-bottom:8px;}
+.upi-copy{font-size:12px;font-weight:800;color:#1860AA;cursor:pointer;border:none;background:none;padding:0;}
+.upi-ref-note{font-size:12px;font-weight:600;color:#4A6A88;line-height:1.65;margin-bottom:14px;}
+.upi-ref-note strong{color:#071A2E;}
+
+/* BANK TRANSFER */
+.bank-details{background:#F2F7FC;border:1px solid #C8DCF0;border-radius:10px;padding:18px 20px;margin-bottom:14px;}
+.bd-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid #E0EAF4;gap:12px;}
+.bd-row:last-child{border-bottom:none;}
+.bd-label{font-size:12px;font-weight:700;color:#4A6A88;flex-shrink:0;}
+.bd-val{font-size:13px;font-weight:800;color:#071A2E;text-align:right;}
+.bd-copy{font-size:11px;font-weight:800;color:#1860AA;cursor:pointer;border:none;background:none;margin-left:8px;white-space:nowrap;}
+
+/* CARD PAYMENT */
+.card-gateway-msg{background:#F0F7FF;border:1px solid #C8DCF0;border-radius:10px;padding:18px 20px;text-align:center;margin-bottom:14px;}
+.cgm-icon{font-size:32px;margin-bottom:10px;}
+.cgm-title{font-size:14px;font-weight:900;color:#071A2E;margin-bottom:6px;}
+.cgm-text{font-size:13px;font-weight:600;color:#1E3A54;line-height:1.65;margin-bottom:14px;}
+.cgm-btn{display:inline-block;font-size:14px;font-weight:900;padding:12px 28px;border-radius:7px;background:#1860AA;color:#FFF;border:none;cursor:pointer;text-decoration:none;}
+.cgm-note{font-size:11px;font-weight:600;color:#4A6A88;margin-top:8px;}
+
+/* EMI */
+.emi-options{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.emi-card{border:2px solid #C8DCF0;border-radius:10px;padding:14px 16px;cursor:pointer;background:#FFFFFF;display:flex;align-items:center;gap:14px;transition:all .15s;}
+.emi-card:hover,.emi-card.selected{border-color:#1860AA;background:#F0F7FF;}
+.emi-radio{width:18px;height:18px;border-radius:50%;border:2px solid #C8DCF0;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.emi-card.selected .emi-radio{border-color:#1860AA;background:#1860AA;}
+.emi-dot{width:7px;height:7px;border-radius:50%;background:#FFF;display:none;}
+.emi-card.selected .emi-dot{display:block;}
+.emi-content{flex:1;}
+.emi-label{font-size:14px;font-weight:900;color:#071A2E;}
+.emi-detail{font-size:12px;font-weight:600;color:#4A6A88;margin-top:2px;}
+.emi-total{font-size:13px;font-weight:800;color:#1860AA;}
+
+/* PROOF UPLOAD */
+.proof-box{background:#F2F7FC;border:2px dashed #C8DCF0;border-radius:10px;padding:20px;text-align:center;margin-bottom:14px;cursor:pointer;transition:all .15s;}
+.proof-box:hover{border-color:#1860AA;}
+.proof-icon{font-size:28px;margin-bottom:8px;}
+.proof-title{font-size:13px;font-weight:800;color:#071A2E;margin-bottom:3px;}
+.proof-sub{font-size:11px;font-weight:600;color:#4A6A88;}
+.proof-formats{font-size:10px;font-weight:700;color:#8AAEC8;margin-top:4px;}
+.proof-note{font-size:12px;font-weight:600;color:#4A6A88;line-height:1.65;}
+
+/* FORM ELEMENTS */
+.cf-inp,.cf-sel{width:100%;font-size:13px;font-weight:600;padding:11px 13px;border:1px solid #A8C0D4;border-radius:7px;margin-bottom:10px;background:#FFFFFF;color:#071A2E;outline:none;font-family:inherit;}
+.cf-sel{color:#3A5A78;}
+.cf-inp:focus,.cf-sel:focus{border-color:#1860AA;box-shadow:0 0 0 3px rgba(24,96,170,.1);}
+.cf-label{font-size:11px;font-weight:700;color:#4A6A88;margin-bottom:4px;display:block;}
+
+/* ACTION BUTTONS */
+.action-row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:6px;}
+.btn-back{font-size:13px;font-weight:800;padding:12px 20px;border-radius:7px;background:transparent;color:#1860AA;border:2px solid #1860AA;cursor:pointer;}
+.btn-confirm{font-size:14px;font-weight:900;padding:13px 28px;border-radius:7px;background:#1860AA;color:#FFF;border:none;cursor:pointer;}
+.btn-confirm:disabled{background:#8AAEC8;cursor:not-allowed;}
+
+/* SIDEBAR — ORDER SUMMARY */
+.order-card{background:#06101A;border:1px solid #1E3A52;border-radius:14px;padding:24px;position:sticky;top:20px;}
+.oc-title{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#A8C0D4;margin-bottom:14px;}
+.oc-prog{font-size:15px;font-weight:900;color:#F5F9FF;margin-bottom:4px;}
+.oc-meta{font-size:12px;font-weight:600;color:#A8C0D4;padding-bottom:14px;border-bottom:1px solid #162638;margin-bottom:14px;}
+.oc-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:9px;font-size:13px;}
+.oc-label{font-weight:600;color:#A8C0D4;}
+.oc-val{font-weight:800;color:#F5F9FF;text-align:right;}
+.oc-divider{height:1px;background:#162638;margin:12px 0;}
+.oc-total-row{display:flex;justify-content:space-between;align-items:center;}
+.oc-total-label{font-size:13px;font-weight:800;color:#E0EAF4;}
+.oc-total-val{font-size:22px;font-weight:900;color:#F5F9FF;}
+.oc-gst-note{font-size:10px;font-weight:600;color:#4A6A88;margin-top:4px;text-align:right;}
+/* Cohort detail strip */
+.cohort-strip{background:#0C1E30;border:1px solid #1E3A52;border-radius:8px;padding:12px 14px;margin-top:14px;}
+.cs-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.cs-row:last-child{margin-bottom:0;}
+.cs-dot{width:5px;height:5px;border-radius:50%;background:#4DA8FF;flex-shrink:0;}
+.cs-text{font-size:12px;font-weight:600;color:#E0EAF4;}
+/* Trust */
+.trust-list{margin-top:14px;padding-top:14px;border-top:1px solid #162638;display:flex;flex-direction:column;gap:7px;}
+.tl-row{display:flex;align-items:flex-start;gap:8px;}
+.tl-icon{font-size:12px;flex-shrink:0;}
+.tl-text{font-size:11px;font-weight:600;color:#A8C0D4;line-height:1.4;}
+
+/* PAYMENT STEP 2 — CONFIRMATION */
+.pay-confirm-card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;padding:28px;}
+
+/* TOAST COPY */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#06101A;color:#F5F9FF;font-size:13px;font-weight:700;padding:10px 20px;border-radius:8px;border:1px solid #1E3A52;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999;}
+.toast.show{opacity:1;}
+
+footer{background:#06101A;padding:20px 24px;border-top:1px solid #162638;text-align:center;margin-top:0;}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+    <div class="nav-sp"></div>
+    <div class="secure-badge">
+      <span class="secure-badge-icon">🔒</span>
+      Secure payment
+    </div>
+  </div>
+</nav>
+
+<!-- STEP BAR -->
+<div id="step-bar">
+  <div class="step-bar-inner">
+    <div class="step-item">
+      <div class="sc done" id="sc1">✓</div>
+      <span class="sl done" id="sl1">Application</span>
+    </div>
+    <div class="step-con done" id="con1"></div>
+    <div class="step-item">
+      <div class="sc active" id="sc2">2</div>
+      <span class="sl active" id="sl2">Payment</span>
+    </div>
+    <div class="step-con pending" id="con2"></div>
+    <div class="step-item">
+      <div class="sc pending" id="sc3">3</div>
+      <span class="sl pending" id="sl3">Confirmation</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<section id="payment-main">
+  <div class="wrap">
+    <div class="pay-layout">
+
+      <!-- LEFT -->
+      <div>
+
+        <!-- ═══ PANEL A: CHOOSE PAYMENT METHOD ═══ -->
+        <div class="pay-panel active" id="panelA">
+
+          <div class="card">
+            <div class="ey-lt">Step 2 — Complete payment</div>
+            <div class="card-title">Choose how you'd like to pay</div>
+            <div class="card-sub">All payments are processed securely. A GST tax invoice will be issued to your registered name or company within 1 business day of payment confirmation.</div>
+
+            <!-- METHOD TABS -->
+            <div class="method-tabs">
+              <div class="method-tab active" onclick="selectMethod('upi', this)">
+                <span class="mt-icon">📱</span>
+                <span class="mt-label">UPI</span>
+              </div>
+              <div class="method-tab" onclick="selectMethod('card', this)">
+                <span class="mt-icon">💳</span>
+                <span class="mt-label">Card</span>
+              </div>
+              <div class="method-tab" onclick="selectMethod('bank', this)">
+                <span class="mt-icon">🏦</span>
+                <span class="mt-label">Bank Transfer</span>
+              </div>
+              <div class="method-tab" onclick="selectMethod('emi', this)">
+                <span class="mt-icon">📅</span>
+                <span class="mt-label">EMI</span>
+              </div>
+            </div>
+
+            <!-- UPI -->
+            <div class="method-panel active" id="method-upi">
+              <div class="ey-lt">Pay via UPI</div>
+              <div class="upi-options">
+                <div class="upi-app selected" onclick="selectUpiApp(this)"><div class="upi-app-icon">🟢</div><div class="upi-app-name">GPay</div></div>
+                <div class="upi-app" onclick="selectUpiApp(this)"><div class="upi-app-icon">🟣</div><div class="upi-app-name">PhonePe</div></div>
+                <div class="upi-app" onclick="selectUpiApp(this)"><div class="upi-app-icon">🔵</div><div class="upi-app-name">Paytm</div></div>
+                <div class="upi-app" onclick="selectUpiApp(this)"><div class="upi-app-icon">🟠</div><div class="upi-app-name">BHIM</div></div>
+              </div>
+              <div class="upi-id-box">
+                <div class="upi-id-label">NeoProEd UPI ID</div>
+                <div class="upi-id-val" id="upi-display">neopróed@hdfcbank</div>
+                <button class="upi-copy" onclick="copyUPI()">Copy UPI ID</button>
+              </div>
+              <div class="upi-ref-note">After completing the transfer, enter the UPI Transaction ID below. Use <strong id="upi-ref-prog">your application reference number</strong> as the payment note/description so we can match the payment to your application.</div>
+              <label class="cf-label">UPI Transaction ID <span style="color:#C8DCF0;">(from your UPI app)</span></label>
+              <input class="cf-inp" type="text" id="upi-txn" placeholder="e.g. 405812345678" />
+              <label class="cf-label">Amount paid (₹)</label>
+              <input class="cf-inp" type="number" id="upi-amt" placeholder="59000" />
+              <div class="action-row">
+                <button class="btn-confirm" onclick="confirmPaymentProof('UPI')">Confirm UPI Payment →</button>
+              </div>
+            </div>
+
+            <!-- CARD -->
+            <div class="method-panel" id="method-card">
+              <div class="card-gateway-msg">
+                <div class="cgm-icon">🔒</div>
+                <div class="cgm-title">Pay securely by card</div>
+                <div class="cgm-text">You'll be redirected to our payment gateway (Razorpay) to complete payment by credit or debit card. Your card details are never stored on NeoProEd servers. After payment, you'll be returned to this page with a confirmation.</div>
+                <button class="cgm-btn" onclick="simulateGateway()">Pay ₹<span id="gateway-amount">59,000</span> + GST →</button>
+                <div class="cgm-note">Visa · Mastercard · RuPay · American Express · Net Banking</div>
+              </div>
+              <div class="proof-note" style="font-size:12px;font-weight:600;color:#4A6A88;background:#F2F7FC;border-radius:8px;padding:12px 14px;">
+                <strong style="color:#071A2E;">Note:</strong> After payment, Razorpay will return you to this page automatically. If that does not happen, email your payment confirmation to hello@neopróed.com with your application reference number.
+              </div>
+            </div>
+
+            <!-- BANK TRANSFER -->
+            <div class="method-panel" id="method-bank">
+              <div class="ey-lt">NEFT / RTGS / IMPS Bank Transfer</div>
+              <div class="bank-details">
+                <div class="bd-row">
+                  <span class="bd-label">Account name</span>
+                  <span class="bd-val">NeoProEd Private Limited <button class="bd-copy" onclick="copyText('NeoProEd Private Limited')">Copy</button></span>
+                </div>
+                <div class="bd-row">
+                  <span class="bd-label">Account number</span>
+                  <span class="bd-val">XXXX XXXX XXXX <button class="bd-copy" onclick="copyText('XXXX XXXX XXXX')">Copy</button></span>
+                </div>
+                <div class="bd-row">
+                  <span class="bd-label">IFSC code</span>
+                  <span class="bd-val">HDFC0001234 <button class="bd-copy" onclick="copyText('HDFC0001234')">Copy</button></span>
+                </div>
+                <div class="bd-row">
+                  <span class="bd-label">Bank</span>
+                  <span class="bd-val">HDFC Bank</span>
+                </div>
+                <div class="bd-row">
+                  <span class="bd-label">Branch</span>
+                  <span class="bd-val">Mumbai [Branch TBC]</span>
+                </div>
+              </div>
+              <div class="upi-ref-note">Use your <strong id="bank-ref-prog">application reference number</strong> as the transfer description / remarks field. This ensures we match your payment to your application instantly.</div>
+              <label class="cf-label">Bank reference / UTR number</label>
+              <input class="cf-inp" type="text" id="bank-txn" placeholder="e.g. HDFC12345678901234" />
+              <label class="cf-label">Amount transferred (₹)</label>
+              <input class="cf-inp" type="number" id="bank-amt" placeholder="59000" />
+              <label class="cf-label">Upload payment screenshot <span style="color:#8AAEC8;">(optional but speeds up confirmation)</span></label>
+              <div class="proof-box" onclick="document.getElementById('bank-file').click()">
+                <div class="proof-icon">📎</div>
+                <div class="proof-title">Click to upload screenshot</div>
+                <div class="proof-sub">Drag and drop or click to select</div>
+                <div class="proof-formats">JPG · PNG · PDF · Max 5MB</div>
+              </div>
+              <input type="file" id="bank-file" style="display:none;" accept=".jpg,.jpeg,.png,.pdf" onchange="fileSelected(this)" />
+              <div id="bank-file-name" style="font-size:12px;font-weight:700;color:#3DB890;display:none;margin-bottom:10px;">✓ File selected</div>
+              <div class="action-row">
+                <button class="btn-confirm" onclick="confirmPaymentProof('Bank Transfer')">Submit Transfer Confirmation →</button>
+              </div>
+            </div>
+
+            <!-- EMI -->
+            <div class="method-panel" id="method-emi">
+              <div class="ey-lt">Pay in instalments</div>
+              <div class="emi-options">
+                <div class="emi-card selected" onclick="selectEmi(this, '2-instalment')">
+                  <div class="emi-radio"><div class="emi-dot"></div></div>
+                  <div class="emi-content">
+                    <div class="emi-label">2-instalment plan</div>
+                    <div class="emi-detail">50% now · 50% at week 6 of programme</div>
+                    <div class="emi-total" id="emi-half-text">₹29,500 × 2 (incl. GST)</div>
+                  </div>
+                </div>
+                <div class="emi-card" onclick="selectEmi(this, 'employer-sponsored')">
+                  <div class="emi-radio"><div class="emi-dot"></div></div>
+                  <div class="emi-content">
+                    <div class="emi-label">Employer-sponsored</div>
+                    <div class="emi-detail">Company invoice · Full amount · Payment from employer</div>
+                    <div class="emi-total">Corporate billing</div>
+                  </div>
+                </div>
+              </div>
+              <div class="upi-ref-note" id="emi-note">For the 2-instalment plan, you'll pay the first instalment now via UPI or bank transfer. The second instalment will be due at week 6 — we'll send a reminder. <strong>Select your payment method for the first instalment:</strong></div>
+              <div id="emi-sub-method" style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:9px;padding:14px 16px;margin-bottom:14px;">
+                <select class="cf-sel" style="margin-bottom:0;" onchange="document.getElementById('emi-chosen-method').textContent = this.value;">
+                  <option>UPI (GPay / PhonePe / Paytm)</option>
+                  <option>Bank Transfer (NEFT/RTGS/IMPS)</option>
+                </select>
+              </div>
+              <label class="cf-label">Transaction ID / UTR for first instalment</label>
+              <input class="cf-inp" type="text" id="emi-txn" placeholder="Transaction reference number" />
+              <div class="action-row">
+                <button class="btn-confirm" onclick="confirmPaymentProof('EMI - First Instalment')">Confirm First Payment →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- HELP ROW -->
+          <div style="text-align:center;padding:10px 0;">
+            <span style="font-size:12px;font-weight:600;color:#4A6A88;">Payment questions? &nbsp;</span>
+            <a href="/cdn-cgi/l/email-protection#d7bfb2bbbbb897b9b2b8a7a51464b2b3f9b4b8ba" style="font-size:12px;font-weight:800;color:#1860AA;">hello@neopróed.com</a>
+          </div>
+        </div>
+
+        <!-- ═══ PANEL B: REVIEW + SUBMIT ═══ -->
+        <div class="pay-panel" id="panelB">
+          <div class="pay-confirm-card">
+            <div class="ey-lt" style="margin-bottom:8px;">Review &amp; Submit</div>
+            <div class="card-title" style="margin-bottom:4px;">Confirm your payment details</div>
+            <div class="card-sub">Check the details below before submitting. Our team will verify your payment and send a GST invoice within 1 business day.</div>
+
+            <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:10px;padding:16px 18px;margin-bottom:18px;">
+              <div class="bd-row" style="padding:7px 0;border-bottom:1px solid #E0EAF4;display:flex;justify-content:space-between;font-size:13px;">
+                <span style="font-weight:700;color:#4A6A88;">Programme</span>
+                <span style="font-weight:800;color:#071A2E;" id="rev-prog">Insurtech Professional Program</span>
+              </div>
+              <div class="bd-row" style="padding:7px 0;border-bottom:1px solid #E0EAF4;display:flex;justify-content:space-between;font-size:13px;">
+                <span style="font-weight:700;color:#4A6A88;">Payment method</span>
+                <span style="font-weight:800;color:#071A2E;" id="rev-method">UPI</span>
+              </div>
+              <div class="bd-row" style="padding:7px 0;border-bottom:1px solid #E0EAF4;display:flex;justify-content:space-between;font-size:13px;">
+                <span style="font-weight:700;color:#4A6A88;">Transaction ID</span>
+                <span style="font-weight:800;color:#071A2E;" id="rev-txn">—</span>
+              </div>
+              <div class="bd-row" style="padding:7px 0;display:flex;justify-content:space-between;font-size:13px;">
+                <span style="font-weight:700;color:#4A6A88;">Amount</span>
+                <span style="font-weight:800;color:#071A2E;" id="rev-amt">—</span>
+              </div>
+            </div>
+
+            <label class="cf-label">Invoice name <span style="color:#4A6A88;">(as you'd like it on the GST invoice)</span></label>
+            <input class="cf-inp" type="text" id="invoice-name" placeholder="Your full name or company name" />
+            <label class="cf-label">GSTIN <span style="color:#8AAEC8;">(optional — for corporate invoicing)</span></label>
+            <input class="cf-inp" type="text" id="invoice-gstin" placeholder="e.g. 27AAAAA0000A1Z5" />
+
+            <div style="background:#EAF3DE;border:1px solid #B8DFC4;border-radius:8px;padding:12px 14px;margin-bottom:16px;font-size:12px;font-weight:600;color:#27500A;line-height:1.65;">
+              By submitting, you confirm that the payment details above are accurate and that you have read and agree to the NeoProEd Terms of Enrolment and Refund Policy.
+            </div>
+
+            <div class="action-row">
+              <button class="btn-back" onclick="goPanel('A')">← Edit Payment</button>
+              <button class="btn-confirm" onclick="submitPayment()">Submit &amp; Complete →</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT — ORDER SUMMARY -->
+      <div class="order-card" id="order-sidebar">
+        <div class="oc-title">Order Summary</div>
+        <div class="oc-prog" id="oc-prog">Insurtech Professional Program</div>
+        <div class="oc-meta" id="oc-meta">Part 1 · Founding Cohort · June 2025</div>
+        <div class="oc-row"><span class="oc-label">Programme fee</span><span class="oc-val" id="oc-fee">₹50,000</span></div>
+        <div class="oc-row"><span class="oc-label">GST (18%)</span><span class="oc-val" id="oc-gst">₹9,000</span></div>
+        <div class="oc-divider"></div>
+        <div class="oc-total-row">
+          <span class="oc-total-label">Total payable</span>
+          <span class="oc-total-val" id="oc-total">₹59,000</span>
+        </div>
+        <div class="oc-gst-note">Inclusive of 18% GST · GST invoice issued within 1 business day</div>
+        <div class="cohort-strip">
+          <div class="cs-row"><div class="cs-dot"></div><div class="cs-text">Cohort start: June 2025</div></div>
+          <div class="cs-row"><div class="cs-dot"></div><div class="cs-text">Wed evenings + Sat mornings</div></div>
+          <div class="cs-row"><div class="cs-dot"></div><div class="cs-text">60 hours · 12 weeks</div></div>
+          <div class="cs-row"><div class="cs-dot"></div><div class="cs-text">Residential capstone — GIFT City</div></div>
+        </div>
+        <div class="trust-list">
+          <div class="tl-row"><span class="tl-icon">🔒</span><div class="tl-text">Payment information is never stored on NeoProEd servers</div></div>
+          <div class="tl-row"><span class="tl-icon">🧾</span><div class="tl-text">GST invoice issued within 1 business day of payment verification</div></div>
+          <div class="tl-row"><span class="tl-icon">↩️</span><div class="tl-text">Full refund if withdrawn 14+ days before cohort start</div></div>
+          <div class="tl-row"><span class="tl-icon">📋</span><div class="tl-text">Seat confirmed only after payment is verified</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast">Copied!</div>
+
+<footer>
+  <div class="foot-legal"><a href="privacy-policy.html" style="color:#2A4060;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#2A4060;text-decoration:none;">Terms of Use</a> &nbsp;·&nbsp; © 2026 NeoProEd Private Limited &nbsp;·&nbsp; Secure payment &nbsp;·&nbsp; hello@neopróed.com</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── STATE ──
+let state = {
+  method: 'UPI',
+  txnId: '',
+  amount: '',
+  prog: 'Insurtech Professional Program',
+  fee: 50000,
+  emiPlan: '2-instalment'
+};
+
+// ── INIT ──
+(function init() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('prog')) state.prog = decodeURIComponent(params.get('prog'));
+  if (params.get('fee')) state.fee = parseInt(params.get('fee')) || 50000;
+  const gst = Math.round(state.fee * 0.18);
+  const total = state.fee + gst;
+  document.getElementById('oc-prog').textContent = state.prog;
+  document.getElementById('oc-fee').textContent = '₹' + state.fee.toLocaleString('en-IN');
+  document.getElementById('oc-gst').textContent = '₹' + gst.toLocaleString('en-IN');
+  document.getElementById('oc-total').textContent = '₹' + total.toLocaleString('en-IN');
+  document.getElementById('gateway-amount').textContent = total.toLocaleString('en-IN');
+  const halfTotal = Math.round(total / 2);
+  document.getElementById('emi-half-text').textContent = '₹' + halfTotal.toLocaleString('en-IN') + ' × 2 (incl. GST)';
+  // Ref numbers in descriptions
+  const ref = sessionStorage.getItem('npe_ref') || 'NPE-XXXXXX';
+  document.getElementById('upi-ref-prog').textContent = ref;
+  document.getElementById('bank-ref-prog').textContent = ref;
+  document.getElementById('rev-prog').textContent = state.prog;
+})();
+
+// ── METHOD SELECTION ──
+function selectMethod(method, tab) {
+  document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.method-panel').forEach(p => p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('method-' + method).classList.add('active');
+  state.method = method.toUpperCase().replace('BANK', 'Bank Transfer').replace('UPI', 'UPI').replace('CARD', 'Card').replace('EMI', 'EMI');
+}
+
+function selectUpiApp(card) {
+  document.querySelectorAll('.upi-app').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+}
+
+function selectEmi(card, plan) {
+  document.querySelectorAll('.emi-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  state.emiPlan = plan;
+  const isEmployer = plan === 'employer-sponsored';
+  document.getElementById('emi-sub-method').style.display = isEmployer ? 'none' : 'block';
+  document.getElementById('emi-note').textContent = isEmployer
+    ? 'For employer-sponsored payment, we will issue a GST invoice to your company. Share your company name and GSTIN in the next step. Payment is expected within 7 business days of invoice.'
+    : 'For the 2-instalment plan, pay the first instalment now via UPI or bank transfer. The second is due at week 6 — we\'ll send a reminder.';
+}
+
+// ── CONFIRM PROOF ──
+function confirmPaymentProof(method) {
+  let txnId = '';
+  let amount = '';
+  if (method === 'UPI') { txnId = document.getElementById('upi-txn').value; amount = document.getElementById('upi-amt').value; }
+  else if (method === 'Bank Transfer') { txnId = document.getElementById('bank-txn').value; amount = document.getElementById('bank-amt').value; }
+  else if (method.includes('EMI')) { txnId = document.getElementById('emi-txn').value; amount = ''; }
+  if (!txnId.trim() && method !== 'EMI - First Instalment') { alert('Please enter your transaction / reference ID.'); return; }
+  state.method = method; state.txnId = txnId; state.amount = amount;
+  document.getElementById('rev-method').textContent = method;
+  document.getElementById('rev-txn').textContent = txnId || 'Employer invoice requested';
+  document.getElementById('rev-amt').textContent = amount ? '₹' + parseInt(amount).toLocaleString('en-IN') : 'As per programme fee';
+  goPanel('B');
+}
+
+// ── GATEWAY SIMULATION ──
+function simulateGateway() {
+  const btn = event.target;
+  btn.textContent = 'Redirecting to payment gateway...';
+  btn.disabled = true;
+  // Simulate redirect + return
+  setTimeout(() => {
+    btn.textContent = 'Payment successful — continue ↓';
+    btn.style.background = '#3DB890';
+    state.method = 'Card (Razorpay)';
+    state.txnId = 'RZP' + Date.now().toString().slice(-10);
+    state.amount = document.getElementById('oc-total').textContent.replace('₹','').replace(/,/g,'');
+    document.getElementById('rev-method').textContent = 'Card (Razorpay)';
+    document.getElementById('rev-txn').textContent = state.txnId;
+    document.getElementById('rev-amt').textContent = document.getElementById('oc-total').textContent;
+    setTimeout(() => goPanel('B'), 800);
+  }, 2000);
+}
+
+// ── SUBMIT PAYMENT ──
+function submitPayment() {
+  const invName = document.getElementById('invoice-name').value;
+  if (!invName.trim()) { alert('Please enter the name for your GST invoice.'); return; }
+  // Store ref + redirect to payment receipt page
+  const total = document.getElementById('oc-total').textContent;
+  const url = `receipt.html?prog=${encodeURIComponent(state.prog)}&method=${encodeURIComponent(state.method)}&txn=${encodeURIComponent(state.txnId)}&amount=${encodeURIComponent(total)}&name=${encodeURIComponent(invName)}`;
+  window.location.href = url;
+}
+
+// ── PANEL NAVIGATION ──
+function goPanel(panel) {
+  document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel' + panel).classList.add('active');
+  // Update step bar
+  if (panel === 'B') {
+    document.getElementById('sc2').textContent = '✓'; document.getElementById('sc2').className = 'sc done';
+    document.getElementById('sl2').className = 'sl done';
+    document.getElementById('con2').className = 'step-con active';
+    document.getElementById('sc3').className = 'sc active'; document.getElementById('sl3').className = 'sl active';
+  } else {
+    document.getElementById('sc2').textContent = '2'; document.getElementById('sc2').className = 'sc active';
+    document.getElementById('sl2').className = 'sl active';
+    document.getElementById('con2').className = 'step-con pending';
+    document.getElementById('sc3').className = 'sc pending'; document.getElementById('sl3').className = 'sl pending';
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── UTILITIES ──
+function copyUPI() { copyText(document.getElementById('upi-display').textContent); }
+function copyText(text) {
+  navigator.clipboard.writeText(text).catch(() => {});
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+functi
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    var x=document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s,x);
+  }
+}
+</script>
+</body>
+</html>

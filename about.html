@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | NeoProEd — Insurance Professional Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#FFFFFF;color:#071A2E;overflow-x:hidden;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+.ey-dk{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#A8C0D4;margin-bottom:10px;}
+.ey-lt{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#1860AA;margin-bottom:10px;}
+.h2-dk{font-size:28px;font-weight:900;color:#F5F9FF;line-height:1.15;letter-spacing:-.03em;margin-bottom:14px;}
+.h2-lt{font-size:28px;font-weight:900;color:#071A2E;line-height:1.15;letter-spacing:-.03em;margin-bottom:14px;}
+@media(min-width:600px){.h2-dk,.h2-lt{font-size:36px;}}
+.body-dk{font-size:15px;font-weight:600;color:#E0EAF4;line-height:1.8;}
+.body-lt{font-size:15px;font-weight:600;color:#1E3A54;line-height:1.8;}
+
+/* NAV */
+nav{background:#06101A;border-bottom:1px solid #162638;position:sticky;top:0;z-index:100;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-links{display:flex;gap:4px;margin-left:24px;}
+.nav-links a{font-size:12px;font-weight:700;color:#A8C0D4;padding:6px 9px;border-radius:5px;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:#F5F9FF;background:#0C1E30;}
+@media(max-width:800px){.nav-links{display:none;}}
+.nav-sp{flex:1;}
+.nav-r{display:flex;gap:8px;}
+.btn-ghost{font-size:12px;font-weight:700;color:#A8C0D4;padding:7px 13px;border:1px solid #1E3A52;border-radius:6px;background:transparent;text-decoration:none;display:inline-block;}
+.btn-primary{font-size:12px;font-weight:800;color:#F5F9FF;padding:7px 14px;border-radius:6px;background:#1860AA;border:1px solid #1860AA;text-decoration:none;display:inline-block;}
+
+/* BREADCRUMB */
+.breadcrumb{background:#F2F7FC;border-bottom:1px solid #C8DCF0;padding:10px 24px;}
+@media(min-width:900px){.breadcrumb{padding:10px 48px;}}
+.bc-inner{max-width:1080px;margin:0 auto;display:flex;gap:6px;font-size:12px;}
+.bc-link{color:#1860AA;font-weight:600;text-decoration:none;}
+.bc-sep{color:#8AAEC8;}
+.bc-cur{color:#2E4A62;font-weight:600;}
+
+/* HERO */
+#hero{background:#06101A;padding:64px 0 56px;}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:36px;}
+@media(min-width:840px){.hero-grid{grid-template-columns:3fr 2fr;gap:52px;align-items:center;}}
+.hero-ey{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#F5F9FF;display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.hero-ey-line{height:2px;width:28px;background:#4DA8FF;flex-shrink:0;}
+.hero-h1{font-size:32px;font-weight:900;color:#F5F9FF;line-height:1.12;letter-spacing:-.03em;margin-bottom:16px;}
+@media(min-width:600px){.hero-h1{font-size:42px;}}
+.hero-sub{font-size:16px;font-weight:600;color:#E0EAF4;line-height:1.8;}
+/* Stats strip */
+.stat-strip{display:grid;grid-template-columns:repeat(2,1fr);max-width:320px;gap:0;margin-top:32px;border:1px solid #1E3A52;border-radius:12px;overflow:hidden;}
+.stat-item{padding:18px 16px;border-right:1px solid #1E3A52;text-align:center;}
+.stat-item:last-child{border-right:none;}
+.stat-n{font-size:26px;font-weight:900;color:#F5F9FF;line-height:1;}
+.stat-l{font-size:11px;font-weight:700;color:#A8C0D4;margin-top:4px;}
+/* Quote card */
+.philosophy-card{background:#0B1828;border:1px solid #1E3A52;border-radius:14px;padding:28px;}
+.phil-quote{font-size:15px;font-weight:700;color:#F5F9FF;line-height:1.75;font-style:italic;margin-bottom:12px;}
+.phil-attr{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#A8C0D4;}
+
+/* STORY SECTION */
+#story{background:#FFFFFF;padding:64px 0;}
+.story-grid{display:grid;grid-template-columns:1fr;gap:40px;}
+@media(min-width:840px){.story-grid{grid-template-columns:1fr 1fr;gap:60px;align-items:start;}}
+.story-block{}
+.pull-quote{font-size:18px;font-weight:900;color:#1860AA;line-height:1.5;border-left:4px solid #1860AA;padding-left:20px;margin:24px 0;}
+@media(min-width:600px){.pull-quote{font-size:22px;}}
+
+/* THREE PILLARS */
+#pillars{background:#06101A;padding:64px 0;}
+.pillar-grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:32px;}
+@media(min-width:700px){.pillar-grid{grid-template-columns:repeat(3,1fr);}}
+.pillar-c{background:#0B1828;border:1px solid #1E3A52;border-radius:14px;padding:28px;}
+.pillar-num{font-size:36px;font-weight:900;color:#1860AA;line-height:1;margin-bottom:12px;}
+.pillar-title{font-size:16px;font-weight:900;color:#F5F9FF;margin-bottom:10px;}
+.pillar-text{font-size:13px;font-weight:600;color:#E0EAF4;line-height:1.75;}
+
+/* FOUNDERS */
+#founders{background:#F2F7FC;padding:64px 0;}
+.founders-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:32px;}
+@media(min-width:700px){.founders-grid{grid-template-columns:1fr 1fr;}}
+@media(min-width:1000px){.founders-grid{grid-template-columns:repeat(3,1fr);}}
+.founder-card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;padding:24px;}
+.fc-top{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #E0EAF4;}
+.fc-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#F5F9FF;flex-shrink:0;}
+.fc-name{font-size:15px;font-weight:900;color:#071A2E;margin-bottom:2px;}
+.fc-role{font-size:11px;font-weight:800;color:#1860AA;letter-spacing:.04em;}
+.fc-prev{font-size:11px;font-weight:700;color:#4A6A88;margin-top:1px;}
+.fc-bio{font-size:13px;font-weight:600;color:#1E3A54;line-height:1.7;margin-bottom:12px;}
+.fc-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.fc-tag{font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;}
+
+/* WHAT WE BELIEVE */
+#beliefs{background:#FFFFFF;padding:64px 0;border-top:1px solid #C8DCF0;}
+.belief-list{display:flex;flex-direction:column;gap:0;margin-top:28px;border:1px solid #C8DCF0;border-radius:14px;overflow:hidden;}
+.belief-item{display:flex;gap:20px;align-items:flex-start;padding:20px 24px;border-bottom:1px solid #C8DCF0;}
+.belief-item:last-child{border-bottom:none;}
+.belief-n{font-size:22px;font-weight:900;color:#1860AA;min-width:32px;flex-shrink:0;line-height:1.2;}
+.belief-title{font-size:14px;font-weight:900;color:#071A2E;margin-bottom:5px;}
+.belief-text{font-size:13px;font-weight:600;color:#1E3A54;line-height:1.7;}
+
+/* IMAGE BREAK */
+.img-break{background:#071422;padding:72px 0;text-align:center;position:relative;overflow:hidden;}
+.ib-pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#0A1C2E 0,#0A1C2E 1px,transparent 0,transparent 50%);background-size:28px 28px;opacity:.35;}
+.ib-content{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 24px;}
+.ib-quote{font-size:20px;font-weight:900;color:#F5F9FF;line-height:1.5;margin-bottom:14px;}
+@media(min-width:600px){.ib-quote{font-size:26px;}}
+.ib-attr{font-size:12px;font-weight:700;color:#A8C0D4;letter-spacing:.1em;text-transform:uppercase;}
+
+/* CTA */
+#cta{background:#F2F7FC;padding:56px 0;text-align:center;border-top:1px solid #C8DCF0;}
+.cta-h{font-size:24px;font-weight:900;color:#071A2E;margin-bottom:8px;}
+@media(min-width:600px){.cta-h{font-size:30px;}}
+.cta-sub{font-size:14px;font-weight:600;color:#1E3A54;line-height:1.75;margin-bottom:24px;max-width:520px;margin-left:auto;margin-right:auto;}
+.cta-btn-p{font-size:14px;font-weight:800;padding:13px 28px;border-radius:7px;background:#1860AA;color:#FFF;text-decoration:none;display:inline-block;margin:5px 6px;}
+.cta-btn-s{font-size:14px;font-weight:800;padding:12px 28px;border-radius:7px;background:transparent;color:#1860AA;border:2px solid #1860AA;text-decoration:none;display:inline-block;margin:5px 6px;}
+
+/* FOOTER */
+footer{background:#06101A;padding:48px 0 24px;border-top:1px solid #162638;}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+@media(min-width:768px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr;}}
+.foot-brand{font-size:19px;font-weight:900;color:#F5F9FF;margin-bottom:10px;}
+.foot-brand em{color:#4DA8FF;font-style:normal;}
+.foot-tag{font-size:13px;font-weight:600;color:#A8C0D4;line-height:1.75;}
+.foot-col-h{font-size:12px;font-weight:900;color:#F5F9FF;margin-bottom:12px;}
+.foot-link{font-size:13px;font-weight:600;color:#A8C0D4;display:block;margin-bottom:8px;text-decoration:none;}
+.foot-bot{display:flex;flex-direction:column;gap:6px;padding-top:18px;border-top:1px solid #162638;}
+@media(min-width:600px){.foot-bot{flex-direction:row;justify-content:space-between;}}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+        <div class="nav-links">
+      <a href="programmes.html">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html">For Organisations</a>
+      <a href="universities.html">For Universities</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="about.html" class="active">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+      <a href="student-login.html" class="btn-ghost">Student Login</a>
+      <a href="enrol.html" class="btn-primary">Enrol now</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-cur">About Us</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-ey"><div class="hero-ey-line"></div>About NeoProEd</div>
+        <h1 class="hero-h1">Built by practitioners.<br>For practitioners.</h1>
+        <p class="hero-sub">India's insurance industry is growing faster than its talent pipeline. NeoProEd exists to close that gap — built by practitioners, for professionals who want to grow with the industry.</p>
+        <div class="stat-strip">
+          <div class="stat-item"><div class="stat-n">5</div><div class="stat-l">Co-founders</div></div>
+          <div class="stat-item"><div class="stat-n">1</div><div class="stat-l">Industry we serve</div></div>
+        </div>
+      </div>
+      <div class="philosophy-card">
+        <div class="phil-quote">"The insurance industry doesn't have a talent shortage. It has a trained-talent shortage. Thousands of motivated professionals would thrive here — if only they had a credible pathway in. That's what NeoProEd is here to build."</div>
+        <div class="phil-attr">Sneha Gokarn · Co-founder, NeoProEd</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-block">
+        <div class="ey-lt">The origin</div>
+        <h2 class="h2-lt">Why we started NeoProEd</h2>
+        <p class="body-lt">We built NeoProEd because the talent inflow isn't keeping pace with the industry's growth — and talented people who wanted to build careers in insurance had nowhere serious to start. That gap is not acceptable in an industry this important.</p>
+        <p class="body-lt" style="margin-top:14px;">Our founding team — COOs, CEOs, distribution leaders, and technology heads — each encountered this from different angles. Companies hiring people who didn't understand insurance. Universities producing graduates with no pathway in. Agents selling products they couldn't fully explain. And the practitioners who did understand, not teaching.</p>
+        <div class="pull-quote">The knowledge existed. The structured pathway didn't. So we built one.</div>
+        <p class="body-lt">NeoProEd is the result — built not from academic theory but from lived experience in the roles we now teach. Every curriculum decision, every faculty appointment, every programme structure reflects what we know actually matters in this industry.</p>
+      </div>
+      <div class="story-block">
+        <div class="ey-lt">What makes us different</div>
+        <h2 class="h2-lt">Insurance-exclusive. Always.</h2>
+        <p class="body-lt">Most professional education platforms treat insurance as a module inside a broader BFSI programme. NeoProEd builds nothing for any other sector — every case study, every faculty member, every curriculum decision is insurance-specific.</p>
+        <p class="body-lt" style="margin-top:14px;">This produces a depth of functional fluency that cross-sector programmes cannot match. Professionals who complete NeoProEd programmes don't just know about insurance — they understand how it works from the inside.</p>
+        <div class="pull-quote">One industry. Complete focus. No compromise.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE PILLARS -->
+<section id="pillars">
+  <div class="wrap">
+    <div class="ey-dk">Our philosophy</div>
+    <h2 class="h2-dk">Three things we will never compromise on</h2>
+    <div class="pillar-grid">
+      <div class="pillar-c">
+        <div class="pillar-num">01</div>
+        <div class="pillar-title">Practitioner-built</div>
+        <div class="pillar-text">Every programme is designed and delivered by professionals who have held the role they teach. Not academics with a passing interest. Not consultants who have observed the industry. People who have done the work — and can show you exactly how it's done.</div>
+      </div>
+      <div class="pillar-c">
+        <div class="pillar-num">02</div>
+        <div class="pillar-title">Employment-first</div>
+        <div class="pillar-text">We measure success by what happens after the programme — not during it. Career pathways, role readiness, and employer connections are built into every programme from day one. The certificate matters less than the capability it represents.</div>
+      </div>
+      <div class="pillar-c">
+        <div class="pillar-num">03</div>
+        <div class="pillar-title">Insurance-exclusive</div>
+        <div class="pillar-text">We build nothing for any other sector. Every case, every framework, every faculty decision is insurance-specific. This is not a vertical within a bigger education platform — it is the entire platform, built around one industry and its career paths.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDERS -->
+<section id="founders">
+  <div class="wrap">
+    <div class="ey-lt">The people behind NeoProEd</div>
+    <h2 class="h2-lt">Five founders. One shared conviction.</h2>
+    <p class="body-lt" style="margin-bottom:0;">Different specialisms. Different networks. The same belief that India's insurance industry deserves a professional education platform that matches its scale and ambition.</p>
+    <div class="founders-grid">
+
+      <div class="founder-card">
+        <div class="fc-top">
+          <div class="fc-avatar" style="background:#F2F7FC;border:2px dashed #C8DCF0;"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;height:100%;"><div style="font-size:18px;">📷</div><div style="font-size:9px;font-weight:700;color:#8AAEC8;">Photo</div></div></div>
+          <div>
+            <div class="fc-name">Sneha Gokarn</div>
+            <div class="fc-role">Strategy & Distribution</div>
+            <div class="fc-prev">Former CEO, Gallagher India</div>
+          </div>
+        </div>
+        <p class="fc-bio">Sneha led Gallagher India as CEO, building one of India's most respected insurance broking operations. She brings 20+ years across insurance distribution, strategic partnerships, and M&A. At NeoProEd she leads overall strategy and programme design.</p>
+        <div class="fc-tags">
+          <span class="fc-tag">Insurance strategy</span>
+          <span class="fc-tag">Distribution</span>
+          <span class="fc-tag">M&A</span>
+        </div>
+      </div>
+
+      <div class="founder-card">
+        <div class="fc-top">
+          <div class="fc-avatar" style="background:#F2F7FC;border:2px dashed #C8DCF0;"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;height:100%;"><div style="font-size:18px;">📷</div><div style="font-size:9px;font-weight:700;color:#8AAEC8;">Photo</div></div></div>
+          <div>
+            <div class="fc-name">Yashesh Sampat</div>
+            <div class="fc-role">Sales & Market Development</div>
+            <div class="fc-prev">Insurance leader · CII member · Angel investor</div>
+          </div>
+        </div>
+        <p class="fc-bio">Yashesh has spent 25+ years building insurance distribution networks across Life, Non-Life, and Health. A CII member and active InsurTech investor, he brings distribution ecosystem knowledge that most education programmes overlook. At NeoProEd he leads industry relationships and employer connections.</p>
+        <div class="fc-tags">
+          <span class="fc-tag">Distribution</span>
+          <span class="fc-tag">Sales strategy</span>
+          <span class="fc-tag">InsurTech investing</span>
+        </div>
+      </div>
+
+      <div class="founder-card">
+        <div class="fc-top">
+          <div class="fc-avatar" style="background:#F2F7FC;border:2px dashed #C8DCF0;"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;height:100%;"><div style="font-size:18px;">📷</div><div style="font-size:9px;font-weight:700;color:#8AAEC8;">Photo</div></div></div>
+          <div>
+            <div class="fc-name">Sumeet Darak</div>
+            <div class="fc-role">Operations & Technology</div>
+            <div class="fc-prev">Former COO, Gallagher India</div>
+          </div>
+        </div>
+        <p class="fc-bio">As COO at Gallagher India, Sumeet ran operations across broking, claims, technology, and M&A integration. He brings the technology and operations perspective the industry demands — at the decision-maker level, not the engineering level. At NeoProEd he leads operational infrastructure and programme delivery.</p>
+        <div class="fc-tags">
+          <span class="fc-tag">Operations</span>
+          <span class="fc-tag">InsurTech</span>
+          <span class="fc-tag">M&A integration</span>
+        </div>
+      </div>
+
+      <div class="founder-card">
+        <div class="fc-top">
+          <div class="fc-avatar" style="background:#F2F7FC;border:2px dashed #C8DCF0;"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;height:100%;"><div style="font-size:18px;">📷</div><div style="font-size:9px;font-weight:700;color:#8AAEC8;">Photo</div></div></div>
+          <div>
+            <div class="fc-name">Kirtan Shah</div>
+            <div class="fc-role">Learning Design, Programme Experience & Digital Outreach</div>
+            <div class="fc-prev">TEDx speaker · LinkedIn Top Voice · Co-founder FPA Edutech</div>
+          </div>
+        </div>
+        <p class="fc-bio">Kirtan co-built FPA Edutech, delivering CA, CFP, ACCA, CMA(US), and IBOC programmes that have catapulted 50,000+ students into professional employment. A TEDx speaker and LinkedIn Top Voice, he brings deep expertise in how professionals learn and grow. At NeoProEd he leads learning design, programme experience, and digital outreach.</p>
+        <div class="fc-tags">
+          <span class="fc-tag">Education design</span>
+          <span class="fc-tag">Community</span>
+          <span class="fc-tag">Financial planning</span>
+        </div>
+      </div>
+
+      <div class="founder-card">
+        <div class="fc-top">
+          <div class="fc-avatar" style="background:#F2F7FC;border:2px dashed #C8DCF0;"><div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;height:100%;"><div style="font-size:18px;">📷</div><div style="font-size:9px;font-weight:700;color:#8AAEC8;">Photo</div></div></div>
+          <div>
+            <div class="fc-name">Vishal Gada</div>
+            <div class="fc-role">University Outreach & Certification Design</div>
+            <div class="fc-prev">BW 40u40 · Co-founder FPA Edutech</div>
+          </div>
+        </div>
+        <p class="fc-bio">Vishal co-built FPA Edutech with Kirtan — together delivering CA, CFP, ACCA, CMA(US), and IBOC programmes that have trained 50,000+ professionals. Recognised by Business World's 40 Under 40, he brings the expertise of running credentialled professional education at scale. At NeoProEd he leads university outreach and certification design.</p>
+        <div class="fc-tags">
+          <span class="fc-tag">Certification design</span>
+          <span class="fc-tag">CFA · CFP · ACCA</span>
+          <span class="fc-tag">EdTech</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK — philosophy quote -->
+<div class="img-break">
+  <div class="ib-pattern"></div>
+  <div class="ib-content">
+    <div class="ib-quote">"We built NeoProEd because the talent inflow isn't keeping pace with the industry's growth — and talented people who wanted to build careers in insurance had nowhere serious to start. That gap is not acceptable in an industry this important."</div>
+    <div class="ib-attr">The founding team · NeoProEd · 2025</div>
+  </div>
+</div>
+
+<!-- WHAT WE BELIEVE -->
+<section id="beliefs">
+  <div class="wrap">
+    <div class="ey-lt">What we stand for</div>
+    <h2 class="h2-lt">The beliefs that drive every decision</h2>
+    <div class="belief-list">
+      <div class="belief-item">
+        <div class="belief-n">1</div>
+        <div>
+          <div class="belief-title">Education should be honest about outcomes</div>
+          <div class="belief-text">We do not guarantee placements. We do not call ourselves the "only" or "first" anything. We tell students exactly what they will learn, what kind of support they will receive, and what they will need to do themselves. Trust is more valuable than any claim.</div>
+        </div>
+      </div>
+      <div class="belief-item">
+        <div class="belief-n">2</div>
+        <div>
+          <div class="belief-title">The best teachers are the people still doing the work</div>
+          <div class="belief-text">Academic knowledge decays. Industry knowledge compounds. Every faculty member at NeoProEd is an active professional — not a retired expert or a generalist trainer. When the curriculum changes because the industry changes, our faculty brings that change in with them.</div>
+        </div>
+      </div>
+      <div class="belief-item">
+        <div class="belief-n">3</div>
+        <div>
+          <div class="belief-title">A cohort is worth more than a certificate</div>
+          <div class="belief-text">The people you learn alongside are as important as what you learn. NeoProEd programmes are cohort-based deliberately — so that professionals from across the insurance ecosystem build connections that outlast the programme. Your peers in the founding cohort will be your colleagues for the next 20 years.</div>
+        </div>
+      </div>
+      <div class="belief-item">
+        <div class="belief-n">4</div>
+        <div>
+          <div class="belief-title">Insurance deserves to be treated as a serious career</div>
+          <div class="belief-text">In India, insurance is often a second-choice career. We believe that is a failure of education, not of the industry. Insurance is one of the most intellectually demanding, commercially important, and socially meaningful sectors in the economy. NeoProEd is built to make that case — clearly, credibly, and with evidence.</div>
+        </div>
+      </div>
+      <div class="belief-item">
+        <div class="belief-n">5</div>
+        <div>
+          <div class="belief-title">India's insurance market is a once-in-a-generation opportunity</div>
+          <div class="belief-text">India is on track to become the world's sixth largest insurance market within the next decade. The professionals building their expertise now — across regulation, distribution, technology, and product — will lead that market. NeoProEd is here to prepare them.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <h2 class="cta-h">Ready to join the founding cohort?</h2>
+    <p class="cta-sub">The founding cohort is a rare opportunity — small group, high interaction, direct access to every founder and faculty member. Available only once.</p>
+    <a href="enrol.html" class="cta-btn-p">Enrol Now →</a>
+    <a href="contact.html" class="cta-btn-s">Talk to Us</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Neo<em>Pro</em>Ed</div>
+        <div class="foot-tag">Industry-led professional education for India's insurance ecosystem. Built by practitioners, designed for careers.</div>
+      </div>
+      <div>
+        <div class="foot-col-h">Programmes</div>
+        <a href="programmes.html" class="foot-link">All Programmes</a>
+        <a href="enrol.html" class="foot-link">Enrol Now</a>
+        <a href="faculty.html" class="foot-link">Faculty</a>
+      </div>
+      <div>
+        <div class="foot-col-h">Who we serve</div>
+        <a href="professionals.html" class="foot-link">For Professionals</a>
+        <a href="corporate.html" class="foot-link">For Organisations</a>
+        <a href="universities.html" class="foot-link">For Universities</a>
+        <a href="students.html" class="foot-link">For Students</a>
+      </div>
+      <div>
+        <div class="foot-col-h">Company</div>
+        <a href="about.html" class="foot-link">About Us</a>
+        <a href="faculty.html" class="foot-link">Faculty</a>
+        <a href="contact.html" class="foot-link">Contact</a>
+        <a href="privacy-policy.html" class="foot-link">Privacy Policy</a>
+      </div>
+    </div>
+        <div class="foot-bot"><div class="foot-legal" style="color:#3A5A78;">© 2026 NeoProEd Private Limited</div><div class="foot-legal" style="color:#3A5A78;"><a href="privacy-policy.html" style="color:#3A5A78;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#3A5A78;text-decoration:none;">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+</body>
+</html>

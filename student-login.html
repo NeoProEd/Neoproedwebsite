@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login | NeoProEd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#06101A;color:#F5F9FF;overflow-x:hidden;max-width:100vw;min-height:100vh;display:flex;flex-direction:column;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+nav{background:#06101A;border-bottom:1px solid #162638;position:sticky;top:0;z-index:100;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;flex-shrink:0;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-links{display:flex;gap:4px;margin-left:24px;}
+.nav-links a{font-size:12px;font-weight:700;color:#A8C0D4;padding:6px 9px;border-radius:5px;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:#F5F9FF;background:#0C1E30;}
+@media(max-width:800px){.nav-links{display:none;}}
+.nav-sp{flex:1;}
+.nav-r{display:flex;gap:8px;flex-shrink:0;align-items:center;}
+.btn-ghost{font-size:12px;font-weight:700;color:#A8C0D4;padding:7px 13px;border:1px solid #1E3A52;border-radius:6px;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+.btn-primary{font-size:12px;font-weight:800;color:#F5F9FF;padding:7px 14px;border-radius:6px;background:#1860AA;border:1px solid #1860AA;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}
+
+/* MAIN LOGIN AREA */
+.login-page{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px;}
+.login-container{width:100%;max-width:480px;}
+.login-logo-area{text-align:center;margin-bottom:32px;}
+.login-logo{font-size:28px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;}
+.login-logo em{color:#4DA8FF;font-style:normal;}
+.login-tagline{font-size:13px;font-weight:600;color:#A8C0D4;margin-top:4px;}
+
+/* REDIRECT CARD — main action */
+.redirect-card{background:#0B1828;border:1px solid #1E3A52;border-radius:16px;padding:32px;text-align:center;margin-bottom:16px;}
+.rc-icon{font-size:40px;margin-bottom:16px;}
+.rc-title{font-size:20px;font-weight:900;color:#F5F9FF;margin-bottom:8px;}
+.rc-text{font-size:14px;font-weight:600;color:#E0EAF4;line-height:1.75;margin-bottom:24px;}
+.learnyst-btn{display:block;background:#1860AA;color:#FFFFFF;font-size:16px;font-weight:900;padding:16px 24px;border-radius:10px;text-decoration:none;transition:background .15s;}
+.learnyst-btn:hover{background:#1456A0;}
+.learnyst-note{font-size:11px;font-weight:600;color:#4A6A88;margin-top:10px;}
+
+/* WHAT'S IN LEARNYST */
+.platform-info{background:#0C1E30;border:1px solid #1E3A52;border-radius:12px;padding:20px 22px;}
+.pi-label{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#A8C0D4;margin-bottom:12px;}
+.pi-items{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.pi-item{display:flex;align-items:center;gap:8px;}
+.pi-dot{width:5px;height:5px;border-radius:50%;background:#4DA8FF;flex-shrink:0;}
+.pi-txt{font-size:12px;font-weight:600;color:#E0EAF4;}
+
+/* NOT YET ENROLLED */
+.not-enrolled{background:#06101A;border:1px solid #162638;border-radius:12px;padding:20px 22px;margin-top:14px;text-align:center;}
+.ne-text{font-size:13px;font-weight:600;color:#A8C0D4;margin-bottom:12px;}
+.ne-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.ne-enrol{font-size:13px;font-weight:800;padding:10px 20px;border-radius:7px;background:#1860AA;color:#FFF;text-decoration:none;display:inline-block;}
+.ne-browse{font-size:13px;font-weight:800;padding:10px 20px;border-radius:7px;background:transparent;color:#A8C0D4;border:1px solid #1E3A52;text-decoration:none;display:inline-block;}
+
+/* HELP */
+.help-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:16px;}
+.help-link{font-size:12px;font-weight:700;color:#4A6A88;text-decoration:none;}
+.help-link:hover{color:#A8C0D4;}
+
+footer{background:#06101A;border-top:1px solid #162638;padding:20px 24px;text-align:center;}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+            <div class="nav-links">
+      <a href="programmes.html">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html">For Organisations</a>
+      <a href="universities.html">For Universities</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+      <a href="student-login.html" class="btn-ghost" style="color:#F5F9FF;border-color:#1860AA;">Student Login</a>
+      <a href="enrol.html" class="btn-primary">Enrol now</a>
+    </div>
+  </div>
+</nav>
+
+<div class="login-page">
+  <div class="login-container">
+
+    <div class="login-logo-area">
+      <div class="login-logo">Neo<em>Pro</em>Ed</div>
+      <div class="login-tagline">Student Learning Portal</div>
+    </div>
+
+    <!-- PRIMARY REDIRECT CARD -->
+    <div class="redirect-card">
+      <div class="rc-icon">🎓</div>
+      <div class="rc-title">Your courses are on Learnyst</div>
+      <div class="rc-text">NeoProEd uses Learnyst as its student learning platform. Click below to access your courses, live session schedule, assignments, and certificate downloads.</div>
+      <a href="https://neoproed.learnyst.com" class="learnyst-btn" target="_blank" rel="noopener">
+        Go to Student Portal →
+      </a>
+      <div class="learnyst-note">Opens Learnyst in a new tab · Use your registered email to sign in</div>
+    </div>
+
+    <!-- WHAT'S INSIDE -->
+    <div class="platform-info">
+      <div class="pi-label">What you'll find on the student portal</div>
+      <div class="pi-items">
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Live session links</div></div>
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Session recordings</div></div>
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Course materials</div></div>
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Assignments</div></div>
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Attendance record</div></div>
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Cohort announcements</div></div>
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Certificate download</div></div>
+        <div class="pi-item"><div class="pi-dot"></div><div class="pi-txt">Faculty resources</div></div>
+      </div>
+    </div>
+
+    <!-- NOT YET ENROLLED -->
+    <div class="not-enrolled">
+      <div class="ne-text">Not yet enrolled in a programme?</div>
+      <div class="ne-btns">
+        <a href="enrol.html" class="ne-enrol">Enrol Now</a>
+        <a href="programmes.html" class="ne-browse">Browse Programmes</a>
+      </div>
+    </div>
+
+    <!-- HELP -->
+    <div class="help-row">
+      <a href="/cdn-cgi/l/email-protection#7119141d1d1e311f141e0103b2c214155f121e1c" class="help-link">✉ Can't access your account?</a>
+      <a href="contact.html" class="help-link">💬 Contact support</a>
+    </div>
+
+  </div>
+</div>
+
+<div style="text-align:center;padding:12px 24px;font-size:11px;font-weight:600;color:#2A4060;">This website is for users aged 18 and above.</div>
+<footer>
+  <div class="foot-legal"><a href="privacy-policy.html" style="color:#2A4060;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#2A4060;text-decoration:none;">Terms of Use</a> &nbsp;·&nbsp; © 2026 NeoProEd Private Limited · Student queries: hello@neopr
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    var x=document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s,x);
+  }
+}
+</script>
+</body>
+</html>

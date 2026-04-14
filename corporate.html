@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoProEd — For Insurance Companies & Institutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #FFFFFF;
+  color: #071A2E;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ─── LAYOUT ─── */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+@media (min-width: 900px) { .wrap { padding: 0 48px; } }
+
+/* ─── TOKENS ─── */
+/* DARK bg: #06101A / #0B1828 / #0C1E30 */
+/* ON DARK: headline #F5F9FF 900 | body #E0EAF4 600 | label #A8C0D4 700 */
+/* ON LIGHT: headline #071A2E 900 | body #1E3A54 600 | muted #4A6A88 */
+/* ACCENT: #1860AA interactive | #4DA8FF decorative only */
+
+/* ─── TYPOGRAPHY ─── */
+.ey-dk { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #A8C0D4; margin-bottom: 10px; }
+.ey-lt { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #1860AA; margin-bottom: 10px; }
+.h2-dk { font-size: 28px; font-weight: 900; color: #F5F9FF; line-height: 1.15; letter-spacing: -.03em; margin-bottom: 12px; }
+.h2-lt { font-size: 28px; font-weight: 900; color: #071A2E; line-height: 1.15; letter-spacing: -.03em; margin-bottom: 12px; }
+.body-dk { font-size: 15px; font-weight: 600; color: #E0EAF4; line-height: 1.75; }
+.body-lt { font-size: 15px; font-weight: 600; color: #1E3A54; line-height: 1.75; }
+@media (min-width: 900px) { .h2-dk,.h2-lt { font-size: 36px; } .body-dk,.body-lt { font-size: 16px; } }
+
+/* ─── NAV ─── */
+nav { background: #06101A; border-bottom: 1px solid #162638; position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; align-items: center; padding: 15px 24px; max-width: 1080px; margin: 0 auto; }
+@media (min-width: 900px) { .nav-inner { padding: 15px 48px; } }
+.logo { font-size: 20px; font-weight: 900; color: #F5F9FF; letter-spacing: -.02em; text-decoration: none; flex-shrink: 0; }
+.logo em { color: #4DA8FF; font-style: normal; }
+.nav-links { display: flex; gap: 4px; margin-left: 24px; }
+.nav-links a { font-size: 13px; font-weight: 700; color: #A8C0D4; padding: 6px 10px; border-radius: 5px; text-decoration: none; }
+.nav-links a:hover { color: #F5F9FF; background: #0C1E30; }
+.nav-links a.active { color: #F5F9FF; }
+@media (max-width: 700px) { .nav-links { display: none; } }
+.nav-sp { flex: 1; }
+.nav-r { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-ghost { font-size: 13px; font-weight: 700; color: #A8C0D4; padding: 7px 14px; border: 1px solid #1E3A52; border-radius: 6px; background: transparent; cursor: pointer; }
+.btn-primary { font-size: 13px; font-weight: 800; color: #F5F9FF; padding: 7px 16px; border-radius: 6px; background: #1860AA; border: 1px solid #1860AA; cursor: pointer; }
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb { background: #F2F7FC; border-bottom: 1px solid #C8DCF0; padding: 10px 24px; }
+@media (min-width: 900px) { .breadcrumb { padding: 10px 48px; } }
+.bc-inner { max-width: 1080px; margin: 0 auto; display: flex; gap: 6px; align-items: center; font-size: 12px; }
+.bc-link { color: #1860AA; font-weight: 600; cursor: pointer; text-decoration: none; }
+.bc-sep { color: #8AAEC8; }
+.bc-cur { color: #2E4A62; font-weight: 600; }
+
+/* ─── HERO: DARK ─── */
+#hero { background: #06101A; padding: 64px 0 56px; }
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
+@media (min-width: 840px) { .hero-grid { grid-template-columns: 3fr 2fr; gap: 56px; align-items: center; } }
+.hero-seg { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #F5F9FF; display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.hero-seg-line { height: 2px; width: 28px; background: #4DA8FF; flex-shrink: 0; }
+.hero-h1 { font-size: 28px; font-weight: 900; color: #F5F9FF; line-height: 1.12; letter-spacing: -.03em; margin-bottom: 16px; }
+.hero-h1 em { color: #4DA8FF; font-style: normal; }
+@media (min-width: 600px) { .hero-h1 { font-size: 36px; } }
+@media (min-width: 900px) { .hero-h1 { font-size: 44px; } }
+.hero-sub { font-size: 15px; font-weight: 600; color: #E0EAF4; line-height: 1.8; margin-bottom: 28px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-btns a { font-size: 14px; font-weight: 800; padding: 13px 26px; border-radius: 7px; text-decoration: none; display: inline-block; white-space: nowrap; }
+.hb-p { background: #1860AA; color: #F5F9FF; border: 2px solid #1860AA; }
+.hb-s { background: transparent; color: #F5F9FF; border: 2px solid #2A4A6A; }
+
+/* Right panel: trust signals */
+.hero-trust { background: #0B1828; border: 1px solid #1E3A52; border-radius: 14px; padding: 24px; }
+.ht-label { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #A8C0D4; margin-bottom: 14px; }
+.ht-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #162638; }
+.ht-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.ht-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.ht-title { font-size: 13px; font-weight: 800; color: #F5F9FF; margin-bottom: 3px; }
+.ht-text { font-size: 12px; font-weight: 600; color: #E0EAF4; line-height: 1.6; }
+
+/* ─── CLIENT TYPES: LIGHT ─── */
+#clients { background: #FFFFFF; padding: 64px 0; border-top: 1px solid #C8DCF0; }
+.client-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+.ctab { font-size: 12px; font-weight: 800; padding: 8px 18px; border-radius: 20px; border: 1px solid #C8DCF0; color: #4A6A88; cursor: pointer; background: #F2F7FC; }
+.ctab.active { background: #1860AA; color: #F5F9FF; border-color: #1860AA; }
+.client-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 700px) { .client-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .client-grid { grid-template-columns: repeat(4, 1fr); } }
+.client-card { background: #F2F7FC; border: 1px solid #C8DCF0; border-radius: 12px; padding: 20px; }
+.client-card.featured { border-color: #1860AA; border-width: 2px; background: #FFFFFF; }
+.cc-icon { font-size: 28px; margin-bottom: 12px; }
+.cc-type { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #1860AA; margin-bottom: 6px; }
+.cc-title { font-size: 14px; font-weight: 900; color: #071A2E; margin-bottom: 7px; }
+.cc-text { font-size: 12px; font-weight: 600; color: #1E3A54; line-height: 1.65; }
+
+/* ─── IMAGE BREAK ─── */
+.img-break { padding: 64px 24px; text-align: center; position: relative; overflow: hidden; }
+@media (min-width: 900px) { .img-break { padding: 88px 48px; } }
+.break-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+.break-pattern { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, #0A1C2E 0, #0A1C2E 1px, transparent 0, transparent 50%); background-size: 32px 32px; opacity: .45; }
+.break-label { font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #4DA8FF; margin-bottom: 14px; }
+.break-h { font-size: 22px; font-weight: 900; color: #F5F9FF; line-height: 1.3; letter-spacing: -.02em; margin-bottom: 14px; }
+@media (min-width: 600px) { .break-h { font-size: 28px; } }
+.break-sub { font-size: 15px; font-weight: 600; color: #E0EAF4; line-height: 1.75; }
+
+/* ─── HOW WE WORK: DARK ─── */
+#how { background: #0B1828; padding: 64px 0; border-top: 1px solid #162638; }
+.steps-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 32px; }
+@media (min-width: 700px) { .steps-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .steps-grid { grid-template-columns: repeat(4, 1fr); } }
+.step-card { background: #06101A; border: 1px solid #1E3A52; border-radius: 12px; padding: 22px; }
+.step-num { font-size: 36px; font-weight: 900; color: #F5F9FF; opacity: .1; line-height: 1; margin-bottom: 14px; }
+.step-title { font-size: 14px; font-weight: 900; color: #F5F9FF; margin-bottom: 7px; }
+.step-text { font-size: 12px; font-weight: 600; color: #E0EAF4; line-height: 1.7; }
+
+/* ─── SERVICES: LIGHT ─── */
+#services { background: #F2F7FC; padding: 64px 0; border-top: 1px solid #C8DCF0; }
+.services-layout { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 700px) { .services-layout { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .services-layout { grid-template-columns: repeat(3, 1fr); } }
+.svc-card { background: #FFFFFF; border: 1px solid #C8DCF0; border-radius: 12px; padding: 24px; }
+.svc-card.primary { border-color: #1860AA; border-width: 2px; }
+.svc-icon { font-size: 28px; margin-bottom: 14px; }
+.svc-tag { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #1860AA; margin-bottom: 7px; }
+.svc-title { font-size: 15px; font-weight: 900; color: #071A2E; margin-bottom: 8px; }
+.svc-text { font-size: 13px; font-weight: 600; color: #1E3A54; line-height: 1.7; margin-bottom: 14px; }
+.svc-items { list-style: none; }
+.svc-items li { font-size: 12px; font-weight: 600; color: #4A6A88; padding: 5px 0; border-bottom: 1px solid #EEF4FA; display: flex; gap: 8px; align-items: flex-start; }
+.svc-items li:last-child { border-bottom: none; }
+.svc-dot { color: #1860AA; font-weight: 900; flex-shrink: 0; }
+
+/* ─── FACULTY: DARK ─── */
+#faculty { background: #06101A; padding: 64px 0; border-top: 1px solid #162638; }
+.fac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 900px) { .fac-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+.fc { background: #0B1828; border: 1px solid #1E3A52; border-radius: 14px; overflow: hidden; }
+.fc-photo { height: 100px; display: flex; align-items: flex-end; justify-content: flex-start; padding: 10px; }
+@media (min-width: 600px) { .fc-photo { height: 120px; } }
+.fc-photo-tag { font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; background: rgba(6,16,26,.85); color: #E0EAF4; padding: 3px 7px; border-radius: 4px; }
+.fc-body { padding: 14px; }
+.fc-name { font-size: 14px; font-weight: 900; color: #F5F9FF; margin-bottom: 3px; }
+.fc-spec { font-size: 11px; font-weight: 800; color: #A8C0D4; margin-bottom: 6px; }
+.fc-bio { font-size: 11px; font-weight: 600; color: #E0EAF4; line-height: 1.6; margin-bottom: 8px; }
+.fc-exp { font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 20px; background: #0C1E30; color: #F5F9FF; border: 1px solid #1E3A52; display: inline-block; }
+
+/* ─── WHY NEOPRÓED: LIGHT ─── */
+#why { background: #FFFFFF; padding: 64px 0; border-top: 1px solid #C8DCF0; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (min-width: 800px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
+.why-card { background: #F2F7FC; border: 1px solid #C8DCF0; border-radius: 12px; padding: 22px 18px; }
+.why-num { font-size: 32px; font-weight: 900; color: #071A2E; opacity: .08; line-height: 1; margin-bottom: 12px; }
+.why-title { font-size: 13px; font-weight: 900; color: #071A2E; margin-bottom: 6px; }
+.why-text { font-size: 12px; font-weight: 600; color: #1E3A54; line-height: 1.7; }
+
+/* ─── TESTIMONIALS / LOGOS: DARK ─── */
+#social-proof { background: #0B1828; padding: 64px 0; border-top: 1px solid #162638; }
+.testimonial-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 700px) { .testimonial-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.testi { background: #06101A; border: 1px solid #1E3A52; border-radius: 12px; padding: 22px; }
+.testi-quote { font-size: 13px; font-weight: 600; color: #E0EAF4; line-height: 1.75; margin-bottom: 14px; font-style: italic; }
+.testi-person { display: flex; align-items: center; gap: 10px; padding-top: 12px; border-top: 1px solid #162638; }
+.testi-av { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; }
+.testi-name { font-size: 12px; font-weight: 800; color: #F5F9FF; }
+.testi-org { font-size: 11px; font-weight: 600; color: #A8C0D4; }
+.placeholder-notice { font-size: 10px; font-weight: 600; color: #2A4060; margin-top: 6px; font-style: italic; }
+
+/* ─── CTA: LIGHT ─── */
+#cta { background: #FFFFFF; padding: 64px 0; border-top: 1px solid #C8DCF0; }
+.cta-2col { display: grid; grid-template-columns: 1fr; gap: 36px; }
+@media (min-width: 768px) { .cta-2col { grid-template-columns: 1fr 1fr; align-items: start; } }
+.cta-left { }
+.cta-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #1860AA; margin-bottom: 12px; }
+.cta-h { font-size: 26px; font-weight: 900; color: #071A2E; letter-spacing: -.02em; margin-bottom: 12px; }
+@media (min-width: 600px) { .cta-h { font-size: 32px; } }
+.cta-p { font-size: 15px; font-weight: 600; color: #1E3A54; line-height: 1.8; margin-bottom: 24px; }
+.cta-reassure { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.cr-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; font-weight: 600; color: #1E3A54; }
+.cr-tick { color: #1860AA; font-weight: 900; flex-shrink: 0; font-size: 14px; }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.cta-bp { font-size: 14px; font-weight: 800; padding: 13px 26px; border-radius: 7px; background: #1860AA; color: #FFFFFF; border: none; cursor: pointer; }
+.cta-bs { font-size: 14px; font-weight: 800; padding: 13px 26px; border-radius: 7px; background: transparent; color: #1860AA; border: 2px solid #1860AA; cursor: pointer; }
+
+.cta-form { background: #F2F7FC; border: 1px solid #C8DCF0; border-radius: 14px; padding: 28px; }
+.cf-title { font-size: 16px; font-weight: 900; color: #071A2E; margin-bottom: 4px; }
+.cf-sub { font-size: 13px; font-weight: 600; color: #3A5A78; margin-bottom: 18px; }
+.cf-inp, .cf-sel { width: 100%; font-size: 13px; font-weight: 600; padding: 11px 13px; border: 1px solid #A8C0D4; border-radius: 7px; margin-bottom: 10px; background: #FFFFFF; color: #071A2E; outline: none; }
+.cf-sel { color: #3A5A78; margin-bottom: 14px; }
+.cf-btn { background: #1860AA; color: #FFFFFF; border: none; padding: 13px; border-radius: 7px; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
+.cf-note { font-size: 11px; font-weight: 600; color: #6A8CA8; text-align: center; margin-top: 10px; line-height: 1.5; }
+
+/* ─── FOOTER ─── */
+footer { background: #06101A; padding: 48px 0 24px; border-top: 1px solid #162638; }
+.foot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (min-width: 768px) { .foot-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+.foot-brand { font-size: 19px; font-weight: 900; color: #F5F9FF; margin-bottom: 10px; }
+.foot-brand em { color: #4DA8FF; font-style: normal; }
+.foot-tag { font-size: 13px; font-weight: 600; color: #A8C0D4; line-height: 1.75; }
+.foot-col-h { font-size: 12px; font-weight: 900; color: #F5F9FF; margin-bottom: 12px; }
+.foot-link { font-size: 13px; font-weight: 600; color: #A8C0D4; display: block; margin-bottom: 8px; text-decoration: none; }
+.foot-bot { display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid #162638; }
+@media (min-width: 600px) { .foot-bot { flex-direction: row; align-items: center; justify-content: space-between; } }
+.foot-legal { font-size: 11px; font-weight: 600; color: #2A4060; }
+.soc-row { display: flex; gap: 8px; margin-top: 16px; }
+.si { width: 32px; height: 32px; border-radius: 7px; border: 1px solid #1E3A52; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #A8C0D4; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+            <div class="nav-links">
+      <a href="programmes.html">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html" class="active">For Organisations</a>
+      <a href="universities.html">For Universities</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+            <a href="student-login.html" class="btn-ghost">Student Login</a>
+      <button class="btn-primary">Talk to us</button>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-cur">For Insurance Companies &amp; Institutions</span>
+  </div>
+</div>
+
+<!-- HERO: DARK — premium, partnership-framed -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-seg"><div class="hero-seg-line"></div>For Insurance Companies &amp; Institutions</div>
+        <h1 class="hero-h1">Your teams deserve training built by people who <em>understand your business</em></h1>
+        <p class="hero-sub">NeoProEd designs and delivers bespoke insurance training programmes for insurers, brokers, reinsurers, and TPAs — built by practitioners with decades of operational experience inside the industry.</p>
+        <div class="hero-btns">
+          <a href="#cta" class="hb-p">Discuss a Partnership</a>
+          <a href="#services" class="hb-s">See What We Offer</a>
+        </div>
+      </div>
+      <div class="hero-trust">
+        <div class="ht-label">Why institutions choose NeoProEd</div>
+        <div class="ht-row">
+          <div class="ht-icon">🏗️</div>
+          <div><div class="ht-title">Built for your business, not for the classroom</div><div class="ht-text">Every programme is co-designed with your L&D or HR team — functional, role-specific, and immediately applicable</div></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-icon">👥</div>
+          <div><div class="ht-title">Faculty who have done the job</div><div class="ht-text">Our trainers are former COOs, distribution heads, and underwriting leads — not academics</div></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-icon">📋</div>
+          <div><div class="ht-title">Structured, auditable delivery</div><div class="ht-text">Programme documentation, attendance tracking, and outcome reporting for your compliance and HR records</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE WORK WITH: LIGHT -->
+<section id="clients">
+  <div class="wrap">
+    <div class="ey-lt">Who we work with</div>
+    <h2 class="h2-lt">Across the insurance value chain</h2>
+    <p class="body-lt" style="margin-bottom:28px;">We work with organisations at every point in the insurance ecosystem — from primary insurers to distribution networks and allied services.</p>
+    <div class="client-grid">
+      <div class="client-card featured">
+        <div class="cc-icon">🏢</div>
+        <div class="cc-type">Insurance Companies</div>
+        <div class="cc-title">Life &amp; General Insurers</div>
+        <div class="cc-text">Functional training for underwriters, claims teams, product managers, operations and distribution. Structured for MNC and domestic insurer contexts.</div>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🤝</div>
+        <div class="cc-type">Brokers</div>
+        <div class="cc-title">Insurance Brokers</div>
+        <div class="cc-text">Client-facing skill building, regulatory awareness, and relationship management training for retail and corporate broker teams.</div>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🔄</div>
+        <div class="cc-type">Reinsurers &amp; GCC</div>
+        <div class="cc-title">Reinsurers &amp; Global Capability Centres</div>
+        <div class="cc-text">Market orientation and domain depth training for GCC teams supporting global insurance operations from India.</div>
+      </div>
+      <div class="client-card">
+        <div class="cc-icon">🌐</div>
+        <div class="cc-type">Allied Services</div>
+        <div class="cc-title">TPAs, Surveyors &amp; InsurTech</div>
+        <div class="cc-text">Foundational and specialist training for third-party administrators, surveyors, and technology firms serving the insurance sector.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK -->
+<div class="img-break" style="background:#071422;">
+  <div class="break-pattern"></div>
+  <div class="break-inner">
+    <div class="break-label">Our commitment</div>
+    <h2 class="break-h">"Every programme we run for an institution is co-designed with them — not pulled off a shelf"</h2>
+    <p class="break-sub">We work with your L&D team to understand your people, your gaps, and your goals before a single session is designed.</p>
+  </div>
+</div>
+
+<!-- HOW WE WORK: DARK -->
+<section id="how">
+  <div class="wrap">
+    <div class="ey-dk">How it works</div>
+    <h2 class="h2-dk">From first conversation to programme delivery</h2>
+    <p class="body-dk">A structured, transparent process — so you know what to expect at every stage.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title">Discovery conversation</div>
+        <div class="step-text">We meet your L&D or HR lead to understand your team structure, current capability gaps, and what a successful programme looks like for you</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title">Programme design</div>
+        <div class="step-text">Our team drafts a bespoke curriculum — role-specific, function-focused, and calibrated to your team's existing knowledge level</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title">Faculty matching</div>
+        <div class="step-text">We assign faculty with direct experience in the functions being trained — underwriting trainers who have underwritten, claims trainers who have handled claims</div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title">Delivery &amp; reporting</div>
+        <div class="step-text">Programme delivered in-house, cohort, or hybrid format. Attendance, participation, and outcome reporting provided throughout</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES: LIGHT -->
+<section id="services">
+  <div class="wrap">
+    <div class="ey-lt">What we offer</div>
+    <h2 class="h2-lt">Programme types for institutions</h2>
+    <p class="body-lt" style="margin-bottom:28px;">Flexible formats built around how your teams actually work — not how training companies prefer to deliver.</p>
+    <div class="services-layout">
+      <div class="svc-card primary">
+        <div class="svc-icon">🎯</div>
+        <div class="svc-tag">Most popular</div>
+        <div class="svc-title">Bespoke In-House Programmes</div>
+        <div class="svc-text">Custom-designed training delivered inside your organisation — to your people, in your context, at your pace.</div>
+        <ul class="svc-items">
+          <li><span class="svc-dot">•</span>Role-specific curriculum design</li>
+          <li><span class="svc-dot">•</span>Practitioner faculty matched to function</li>
+          <li><span class="svc-dot">•</span>In-person, virtual, or hybrid delivery</li>
+          <li><span class="svc-dot">•</span>Post-programme outcome report</li>
+          <li><span class="svc-dot">•</span>Pricing on request — team-based</li>
+        </ul>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">👥</div>
+        <div class="svc-tag">Open Cohort</div>
+        <div class="svc-title">Sponsored Cohort Enrolment</div>
+        <div class="svc-text">Enrol your team members into our flagship open cohort programmes. Ideal for smaller teams or when cross-industry exposure is valuable.</div>
+        <ul class="svc-items">
+          <li><span class="svc-dot">•</span>Access to all NeoProEd programmes</li>
+          <li><span class="svc-dot">•</span>Bulk seat pricing available</li>
+          <li><span class="svc-dot">•</span>Progress reporting for L&D records</li>
+          <li><span class="svc-dot">•</span>Cohort peer learning across organisations</li>
+        </ul>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🎓</div>
+        <div class="svc-tag">Talent Pipeline</div>
+        <div class="svc-title">Campus &amp; Graduate Pipeline</div>
+        <div class="svc-text">Partner with NeoProEd to build a pre-trained graduate pipeline. We train, you hire — with candidates already oriented to your industry.</div>
+        <ul class="svc-items">
+          <li><span class="svc-dot">•</span>Insurance-ready graduate profiles</li>
+          <li><span class="svc-dot">•</span>Internship-to-hire pathway</li>
+          <li><span class="svc-dot">•</span>Reduced onboarding cost</li>
+          <li><span class="svc-dot">•</span>Access to NeoProEd student cohorts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY: DARK -->
+<section id="faculty">
+  <div class="wrap">
+    <div class="ey-dk">Who trains your teams</div>
+    <h2 class="h2-dk">Practitioners — not professors</h2>
+    <p class="body-dk" style="margin-bottom:28px;">Every trainer has held the role they teach. Your underwriting team is trained by someone who has built an underwriting book. Your distribution team is trained by someone who has run one.</p>
+    <div class="fac-grid">
+      <div class="fc"><div class="fc-photo" style="background:#0C2240;"><div class="fc-photo-tag">Strategy &amp; M&amp;A</div></div><div class="fc-body"><div class="fc-name">Sneha Gokarn</div><div class="fc-spec">Former CEO, Gallagher India</div><div class="fc-bio">Led insurance M&A integration across India operations. Deep expertise in business strategy, distribution, and organisational transformation.</div><span class="fc-exp">20+ years</span></div></div>
+      <div class="fc"><div class="fc-photo" style="background:#082A1A;"><div class="fc-photo-tag">Distribution</div></div><div class="fc-body"><div class="fc-name">Yashesh Sampat</div><div class="fc-spec">Distribution Leader · CII Member</div><div class="fc-bio">25 years building and scaling insurance distribution channels. Deep expertise in broker, agency, and bancassurance networks.</div><span class="fc-exp">25+ years</span></div></div>
+      <div class="fc"><div class="fc-photo" style="background:#241400;"><div class="fc-photo-tag">Operations</div></div><div class="fc-body"><div class="fc-name">Sumeet Darak</div><div class="fc-spec">Former COO, Gallagher India</div><div class="fc-bio">Led operations transformation, digital adoption, and M&A integration across an MNC insurance broking business. Process and technology specialist.</div><span class="fc-exp">20+ years</span></div></div>
+      <div class="fc"><div class="fc-photo" style="background:#180A28;"><div class="fc-photo-tag">Professional Ed</div></div><div class="fc-body"><div class="fc-name">Kirtan Shah</div><div class="fc-spec">TEDx Speaker · Edutech Co-founder</div><div class="fc-bio">Co-founder of FPA Edutech, LinkedIn Top Voice, and TEDx speaker. Expert in designing professional certification programmes for financial services.</div><span class="fc-exp">Edutech co-founder</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US: LIGHT -->
+<section id="why">
+  <div class="wrap">
+    <div class="ey-lt">Why NeoProEd</div>
+    <h2 class="h2-lt">What separates us from generic training providers</h2>
+    <p class="body-lt" style="margin-bottom:28px;">The insurance industry is specific. Training that works for generic financial services rarely works here.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-num">01</div><div class="why-title">Insurance-exclusive</div><div class="why-text">We build nothing for any other sector. Every case study, every framework, every faculty member is insurance-specific.</div></div>
+      <div class="why-card"><div class="why-num">02</div><div class="why-title">Co-designed, not templated</div><div class="why-text">We do not pull a generic programme off a shelf. Every institutional engagement starts with a discovery conversation.</div></div>
+      <div class="why-card"><div class="why-num">03</div><div class="why-title">Founder-led quality</div><div class="why-text">As a founder-led firm, senior partners are directly involved in every programme — not delegated to junior associates.</div></div>
+      <div class="why-card"><div class="why-num">04</div><div class="why-title">Discreet and professional</div><div class="why-text">We understand the sensitivity of internal L&D work. All engagements are handled with full confidentiality.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF: DARK -->
+<section id="social-proof">
+  <div class="wrap">
+    <div class="ey-dk">What our clients say</div>
+    <h2 class="h2-dk">Early feedback from the industry</h2>
+    <p class="body-dk" style="margin-bottom:28px;">We are in early-stage conversations with insurers and brokers. Testimonials will appear here as our first institutional programmes complete.</p>
+    <div class="testimonial-grid">
+      <div class="testi">
+        <div class="testi-quote">"Finally an insurance training partner that doesn't need us to explain what a broker actually does. The depth of understanding they bring is rare."</div>
+        <div class="testi-person">
+          <div class="testi-av" style="background:#0C2240;color:#F5F9FF;">RP</div>
+          <div>
+            <div class="testi-name">HR Head, Mid-Size Insurance Broker</div>
+            <div class="testi-org">Mumbai · Name withheld at request</div>
+          </div>
+        </div>
+        <div class="placeholder-notice">Placeholder — to be replaced with confirmed testimonials</div>
+      </div>
+      <div class="testi">
+        <div class="testi-quote">"The co-design process was genuinely different. They pushed back on our brief in the right ways — they understood our business well enough to challenge it."</div>
+        <div class="testi-person">
+          <div class="testi-av" style="background:#082A1A;color:#F5F9FF;">AK</div>
+          <div>
+            <div class="testi-name">L&D Manager, General Insurer</div>
+            <div class="testi-org">Delhi · Name withheld at request</div>
+          </div>
+        </div>
+        <div class="placeholder-notice">Placeholder — to be replaced with confirmed testimonials</div>
+      </div>
+      <div class="testi">
+        <div class="testi-quote">"We enrolled six people into their cohort programme. The quality of other participants — practitioners from across the industry — added unexpected value."</div>
+        <div class="testi-person">
+          <div class="testi-av" style="background:#241400;color:#F5F9FF;">SM</div>
+          <div>
+            <div class="testi-name">Director, Insurance Broking Firm</div>
+            <div class="testi-org">Bangalore · Name withheld at request</div>
+          </div>
+        </div>
+        <div class="placeholder-notice">Placeholder — to be replaced with confirmed testimonials</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA: LIGHT -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-2col">
+      <div class="cta-left">
+        <div class="cta-eyebrow">Start a conversation</div>
+        <h2 class="cta-h">Let's discuss what your teams need</h2>
+        <p class="cta-p">We don't send proposals before understanding your situation. Tell us who you are and what you're trying to achieve — and we'll have a genuine conversation about whether and how we can help.</p>
+        <div class="cta-reassure">
+          <div class="cr-item"><span class="cr-tick">✓</span>No generic pitch decks — we listen first</div>
+          <div class="cr-item"><span class="cr-tick">✓</span>Senior partners in every conversation</div>
+          <div class="cr-item"><span class="cr-tick">✓</span>Confidential — your enquiry stays private</div>
+          <div class="cr-item"><span class="cr-tick">✓</span>No obligation to proceed after first call</div>
+        </div>
+        <div class="cta-btns">
+          <a href="contact.html" class="cta-bp" style="display:inline-block;text-decoration:none;">Schedule a Call →</a>
+          <button class="cta-bs">Download Capability Note</button>
+        </div>
+      </div>
+      <div class="cta-form">
+        <div class="cf-title">Get in touch</div>
+        <div class="cf-sub">Tell us about your organisation and we'll respond within one business day.</div>
+        <input class="cf-inp" type="text" placeholder="Your name" />
+        <input class="cf-inp" type="text" placeholder="Organisation name" />
+        <input class="cf-inp" type="email" placeholder="Work email address" />
+        <input class="cf-inp" type="tel" placeholder="Phone number" />
+        <select class="cf-sel">
+          <option>Organisation type</option>
+          <option>Life Insurer</option>
+          <option>General Insurer</option>
+          <option>Insurance Broker</option>
+          <option>Reinsurer</option>
+          <option>TPA / Surveyor</option>
+          <option>GCC / Tech firm</option>
+          <option>Other</option>
+        </select>
+        <select class="cf-sel">
+          <option>What are you looking for?</option>
+          <option>In-house training programme</option>
+          <option>Cohort enrolment for team</option>
+          <option>Graduate / talent pipeline</option>
+          <option>Exploring options</option>
+        </select>
+        <!-- DPDP CONSENT BLOCK -->
+              <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+                <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                  <input type="checkbox" id="consent-check" required style="margin-top:3px;flex-shrink:0;accent-color:#1860AA;width:16px;height:16px;">
+                  <span style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">
+                    I agree to NeoProEd processing my information for the purpose of responding to this enquiry and sharing relevant programme updates. I confirm I am 18 years of age or older. I can withdraw consent at any time by emailing <a href="/cdn-cgi/l/email-protection#bececcd7c8dfddc7fed0dbd1cecc7d0ddbda90ddd1d3" style="color:#1860AA;">privacy@neopróed.com</a>. View our <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+              <button class="cf-btn">Send Enquiry →</button>
+        <div class="cf-note">Senior team member responds within 1 business day · All enquiries are confidential</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Neo<em>Pro</em>Ed</div><div class="foot-tag">Industry-led professional education for India's insurance ecosystem. Built by practitioners, designed for careers.</div><div class="soc-row">
+  <a href="https://www.linkedin.com/company/neoproed" target="_blank" rel="noopener" class="si" style="background:#0A66C2;border-color:#0A66C2;color:#FFF;font-weight:900;font-size:11px;">in</a>
+  <a href="#" class="si" style="background:#FF0000;border-color:#FF0000;color:#FFF;font-size:10px;">&#9654;</a>
+  <a href="#" class="si" style="background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-color:#d6249f;color:#FFF;font-size:13px;">&#9711;</a>
+  <a href="mailto:neoproed@gmail.com" class="si" style="background:#EA4335;border-color:#EA4335;color:#FFF;font-size:12px;">&#9993;</a>
+</div></div>
+      <div><div class="foot-col-h">For Institutions</div><a href="#" class="foot-link">For Insurance Companies</a><a href="#" class="foot-link">For Universities</a><a href="#" class="foot-link">Bespoke Programmes</a><a href="#" class="foot-link">Graduate Pipeline</a></div>
+      <div><div class="foot-col-h">Programmes</div><a href="#" class="foot-link">Insurtech Professional Program</a><a href="#" class="foot-link">Role-based tracks</a><a href="#" class="foot-link">University programmes</a><a href="#" class="foot-link">All programmes</a></div>
+      <div><div class="foot-col-h">Company</div><a href="about.html" class="foot-link">About us</a><a href="faculty.html" class="foot-link">Faculty</a><a href="faculty.html#advisory" class="foot-link">Advisory board</a><a href="contact.html" class="foot-link">Contact</a></div>
+    </div>
+        <div class="foot-bot"><div class="foot-legal" style="color:#3A5A78;">© 2026 NeoProEd Private Limited</div><div class="foot-legal" style="color:#3A5A78;"><a href="privacy-policy.html" style="color:#3A5A78;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#3A5A78;text-decoration:none;">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/

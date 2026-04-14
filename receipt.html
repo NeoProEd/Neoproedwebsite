@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Confirmed | NeoProEd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#F2F7FC;color:#071A2E;overflow-x:hidden;max-width:100vw;}
+
+/* NAV */
+nav{background:#06101A;border-bottom:1px solid #162638;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;flex-shrink:0;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-sp{flex:1;}
+.verified-badge{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:#3DB890;}
+
+/* STEP BAR */
+#step-bar{background:#FFFFFF;border-bottom:1px solid #C8DCF0;padding:14px 24px;}
+@media(min-width:900px){#step-bar{padding:14px 48px;}}
+.step-bar-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;}
+.step-item{display:flex;align-items:center;gap:7px;flex:1;}
+.sc{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0;}
+.sc.done{background:#3DB890;color:#FFF;}
+.sl{font-size:11px;font-weight:700;color:#3DB890;}
+@media(max-width:500px){.sl{display:none;}}
+.step-con{height:2px;flex:1;margin:0 6px;background:#3DB890;}
+
+/* LAYOUT */
+.wrap{max-width:860px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+#receipt-main{padding:40px 0 64px;}
+
+/* HERO CONFIRMATION */
+.receipt-hero{background:#06101A;border:1px solid #1E3A52;border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:16px;position:relative;overflow:hidden;}
+.rh-pattern{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,#0A1C2E 0,#0A1C2E 1px,transparent 0,transparent 50%);background-size:28px 28px;opacity:.3;}
+.rh-content{position:relative;z-index:1;}
+.rh-icon-wrap{width:80px;height:80px;border-radius:50%;background:rgba(61,184,144,.15);border:2px solid #3DB890;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:36px;}
+.rh-status{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#3DB890;margin-bottom:8px;}
+.rh-title{font-size:26px;font-weight:900;color:#F5F9FF;line-height:1.15;letter-spacing:-.02em;margin-bottom:10px;}
+@media(min-width:600px){.rh-title{font-size:32px;}}
+.rh-sub{font-size:14px;font-weight:600;color:#E0EAF4;line-height:1.8;max-width:520px;margin:0 auto 20px;}
+.rh-ref{display:inline-block;background:#0C1E30;border:1px solid #1E3A52;border-radius:8px;padding:8px 20px;font-size:14px;font-weight:900;color:#F5F9FF;letter-spacing:.04em;}
+.rh-ref-label{font-size:10px;font-weight:700;color:#A8C0D4;margin-bottom:3px;}
+
+/* RECEIPT DETAILS CARD */
+.receipt-card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;overflow:hidden;margin-bottom:14px;}
+.rc-header{background:#1860AA;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;}
+.rc-header-title{font-size:14px;font-weight:900;color:#FFFFFF;}
+.rc-header-sub{font-size:11px;font-weight:600;color:rgba(255,255,255,.7);}
+.rc-print{font-size:12px;font-weight:800;color:#FFFFFF;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:6px;padding:6px 14px;cursor:pointer;}
+.rc-body{padding:24px;}
+.rc-section-title{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1860AA;margin-bottom:10px;margin-top:18px;}
+.rc-section-title:first-child{margin-top:0;}
+.rc-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid #F0F6FC;font-size:13px;}
+.rc-row:last-child{border-bottom:none;}
+.rc-label{font-weight:700;color:#4A6A88;min-width:120px;}
+.rc-val{font-weight:800;color:#071A2E;text-align:right;flex:1;margin-left:12px;}
+.rc-val.green{color:#27500A;}
+.rc-total-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0 0;border-top:2px solid #C8DCF0;margin-top:6px;}
+.rc-total-label{font-size:14px;font-weight:900;color:#071A2E;}
+.rc-total-val{font-size:22px;font-weight:900;color:#1860AA;}
+
+/* WHAT HAPPENS NOW */
+.what-next{background:#06101A;border:1px solid #1E3A52;border-radius:14px;padding:26px;margin-bottom:14px;}
+.wn-title{font-size:16px;font-weight:900;color:#F5F9FF;margin-bottom:18px;}
+.wn-steps{display:flex;flex-direction:column;gap:12px;}
+.wn-step{display:flex;align-items:flex-start;gap:14px;}
+.wn-num{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#FFF;margin-top:1px;}
+.wn-num.blue{background:#1860AA;}
+.wn-num.green{background:#3DB890;}
+.wn-num.teal{background:#0891b2;}
+.wn-text-title{font-size:14px;font-weight:800;color:#F5F9FF;margin-bottom:3px;}
+.wn-text-sub{font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;}
+.wn-time{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#A8C0D4;margin-top:4px;}
+
+/* PORTAL REDIRECT */
+.portal-card{background:#FFFFFF;border:1.5px solid #1860AA;border-radius:14px;padding:24px;margin-bottom:14px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+.pc-icon{font-size:36px;flex-shrink:0;}
+.pc-content{flex:1;}
+.pc-title{font-size:15px;font-weight:900;color:#071A2E;margin-bottom:4px;}
+.pc-text{font-size:13px;font-weight:600;color:#1E3A54;line-height:1.65;}
+.pc-btn{font-size:14px;font-weight:800;padding:12px 24px;border-radius:7px;background:#1860AA;color:#FFF;text-decoration:none;display:inline-block;white-space:nowrap;flex-shrink:0;}
+
+/* COHORT CARD */
+.cohort-card{background:#F2F7FC;border:1px solid #C8DCF0;border-radius:12px;padding:20px 22px;margin-bottom:14px;}
+.cohort-card-title{font-size:13px;font-weight:900;color:#071A2E;margin-bottom:12px;}
+.cohort-details{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(min-width:600px){.cohort-details{grid-template-columns:repeat(4,1fr);}}
+.cd-item{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:8px;padding:10px 12px;}
+.cd-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#8AAEC8;margin-bottom:3px;}
+.cd-val{font-size:13px;font-weight:900;color:#071A2E;}
+
+/* ADD TO CALENDAR */
+.cal-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.cal-btn{font-size:12px;font-weight:800;padding:8px 14px;border-radius:6px;border:1px solid #C8DCF0;color:#071A2E;background:#FFFFFF;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+.cal-btn:hover{border-color:#1860AA;color:#1860AA;}
+
+/* SHARE CARD */
+.share-card{background:#0B1828;border:1px solid #1E3A52;border-radius:12px;padding:20px 22px;margin-bottom:14px;}
+.share-title{font-size:13px;font-weight:900;color:#F5F9FF;margin-bottom:8px;}
+.share-text{font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;margin-bottom:14px;}
+.share-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.share-li{font-size:12px;font-weight:800;padding:8px 16px;border-radius:6px;background:#0A66C2;color:#FFF;cursor:pointer;border:none;}
+.share-wa{font-size:12px;font-weight:800;padding:8px 16px;border-radius:6px;background:#25D366;color:#FFF;cursor:pointer;border:none;}
+
+/* CTA ROW */
+.cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px;}
+.cta-home{font-size:14px;font-weight:800;padding:12px 26px;border-radius:7px;background:#1860AA;color:#FFF;text-decoration:none;display:inline-block;}
+.cta-prog{font-size:14px;font-weight:800;padding:12px 26px;border-radius:7px;background:transparent;color:#1860AA;border:2px solid #1860AA;text-decoration:none;display:inline-block;}
+
+/* PRINT STYLES */
+@media print {
+  nav, #step-bar, .what-next, .portal-card, .share-card, .cta-row, footer { display: none !important; }
+  body { background: #FFFFFF; }
+  .receipt-hero { background: #F0F7FF; border: 1px solid #C8DCF0; }
+  .rh-pattern { display: none; }
+  .rh-title, .rh-status { color: #071A2E; }
+  .rh-sub { color: #1E3A54; }
+  .rh-ref { background: #F2F7FC; }
+  #receipt-main { padding-top: 20px; }
+}
+
+footer{background:#06101A;padding:24px;border-top:1px solid #162638;text-align:center;margin-top:0;}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+    <div class="nav-sp"></div>
+    <div class="verified-badge">✓ Payment submitted</div>
+  </div>
+</nav>
+
+<!-- STEP BAR — ALL DONE -->
+<div id="step-bar">
+  <div class="step-bar-inner">
+    <div class="step-item"><div class="sc done">✓</div><span class="sl">Application</span></div>
+    <div class="step-con"></div>
+    <div class="step-item"><div class="sc done">✓</div><span class="sl">Payment</span></div>
+    <div class="step-con"></div>
+    <div class="step-item"><div class="sc done">✓</div><span class="sl">Confirmed</span></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<section id="receipt-main">
+  <div class="wrap">
+
+    <!-- HERO -->
+    <div class="receipt-hero">
+      <div class="rh-pattern"></div>
+      <div class="rh-content">
+        <div class="rh-icon-wrap">✓</div>
+        <div class="rh-status">Payment submitted — pending verification</div>
+        <h1 class="rh-title">You're almost in — seat reserved</h1>
+        <p class="rh-sub">Your payment details have been received. Our team will verify the transaction and send your official seat confirmation and GST invoice within 1 business day.</p>
+        <div>
+          <div class="rh-ref-label">Your booking reference</div>
+          <div class="rh-ref" id="rh-ref">NPE-XXXXXX</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECEIPT CARD -->
+    <div class="receipt-card">
+      <div class="rc-header">
+        <div>
+          <div class="rc-header-title">Payment Receipt — NeoProEd Private Limited</div>
+          <div class="rc-header-sub">Keep this for your records. GST invoice follows by email.</div>
+        </div>
+        <button class="rc-print" onclick="window.print()">⎙ Print / Save</button>
+      </div>
+      <div class="rc-body">
+        <div class="rc-section-title">Programme</div>
+        <div class="rc-row"><span class="rc-label">Programme name</span><span class="rc-val" id="rec-prog">Insurtech Professional Program — Part 1</span></div>
+        <div class="rc-row"><span class="rc-label">Cohort</span><span class="rc-val">Founding Cohort · June 2025</span></div>
+        <div class="rc-row"><span class="rc-label">Seat status</span><span class="rc-val green">Reserved — pending payment verification</span></div>
+
+        <div class="rc-section-title">Payment details</div>
+        <div class="rc-row"><span class="rc-label">Payment method</span><span class="rc-val" id="rec-method">—</span></div>
+        <div class="rc-row"><span class="rc-label">Transaction ID / UTR</span><span class="rc-val" id="rec-txn">—</span></div>
+        <div class="rc-row"><span class="rc-label">Date submitted</span><span class="rc-val" id="rec-date">—</span></div>
+        <div class="rc-row"><span class="rc-label">Invoice name</span><span class="rc-val" id="rec-name">—</span></div>
+
+        <div class="rc-section-title">Amount</div>
+        <div class="rc-row"><span class="rc-label">Programme fee</span><span class="rc-val" id="rec-fee">₹50,000</span></div>
+        <div class="rc-row"><span class="rc-label">GST (18%)</span><span class="rc-val" id="rec-gst">₹9,000</span></div>
+        <div class="rc-total-row">
+          <span class="rc-total-label">Total paid</span>
+          <span class="rc-total-val" id="rec-total">₹59,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT HAPPENS NOW -->
+    <div class="what-next">
+      <div class="wn-title">What happens next — timeline</div>
+      <div class="wn-steps">
+        <div class="wn-step">
+          <div class="wn-num blue">1</div>
+          <div>
+            <div class="wn-text-title">Payment verification</div>
+            <div class="wn-text-sub">Our team matches your transaction ID to the bank record and verifies the amount received.</div>
+            <div class="wn-time">Within 1 business day</div>
+          </div>
+        </div>
+        <div class="wn-step">
+          <div class="wn-num blue">2</div>
+          <div>
+            <div class="wn-text-title">Seat confirmation email</div>
+            <div class="wn-text-sub">You receive a formal seat confirmation email with your cohort details, schedule, and pre-programme reading material.</div>
+            <div class="wn-time">Within 1 business day of verification</div>
+          </div>
+        </div>
+        <div class="wn-step">
+          <div class="wn-num blue">3</div>
+          <div>
+            <div class="wn-text-title">GST invoice issued</div>
+            <div class="wn-text-sub">A formal GST tax invoice is sent to your registered email — in your name or company name as provided.</div>
+            <div class="wn-time">Within 1 business day of payment verification</div>
+          </div>
+        </div>
+        <div class="wn-step">
+          <div class="wn-num green">4</div>
+          <div>
+            <div class="wn-text-title">Learnyst portal access</div>
+            <div class="wn-text-sub">You receive your login invitation to the NeoProEd Learnyst student portal — including pre-programme reading, cohort schedule, and live session links.</div>
+            <div class="wn-time">1 week before cohort start</div>
+          </div>
+        </div>
+        <div class="wn-step">
+          <div class="wn-num teal">5</div>
+          <div>
+            <div class="wn-text-title">Cohort kickoff</div>
+            <div class="wn-text-sub">Your first live session — orientation and Module 1: Ecosystem & Foundations. You'll meet your cohort, faculty, and the founding team.</div>
+            <div class="wn-time" id="cohort-start-date">June 2025 — exact date confirmed in seat email</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PORTAL REDIRECT -->
+    <div class="portal-card">
+      <div class="pc-icon">🎓</div>
+      <div class="pc-content">
+        <div class="pc-title">Your student portal is on Learnyst</div>
+        <div class="pc-text">Your full access will be activated 1 week before cohort start. In the meantime, you can explore the platform — pre-programme reading and your session schedule will be loaded when access is confirmed.</div>
+      </div>
+      <a href="student-login.html" class="pc-btn">Go to Student Portal →</a>
+    </div>
+
+    <!-- COHORT DETAILS -->
+    <div class="cohort-card">
+      <div class="cohort-card-title">Your cohort at a glance</div>
+      <div class="cohort-details">
+        <div class="cd-item"><div class="cd-label">Start date</div><div class="cd-val">June 2025</div></div>
+        <div class="cd-item"><div class="cd-label">Schedule</div><div class="cd-val">Wed eves + Sat mornings</div></div>
+        <div class="cd-item"><div class="cd-label">Duration</div><div class="cd-val">12 weeks · 60 hrs</div></div>
+        <div class="cd-item"><div class="cd-label">Capstone</div><div class="cd-val">GIFT City, Gandhinagar</div></div>
+      </div>
+      <div class="cal-row">
+        <a href="#" class="cal-btn" onclick="addToCalendar('google')">📅 Add to Google Calendar</a>
+        <a href="#" class="cal-btn" onclick="addToCalendar('outlook')">📅 Add to Outlook</a>
+        <a href="#" class="cal-btn" onclick="addToCalendar('apple')">📅 Add to Apple Calendar</a>
+      </div>
+    </div>
+
+    <!-- SHARE -->
+    <div class="share-card">
+      <div class="share-title">Let your network know</div>
+      <div class="share-text">You're one of the founding cohort — a small group of professionals building careers in insurance with NeoProEd from the very start. Share it if you'd like.</div>
+      <div class="share-btns">
+        <button class="share-li" onclick="shareLinkedIn()">Share on LinkedIn</button>
+        <button class="share-wa" onclick="shareWhatsApp()">Share on WhatsApp</button>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a href="index.html" class="cta-home">Back to Home</a>
+      <a href="programmes.html" class="cta-prog">Browse More Programmes</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="foot-legal">© 2026 NeoProEd Private Limited &nbsp;·&nbsp; Questions about your enrolment? hello@neopróed.com &nbsp;·&nbsp; Reference: <span id="foot-ref">—</span></div>
+</footer>
+
+<script>
+(function init() {
+  const params = new URLSearchParams(window.location.search);
+  const prog   = params.get('prog') || 'Insurtech Professional Program — Part 1';
+  const method = params.get('method') || '—';
+  const txn    = params.get('txn') || '—';
+  const amount = params.get('amount') || '₹59,000';
+  const name   = params.get('name') || '—';
+  const ref    = 'NPE-' + Date.now().toString(36).toUpperCase().slice(-6);
+  const now    = new Date();
+  const dateStr= now.toLocaleDateString('en-IN', {day:'2-digit', month:'long', year:'numeric'});
+
+  document.getElementById('rh-ref').textContent = ref;
+  document.getElementById('foot-ref').textContent = ref;
+  document.getElementById('rec-prog').textContent = prog;
+  document.getElementById('rec-method').textContent = method;
+  document.getElementById('rec-txn').textContent = txn;
+  document.getElementById('rec-date').textContent = dateStr;
+  document.getElementById('rec-name').textContent = name;
+  document.getElementById('rec-total').textContent = amount;
+
+  // Parse out base fee and GST from total
+  const rawAmt = parseInt(amount.replace(/[₹,]/g,'')) || 59000;
+  const base = Math.round(rawAmt / 1.18);
+  const gst  = rawAmt - base;
+  document.getElementById('rec-fee').textContent = '₹' + base.toLocaleString('en-IN');
+  document.getElementById('rec-gst').textContent = '₹' + gst.toLocaleString('en-IN');
+
+  // Store ref for other pages
+  sessionStorage.setItem('npe_receipt_ref', ref);
+})();
+
+function shareLinkedIn() {
+  const msg = 'Just enrolled in the Insurtech Professional Program with NeoProEd — a practitioner-built insurance education programme starting June 2025. Looking forward to deepening my insurance expertise with a great cohort. #Insurance #InsurTech #NeoProEd #ProfessionalDevelopment';
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url=https://neopróed.com&summary=' + encodeURIComponent(msg), '_blank');
+}
+function shareWhatsApp() {
+  const msg = 'Just enrolled in NeoProEd\'s Insurtech Professional Program — a practitioner-built insurance course starting June 2025. If you\'re in insurance or considering a career in it, check them out: neopróed.com';
+  window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
+function addToCalendar(type) {
+  alert('Calendar integration will be activated once the exact cohort dates are confirmed. You\'ll receive calendar invites in your seat confirmation email.');
+}
+</script>
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    var x=document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s,x);
+  }
+}
+</script>
+</body>
+</html>

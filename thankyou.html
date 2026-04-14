@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You — We'll Be in Touch | NeoProEd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#06101A;color:#F5F9FF;overflow-x:hidden;max-width:100vw;min-height:100vh;display:flex;flex-direction:column;}
+
+/* NAV */
+nav{background:#06101A;border-bottom:1px solid #162638;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;flex-shrink:0;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-sp{flex:1;}
+.nav-r{display:flex;gap:8px;align-items:center;}
+.btn-ghost{font-size:12px;font-weight:700;color:#A8C0D4;padding:7px 13px;border:1px solid #1E3A52;border-radius:6px;background:transparent;text-decoration:none;display:inline-block;}
+.btn-primary{font-size:12px;font-weight:800;color:#F5F9FF;padding:7px 14px;border-radius:6px;background:#1860AA;border:1px solid #1860AA;text-decoration:none;display:inline-block;}
+
+/* MAIN */
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;}
+.container{width:100%;max-width:680px;}
+
+/* CONFIRMATION CARD */
+.confirm-card{background:#0B1828;border:1px solid #1E3A52;border-radius:20px;padding:40px 36px;text-align:center;margin-bottom:16px;}
+@media(min-width:600px){.confirm-card{padding:52px 48px;}}
+.tick-wrap{width:72px;height:72px;border-radius:50%;background:#0C2A1C;border:2px solid #3DB890;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px;}
+.confirm-type{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#A8C0D4;margin-bottom:10px;}
+.confirm-title{font-size:26px;font-weight:900;color:#F5F9FF;line-height:1.15;letter-spacing:-.02em;margin-bottom:12px;}
+@media(min-width:600px){.confirm-title{font-size:32px;}}
+.confirm-sub{font-size:15px;font-weight:600;color:#E0EAF4;line-height:1.8;margin-bottom:28px;}
+
+/* SUMMARY STRIP */
+.summary-strip{background:#06101A;border:1px solid #162638;border-radius:12px;padding:18px 20px;margin-bottom:28px;text-align:left;}
+.ss-row{display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-bottom:1px solid #0F2236;}
+.ss-row:last-child{border-bottom:none;}
+.ss-label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#A8C0D4;min-width:80px;flex-shrink:0;padding-top:2px;}
+.ss-val{font-size:13px;font-weight:700;color:#F5F9FF;line-height:1.4;}
+
+/* WHAT HAPPENS NEXT */
+.next-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;text-align:left;}
+.ns-item{display:flex;align-items:flex-start;gap:14px;background:#0C1E30;border:1px solid #1E3A52;border-radius:10px;padding:14px 16px;}
+.ns-num{width:28px;height:28px;border-radius:50%;background:#1860AA;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#FFF;flex-shrink:0;margin-top:1px;}
+.ns-title{font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:3px;}
+.ns-text{font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.6;}
+
+/* WHILE YOU WAIT */
+.while-wait{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:28px;}
+@media(min-width:500px){.while-wait{grid-template-columns:1fr 1fr;}}
+.ww-card{background:#0C1E30;border:1px solid #1E3A52;border-radius:10px;padding:16px;text-align:left;text-decoration:none;}
+.ww-card:hover{border-color:#1860AA;}
+.ww-icon{font-size:20px;margin-bottom:8px;}
+.ww-title{font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:3px;}
+.ww-text{font-size:11px;font-weight:600;color:#A8C0D4;line-height:1.5;}
+.ww-link{font-size:11px;font-weight:800;color:#4DA8FF;margin-top:6px;display:block;}
+
+/* CTA */
+.cta-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.cta-home{font-size:14px;font-weight:800;padding:13px 26px;border-radius:7px;background:#1860AA;color:#FFF;text-decoration:none;display:inline-block;}
+.cta-prog{font-size:14px;font-weight:800;padding:12px 26px;border-radius:7px;background:transparent;color:#F5F9FF;border:2px solid #2A4A6A;text-decoration:none;display:inline-block;}
+
+/* REF NUMBER */
+.ref-note{font-size:11px;font-weight:600;color:#2A4060;margin-top:16px;text-align:center;}
+
+/* FOOTER */
+footer{background:#06101A;border-top:1px solid #162638;padding:16px 24px;text-align:center;}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+      <a href="student-login.html" class="btn-ghost">Student Login</a>
+      <a href="programmes.html" class="btn-primary">View Programmes</a>
+    </div>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="container">
+
+    <div class="confirm-card">
+      <div class="tick-wrap">✓</div>
+
+      <!-- Dynamic heading — JS swaps based on ?type= param -->
+      <div class="confirm-type" id="confirm-type">Enquiry Received</div>
+      <h1 class="confirm-title" id="confirm-title">Thank you — we'll be in touch shortly</h1>
+      <p class="confirm-sub" id="confirm-sub">Your enquiry has reached the NeoProEd team. A senior team member will review it personally and respond within 1 business day with something genuinely useful — not a template.</p>
+
+      <!-- SUMMARY STRIP — populated by JS from sessionStorage or URL params -->
+      <div class="summary-strip" id="summary-strip">
+        <div class="ss-row">
+          <span class="ss-label">From</span>
+          <span class="ss-val" id="ss-name">Your submission</span>
+        </div>
+        <div class="ss-row">
+          <span class="ss-label">Email</span>
+          <span class="ss-val" id="ss-email">Confirmation sent to your inbox</span>
+        </div>
+        <div class="ss-row">
+          <span class="ss-label">Enquiry type</span>
+          <span class="ss-val" id="ss-type">General enquiry</span>
+        </div>
+        <div class="ss-row">
+          <span class="ss-label">Response time</span>
+          <span class="ss-val">Within 1 business day</span>
+        </div>
+        <div class="ss-row">
+          <span class="ss-label">Reference</span>
+          <span class="ss-val" id="ss-ref">—</span>
+        </div>
+      </div>
+
+      <!-- WHAT HAPPENS NEXT -->
+      <div class="next-steps" id="next-steps">
+        <!-- Default: enquiry flow. JS can swap for org/uni flows -->
+        <div class="ns-item">
+          <div class="ns-num">1</div>
+          <div>
+            <div class="ns-title">Personal review within 1 business day</div>
+            <div class="ns-text">A founding partner reads your enquiry and decides the best way to respond — not a CRM auto-reply or a junior team member.</div>
+          </div>
+        </div>
+        <div class="ns-item">
+          <div class="ns-num">2</div>
+          <div>
+            <div class="ns-title">Personalised response to your inbox</div>
+            <div class="ns-text">You'll receive a direct reply — either with specific information relevant to your situation, or with an invitation to schedule a call.</div>
+          </div>
+        </div>
+        <div class="ns-item" id="ns-step3">
+          <div class="ns-num">3</div>
+          <div>
+            <div class="ns-title" id="ns3-title">Discovery call if relevant</div>
+            <div class="ns-text" id="ns3-text">For institutional enquiries, we'll propose a 30-minute call — no pitch deck, just a structured conversation to understand what you're trying to achieve.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHILE YOU WAIT -->
+      <div class="while-wait">
+        <a href="programmes.html" class="ww-card">
+          <div class="ww-icon">📋</div>
+          <div class="ww-title">Browse all programmes</div>
+          <div class="ww-text">View full curriculum, pricing, and start dates for every NeoProEd programme</div>
+          <span class="ww-link">View programmes →</span>
+        </a>
+        <a href="#" class="ww-card">
+          <div class="ww-icon">📥</div>
+          <div class="ww-title">Download the brochure</div>
+          <div class="ww-text">Full programme details, module breakdown, and faculty profiles in one PDF</div>
+          <span class="ww-link">Download PDF →</span>
+        </a>
+        <a href="professionals.html" class="ww-card">
+          <div class="ww-icon">🎙️</div>
+          <div class="ww-title">Listen to the podcast</div>
+          <div class="ww-text">The Insurance Insider — industry conversations from NeoProEd faculty and guests</div>
+          <span class="ww-link">Open podcast →</span>
+        </a>
+        <a href="https://www.linkedin.com/company/neopróed" class="ww-card" target="_blank" rel="noopener">
+          <div class="ww-icon">🔗</div>
+          <div class="ww-title">Follow us on LinkedIn</div>
+          <div class="ww-text">Insights, industry updates, and programme news from the NeoProEd team</div>
+          <span class="ww-link">Follow NeoProEd →</span>
+        </a>
+      </div>
+
+      <div class="cta-row">
+        <a href="index.html" class="cta-home">Back to Home</a>
+        <a href="contact.html" class="cta-prog">Send Another Enquiry</a>
+      </div>
+
+      <div class="ref-note" id="ref-note"></div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="foot-legal">© 2026 NeoProEd Private Limited &nbsp;·&nbsp; Questions? hello@neopróed.com</div>
+</footer>
+
+<script>
+// Read URL params to personalise the page
+// Usage: thankyou.html?type=org&name=Sumeet&email=s@co.com
+const params = new URLSearchParams(window.location.search);
+const type = params.get('type') || 'gen';
+const name = params.get('name') || '';
+const email = params.get('email') || '';
+const ref = 'NPE-' + Date.now().toString(36).toUpperCase().slice(-6);
+
+// Reference number
+document.getElementById('ss-ref').textContent = ref;
+document.getElementById('ref-note').textContent = 'Keep this reference for your records: ' + ref;
+
+// Personalise name / email
+if (name) document.getElementById('ss-name').textContent = name;
+if (email) document.getElementById('ss-email').textContent = email;
+
+// Variant copy per enquiry type
+const variants = {
+  org: {
+    typeLabel: 'Organisational Enquiry',
+    title: 'Thank you — a senior partner will respond personally',
+    sub: 'Your institutional enquiry has reached the NeoProEd founding team. We review every organisational enquiry personally and respond with something specific to your situation — not a generic brochure.',
+    enqType: 'Organisational — L&D / Training Partnership',
+    ns3title: 'Discovery call — 30 minutes, no pitch deck',
+    ns3text: 'We'll propose a structured call to understand your team, your gaps, and what a successful programme looks like for you. Completely obligation-free.',
+  },
+  uni: {
+    typeLabel: 'University Partnership Enquiry',
+    title: 'Thank you — we'll respond within 1 business day',
+    sub: 'Your university partnership enquiry is with the NeoProEd team. We take academic partnerships seriously and respond with information specific to your institution and student profile.',
+    enqType: 'University / Academic Partnership',
+    ns3title: 'Partnership discussion call',
+    ns3text: 'For university enquiries, we'll propose a call to understand your students, your academic calendar, and what a successful programme looks like for both parties.',
+  },
+  pro: {
+    typeLabel: 'Professional Enquiry',
+    title: 'Thanks — we'll answer your question directly',
+    sub: 'Your question has reached the NeoProEd team. We respond to every professional enquiry personally — with a direct, specific answer rather than directing you back to the website.',
+    enqType: 'Professional — Programme Enquiry',
+    ns3title: 'Ready to apply?',
+    ns3text: 'If you'd like to proceed while you wait for our reply, the enrolment form takes under 5 minutes. No payment is collected until your application is confirmed.',
+  },
+  gen: {
+    typeLabel: 'Enquiry Received',
+    title: 'Thank you — we'll be in touch shortly',
+    sub: 'Your enquiry has reached the NeoProEd team. A senior team member will review it personally and respond within 1 business day.',
+    enqType: 'General enquiry',
+    ns3title: 'Further conversation if relevant',
+    ns3text: 'Depending on your enquiry, we may suggest a call or send additional information specific to your situation.',
+  },
+};
+
+const v = variants[type] || variants.gen;
+document.getElementById('confirm-type').textContent = v.typeLabel;
+document.getElementById('confirm-title').textContent = v.title;
+document.getElementById('confirm-sub').textContent = v.sub;
+document.getElementById('ss-type').textContent = v.enqType;
+document.getElementById('ns3-title').textContent = v.ns3title;
+document.getElementById('ns3-text').textContent = v.ns3text;
+
+// For professional enquiries — swap step 3 styling to action-oriented
+if (type === 'pro') {
+  document.getElementById('ns-step3').querySelector('.ns-num').style.background = '#3DB890';
+}
+</script>
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    var x=document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s,x);
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmes | NeoProEd — Insurance Professional Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#FFFFFF;color:#071A2E;overflow-x:hidden;max-width:100vw;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+.ey-dk{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#A8C0D4;margin-bottom:10px;}
+.ey-lt{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#1860AA;margin-bottom:10px;}
+.h2-dk{font-size:28px;font-weight:900;color:#F5F9FF;line-height:1.15;letter-spacing:-.03em;margin-bottom:12px;}
+.h2-lt{font-size:28px;font-weight:900;color:#071A2E;line-height:1.15;letter-spacing:-.03em;margin-bottom:12px;}
+.body-dk{font-size:15px;font-weight:600;color:#E0EAF4;line-height:1.75;}
+.body-lt{font-size:15px;font-weight:600;color:#1E3A54;line-height:1.75;}
+@media(min-width:900px){.h2-dk,.h2-lt{font-size:36px;}.body-dk,.body-lt{font-size:16px;}}
+nav{background:#06101A;border-bottom:1px solid #162638;position:sticky;top:0;z-index:100;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;flex-shrink:0;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-links{display:flex;gap:4px;margin-left:24px;}
+.nav-links a{font-size:12px;font-weight:700;color:#A8C0D4;padding:6px 9px;border-radius:5px;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:#F5F9FF;background:#0C1E30;}
+.nav-links a.active{color:#F5F9FF;}
+@media(max-width:800px){.nav-links{display:none;}}
+.nav-sp{flex:1;}
+.nav-r{display:flex;gap:8px;flex-shrink:0;align-items:center;}
+.btn-ghost{font-size:12px;font-weight:700;color:#A8C0D4;padding:7px 13px;border:1px solid #1E3A52;border-radius:6px;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+.btn-primary{font-size:12px;font-weight:800;color:#F5F9FF;padding:7px 14px;border-radius:6px;background:#1860AA;border:1px solid #1860AA;cursor:pointer;white-space:nowrap;}
+.breadcrumb{background:#F2F7FC;border-bottom:1px solid #C8DCF0;padding:10px 24px;}
+@media(min-width:900px){.breadcrumb{padding:10px 48px;}}
+.bc-inner{max-width:1080px;margin:0 auto;display:flex;gap:6px;align-items:center;font-size:12px;flex-wrap:wrap;}
+.bc-link{color:#1860AA;font-weight:600;text-decoration:none;}
+.bc-sep{color:#8AAEC8;}
+.bc-cur{color:#2E4A62;font-weight:600;}
+
+/* FILTER BAR */
+#filter-bar{background:#06101A;padding:20px 0;border-bottom:1px solid #162638;position:sticky;top:56px;z-index:90;}
+.filter-inner{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.filter-label{font-size:11px;font-weight:800;color:#A8C0D4;letter-spacing:.1em;text-transform:uppercase;margin-right:6px;white-space:nowrap;}
+.filter-btn{font-size:12px;font-weight:700;padding:7px 16px;border-radius:20px;border:1px solid #1E3A52;color:#A8C0D4;background:transparent;cursor:pointer;white-space:nowrap;transition:all .15s;}
+.filter-btn:hover,.filter-btn.active{background:#1860AA;border-color:#1860AA;color:#F5F9FF;}
+
+/* PROGRAMME LISTING */
+#listings{background:#F2F7FC;padding:56px 0;}
+
+/* PROGRAMME CARD — featured (flagship) */
+.prog-card-featured{background:#06101A;border:1px solid #1E3A52;border-radius:16px;margin-bottom:16px;overflow:hidden;}
+.pcf-header{display:grid;grid-template-columns:1fr;gap:0;}
+@media(min-width:768px){.pcf-header{grid-template-columns:1fr auto;}}
+.pcf-main{padding:28px 28px 0;}
+@media(min-width:768px){.pcf-main{padding:28px 0 28px 28px;}}
+.pcf-sidebar{background:#0B1828;border-top:1px solid #1E3A52;padding:24px 28px;display:flex;flex-direction:column;gap:14px;min-width:260px;}
+@media(min-width:768px){.pcf-sidebar{border-top:none;border-left:1px solid #1E3A52;}}
+.pcf-badges{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.badge-flag{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:4px;background:#1860AA;color:#F5F9FF;}
+.badge-cohort{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:4px;background:#3DB890;color:#06101A;}
+.badge-open{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:4px;background:#F59E0B;color:#1A0A00;}
+.pcf-title{font-size:22px;font-weight:900;color:#F5F9FF;margin-bottom:8px;line-height:1.2;}
+.pcf-tagline{font-size:14px;font-weight:600;color:#E0EAF4;line-height:1.75;margin-bottom:16px;}
+.pcf-pills{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px;}
+.pcf-pill{font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;background:#0A2040;color:#F5F9FF;border:1px solid #1A3A60;white-space:nowrap;}
+.pcf-for-whom{margin-bottom:20px;}
+.pcf-fw-label{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#A8C0D4;margin-bottom:8px;}
+.pcf-fw-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.pcf-fw-tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:#0C1E30;color:#E0EAF4;border:1px solid #1E3A52;}
+.pcf-footer{padding:0 28px 24px;display:flex;gap:12px;flex-wrap:wrap;border-top:1px solid #162638;padding-top:20px;margin-top:20px;}
+@media(min-width:768px){.pcf-footer{padding:20px 28px 24px;}}
+/* sidebar details */
+.sd-row{display:flex;flex-direction:column;gap:2px;padding-bottom:12px;border-bottom:1px solid #162638;}
+.sd-row:last-child{border-bottom:none;padding-bottom:0;}
+.sd-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#A8C0D4;}
+.sd-val{font-size:14px;font-weight:900;color:#F5F9FF;}
+.sd-sub{font-size:11px;font-weight:600;color:#A8C0D4;}
+.sd-price{font-size:22px;font-weight:900;color:#F5F9FF;}
+.sd-price-note{font-size:11px;font-weight:600;color:#A8C0D4;margin-top:2px;}
+
+/* STANDARD PROGRAMME CARD */
+.prog-card-std{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.pcs-layout{display:grid;grid-template-columns:1fr;gap:0;}
+@media(min-width:700px){.pcs-layout{grid-template-columns:1fr auto;}}
+.pcs-main{padding:24px;}
+.pcs-sidebar{background:#F2F7FC;border-top:1px solid #C8DCF0;padding:20px 24px;min-width:220px;display:flex;flex-direction:column;gap:12px;justify-content:space-between;}
+@media(min-width:700px){.pcs-sidebar{border-top:none;border-left:1px solid #C8DCF0;}}
+.pcs-badges{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px;}
+.pcs-badge{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:4px;}
+.pcs-badge-cat{background:#E6F1FB;color:#0C447C;}
+.pcs-badge-status{background:#EAF3DE;color:#27500A;}
+.pcs-badge-soon{background:#FEF3C7;color:#78350F;}
+.pcs-title{font-size:17px;font-weight:900;color:#071A2E;margin-bottom:6px;}
+.pcs-tagline{font-size:13px;font-weight:600;color:#1E3A54;line-height:1.7;margin-bottom:12px;}
+.pcs-pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.pcs-pill{font-size:10px;font-weight:800;padding:2px 9px;border-radius:20px;background:#E6F1FB;color:#0A3A6A;}
+.pcs-for-whom{font-size:12px;font-weight:600;color:#4A6A88;margin-bottom:10px;}
+.pcs-for-whom strong{color:#071A2E;}
+/* sidebar std */
+.sds-row{display:flex;flex-direction:column;gap:1px;padding-bottom:10px;border-bottom:1px solid #C8DCF0;}
+.sds-row:last-child{border-bottom:none;padding-bottom:0;}
+.sds-label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8AAEC8;}
+.sds-val{font-size:14px;font-weight:900;color:#071A2E;}
+.sds-sub{font-size:11px;font-weight:600;color:#4A6A88;}
+.sds-price{font-size:20px;font-weight:900;color:#071A2E;}
+.sds-price-note{font-size:11px;font-weight:600;color:#4A6A88;margin-top:2px;}
+.pcs-actions{display:flex;flex-direction:column;gap:8px;padding-top:12px;}
+.pcs-enrol{font-size:13px;font-weight:800;padding:11px 18px;border-radius:7px;background:#1860AA;color:#FFF;border:none;cursor:pointer;width:100%;text-align:center;text-decoration:none;display:block;}
+.pcs-info{font-size:13px;font-weight:800;padding:10px 18px;border-radius:7px;background:transparent;color:#1860AA;border:2px solid #1860AA;cursor:pointer;width:100%;text-align:center;text-decoration:none;display:block;}
+
+/* COMING SOON CARD */
+.prog-card-soon{background:#FFFFFF;border:1.5px dashed #C8DCF0;border-radius:14px;padding:24px;margin-bottom:12px;display:flex;align-items:center;gap:20px;opacity:.7;}
+.pcs-soon-icon{font-size:28px;flex-shrink:0;}
+.pcs-soon-title{font-size:15px;font-weight:900;color:#071A2E;margin-bottom:4px;}
+.pcs-soon-sub{font-size:13px;font-weight:600;color:#4A6A88;}
+
+/* BENEFITS SECTION */
+#benefits{background:#0B1828;padding:56px 0;border-top:1px solid #162638;}
+.benefits-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;}
+@media(min-width:800px){.benefits-grid{grid-template-columns:repeat(4,1fr);}}
+.ben-c{background:#06101A;border:1px solid #1E3A52;border-radius:12px;padding:20px 16px;}
+.ben-icon{font-size:26px;margin-bottom:10px;}
+.ben-title{font-size:13px;font-weight:900;color:#F5F9FF;margin-bottom:6px;}
+.ben-text{font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;}
+
+/* HOW TO APPLY */
+#apply{background:#F2F7FC;padding:56px 0;border-top:1px solid #C8DCF0;}
+.apply-steps{display:grid;grid-template-columns:1fr;gap:10px;margin-top:28px;}
+@media(min-width:700px){.apply-steps{grid-template-columns:1fr 1fr;}}
+@media(min-width:1000px){.apply-steps{grid-template-columns:repeat(4,1fr);}}
+.as-c{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:12px;padding:22px;}
+.as-num{width:40px;height:40px;border-radius:50%;background:#1860AA;color:#FFF;font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:14px;flex-shrink:0;}
+.as-title{font-size:14px;font-weight:900;color:#071A2E;margin-bottom:6px;}
+.as-text{font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;}
+
+/* FAQ */
+#faq{background:#FFFFFF;padding:56px 0;border-top:1px solid #C8DCF0;}
+.faq-list{display:flex;flex-direction:column;gap:8px;margin-top:24px;}
+.faq-item{border:1px solid #C8DCF0;border-radius:10px;overflow:hidden;}
+.faq-q{font-size:14px;font-weight:800;color:#071A2E;padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#FFFFFF;}
+.faq-q:hover{background:#F2F7FC;}
+.faq-icon{color:#1860AA;font-size:16px;font-weight:900;flex-shrink:0;}
+.faq-a{font-size:13px;font-weight:600;color:#1E3A54;line-height:1.75;padding:0 20px 16px;background:#F2F7FC;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .faq-icon::after{content:'−';}
+.faq-icon::after{content:'+';}
+
+/* CTA STRIP */
+#cta-strip{background:#06101A;padding:48px 0;border-top:1px solid #162638;}
+.cta-strip-inner{display:grid;grid-template-columns:1fr;gap:20px;align-items:center;}
+@media(min-width:768px){.cta-strip-inner{grid-template-columns:1fr auto;}}
+.cta-strip-text h3{font-size:22px;font-weight:900;color:#F5F9FF;margin-bottom:6px;}
+@media(min-width:600px){.cta-strip-text h3{font-size:26px;}}
+.cta-strip-text p{font-size:14px;font-weight:600;color:#E0EAF4;line-height:1.75;}
+.cta-strip-btns{display:flex;gap:12px;flex-wrap:wrap;flex-shrink:0;}
+.csb-p{font-size:14px;font-weight:800;padding:13px 26px;border-radius:7px;background:#1860AA;color:#FFF;border:none;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+.csb-s{font-size:14px;font-weight:800;padding:13px 26px;border-radius:7px;background:transparent;color:#F5F9FF;border:2px solid #2A4A6A;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+
+footer{background:#06101A;padding:48px 0 24px;border-top:1px solid #162638;}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+@media(min-width:768px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr;}}
+.foot-brand{font-size:19px;font-weight:900;color:#F5F9FF;margin-bottom:10px;}
+.foot-brand em{color:#4DA8FF;font-style:normal;}
+.foot-tag{font-size:13px;font-weight:600;color:#A8C0D4;line-height:1.75;}
+.foot-col-h{font-size:12px;font-weight:900;color:#F5F9FF;margin-bottom:12px;}
+.foot-link{font-size:13px;font-weight:600;color:#A8C0D4;display:block;margin-bottom:8px;text-decoration:none;}
+.foot-bot{display:flex;flex-direction:column;gap:6px;padding-top:18px;border-top:1px solid #162638;}
+@media(min-width:600px){.foot-bot{flex-direction:row;align-items:center;justify-content:space-between;}}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+.soc-row{display:flex;gap:8px;margin-top:16px;}
+.si{width:32px;height:32px;border-radius:7px;border:1px solid #1E3A52;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#A8C0D4;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+            <div class="nav-links">
+      <a href="programmes.html" class="active">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html">For Organisations</a>
+      <a href="universities.html">For Universities</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+      <a href="student-login.html" class="btn-ghost">Student Login</a>
+      <a href="enrol.html" class="btn-primary">Enrol now</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-cur">All Programmes</span>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div id="filter-bar">
+  <div class="wrap">
+    <div class="filter-inner">
+      <span class="filter-label">Filter by</span>
+      <button class="filter-btn active" onclick="filterCards('all', this)">All Programmes</button>
+      <button class="filter-btn" onclick="filterCards('individual', this)">For Individuals</button>
+      <button class="filter-btn" onclick="filterCards('organisation', this)">For Organisations</button>
+      <button class="filter-btn" onclick="filterCards('university', this)">For Universities</button>
+      <button class="filter-btn" onclick="filterCards('student', this)">For Students</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAMME LISTINGS -->
+<section id="listings">
+  <div class="wrap">
+
+    <!-- ── FEATURED: FLAGSHIP ── -->
+    <div class="prog-card-featured" data-cat="individual student">
+      <div class="pcf-header">
+        <div class="pcf-main">
+          <div class="pcf-badges">
+            <span class="badge-flag">Flagship</span>
+            <span class="badge-cohort">Founding Cohort</span>
+            <span class="badge-open">Enrolling Now</span>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:8px;"><div style="width:36px;height:36px;border-radius:8px;background:#1860AA;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#FFF;flex-shrink:0;">01</div><span style="font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#4DA8FF;">Flagship programme</span></div>
+          <div class="pcf-title">Insurtech Professional Program</div>
+          <div class="pcf-tagline">The most comprehensive insurance education programme built for India's market — covering the full value chain from regulation and technology to global case studies and a residential capstone at GIFT City.</div>
+          <div class="pcf-pills">
+            <span class="pcf-pill">60 hours</span>
+            <span class="pcf-pill">12 weeks</span>
+            <span class="pcf-pill">Online live sessions</span>
+            <span class="pcf-pill">Residential capstone</span>
+            <span class="pcf-pill">Cohort-based</span>
+            <span class="pcf-pill">Certificate + LinkedIn badge</span>
+          </div>
+          <div class="pcf-for-whom">
+            <div class="pcf-fw-label">Who this is for</div>
+            <div class="pcf-fw-tags">
+              <span class="pcf-fw-tag">Insurance professionals</span>
+              <span class="pcf-fw-tag">BFSI entrants</span>
+              <span class="pcf-fw-tag">MBA graduates</span>
+              <span class="pcf-fw-tag">Agents upskilling</span>
+            </div>
+          </div>
+          <!-- Course topics -->
+          <div style="margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);">
+            <div style="font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#A8C0D4;margin-bottom:10px;">Key topics covered</div>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;">
+              <span style="font-size:11px;font-weight:700;color:#E0EAF4;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:5px;">IRDAI & Regulation</span>
+              <span style="font-size:11px;font-weight:700;color:#E0EAF4;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:5px;">Insurance distribution</span>
+              <span style="font-size:11px;font-weight:700;color:#E0EAF4;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:5px;">Underwriting fundamentals</span>
+              <span style="font-size:11px;font-weight:700;color:#E0EAF4;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:5px;">Claims management</span>
+              <span style="font-size:11px;font-weight:700;color:#E0EAF4;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:5px;">InsurTech & digital</span>
+              <span style="font-size:11px;font-weight:700;color:#E0EAF4;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:5px;">Global case studies</span>
+              <span style="font-size:11px;font-weight:700;color:#E0EAF4;background:rgba(255,255,255,.07);padding:4px 10px;border-radius:5px;">GIFT City capstone</span>
+            </div>
+          </div>
+          <!-- Brochure download -->
+          <div style="margin-top:14px;">
+            <a href="#" style="display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:800;color:#4DA8FF;text-decoration:none;">
+              <span style="font-size:14px;">↓</span> Download programme brochure
+            </a>
+          </div>
+        </div>
+        <div class="pcf-sidebar">
+          <div class="sd-row">
+            <div class="sd-label">Programme fee</div>
+            <div class="sd-price">₹50,000</div>
+            <div class="sd-price-note">Per part · GST additional</div>
+          </div>
+          <div class="sd-row">
+            <div class="sd-label">Cohort starts</div>
+            <div class="sd-val">June 2025</div>
+            <div class="sd-sub">Wednesday evenings + Saturday mornings</div>
+          </div>
+          <div class="sd-row">
+            <div class="sd-label">Duration</div>
+            <div class="sd-val">12 weeks</div>
+            <div class="sd-sub">60 hours · Online + residential capstone</div>
+          </div>
+          <div class="sd-row">
+            <div class="sd-label">Assessment</div>
+            <div class="sd-val">75% attendance</div>
+            <div class="sd-sub">+ mandatory capstone participation</div>
+          </div>
+          <div class="sd-row">
+            <div class="sd-label">Seats available</div>
+            <div class="sd-val">Limited</div>
+            <div class="sd-sub">Founding cohort · Apply early</div>
+          </div>
+        </div>
+      </div>
+      <div class="pcf-footer">
+        <a href="enrol.html?prog=ipp" class="csb-p" style="font-size:14px;padding:12px 26px;border-radius:7px;display:inline-block;text-decoration:none;">Enrol Now →</a>
+        <a href="#" class="csb-s" style="font-size:14px;padding:11px 26px;border-radius:7px;display:inline-block;text-decoration:none;">Download Brochure</a>
+        <a href="#" style="font-size:13px;font-weight:700;color:#A8C0D4;align-self:center;text-decoration:none;">View full curriculum →</a>
+      </div>
+    </div>
+
+    <!-- ── STANDARD CARDS ── -->
+
+    <!-- Role tracks -->
+    <div class="prog-card-std" data-cat="individual">
+      <div class="pcs-layout">
+        <div class="pcs-main">
+          <div class="pcs-badges">
+            <span class="pcs-badge pcs-badge-cat">Role-Based Track</span>
+            <span class="pcs-badge pcs-badge-soon">Coming Soon</span>
+          </div>
+          <div class="pcs-title">Underwriting Certification Track</div>
+          <div class="pcs-tagline">A focused deep-dive into technical underwriting — risk assessment, pricing fundamentals, policy wordings, and portfolio management. Taught by an active underwriting professional.</div>
+          <div class="pcs-pills">
+            <span class="pcs-pill">20 hours</span>
+            <span class="pcs-pill">6 weeks</span>
+            <span class="pcs-pill">Online live</span>
+            <span class="pcs-pill">Stackable with IPP</span>
+          </div>
+          <div class="pcs-for-whom"><strong>For:</strong> Junior underwriters · Claims professionals transitioning · BFSI entrants targeting underwriting</div>
+        </div>
+        <div class="pcs-sidebar">
+          <div>
+            <div class="sds-row"><div class="sds-label">Fee</div><div class="sds-price">₹18,000</div><div class="sds-price-note">GST additional</div></div>
+            <div class="sds-row"><div class="sds-label">Starts</div><div class="sds-val">TBC</div><div class="sds-sub">Register interest below</div></div>
+            <div class="sds-row"><div class="sds-label">Duration</div><div class="sds-val">6 weeks</div><div class="sds-sub">20 hours</div></div>
+          </div>
+          <div class="pcs-actions">
+            <a href="enrol.html?prog=underwriting" class="pcs-enrol">Register Interest →</a>
+            <a href="#" class="pcs-info">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prog-card-std" data-cat="individual">
+      <div class="pcs-layout">
+        <div class="pcs-main">
+          <div class="pcs-badges">
+            <span class="pcs-badge pcs-badge-cat">Role-Based Track</span>
+            <span class="pcs-badge pcs-badge-soon">Coming Soon</span>
+          </div>
+          <div class="pcs-title">Claims Management Certification Track</div>
+          <div class="pcs-tagline">End-to-end claims — motor, health, property, and liability. Covers the claims lifecycle, fraud identification, technology in claims, and customer handling in complex scenarios.</div>
+          <div class="pcs-pills">
+            <span class="pcs-pill">20 hours</span>
+            <span class="pcs-pill">6 weeks</span>
+            <span class="pcs-pill">Online live</span>
+            <span class="pcs-pill">Stackable with IPP</span>
+          </div>
+          <div class="pcs-for-whom"><strong>For:</strong> Claims executives · Surveyors · TPA professionals · BFSI entrants targeting claims</div>
+        </div>
+        <div class="pcs-sidebar">
+          <div>
+            <div class="sds-row"><div class="sds-label">Fee</div><div class="sds-price">₹18,000</div><div class="sds-price-note">GST additional</div></div>
+            <div class="sds-row"><div class="sds-label">Starts</div><div class="sds-val">TBC</div><div class="sds-sub">Register interest below</div></div>
+            <div class="sds-row"><div class="sds-label">Duration</div><div class="sds-val">6 weeks</div><div class="sds-sub">20 hours</div></div>
+          </div>
+          <div class="pcs-actions">
+            <a href="enrol.html?prog=claims" class="pcs-enrol">Register Interest →</a>
+            <a href="#" class="pcs-info">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Corporate -->
+    <div class="prog-card-std" data-cat="organisation">
+      <div class="pcs-layout">
+        <div class="pcs-main">
+          <div class="pcs-badges">
+            <span class="pcs-badge pcs-badge-cat">Corporate Programme</span>
+            <span class="pcs-badge pcs-badge-status">Available Now</span>
+          </div>
+          <div class="pcs-title">Bespoke In-House Training Programme</div>
+          <div class="pcs-tagline">Custom-designed training delivered inside your organisation — co-designed with your L&D team, role-matched faculty, in-person or virtual delivery, with full outcome reporting.</div>
+          <div class="pcs-pills">
+            <span class="pcs-pill">Custom duration</span>
+            <span class="pcs-pill">Any team size</span>
+            <span class="pcs-pill">In-person or virtual</span>
+            <span class="pcs-pill">Outcome reporting</span>
+          </div>
+          <div class="pcs-for-whom"><strong>For:</strong> Insurers · Brokers · Reinsurers · GCCs · TPAs · Allied services</div>
+        </div>
+        <div class="pcs-sidebar">
+          <div>
+            <div class="sds-row"><div class="sds-label">Pricing</div><div class="sds-price">On request</div><div class="sds-price-note">Depends on team size &amp; scope</div></div>
+            <div class="sds-row"><div class="sds-label">Start</div><div class="sds-val">Flexible</div><div class="sds-sub">Scheduled with your team</div></div>
+          </div>
+          <div class="pcs-actions">
+            <a href="contact.html" class="pcs-enrol">Get in Touch →</a>
+            <a href="corporate.html" class="pcs-info">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- University -->
+    <div class="prog-card-std" data-cat="university student">
+      <div class="pcs-layout">
+        <div class="pcs-main">
+          <div class="pcs-badges">
+            <span class="pcs-badge pcs-badge-cat">University Partnership</span>
+            <span class="pcs-badge pcs-badge-status">Available Now</span>
+          </div>
+          <div class="pcs-title">Insurance: The Business of Risk — Semester Elective</div>
+          <div class="pcs-tagline">A full-semester insurance elective for MBA and undergraduate students — practitioner-led sessions, global case studies, and a capstone project. Co-designed with your academic team.</div>
+          <div class="pcs-pills">
+            <span class="pcs-pill">30–40 hours</span>
+            <span class="pcs-pill">12–15 sessions</span>
+            <span class="pcs-pill">Capstone project</span>
+            <span class="pcs-pill">NeoProEd certificate</span>
+          </div>
+          <div class="pcs-for-whom"><strong>For:</strong> MBA students · BBA students · Universities with placement focus</div>
+        </div>
+        <div class="pcs-sidebar">
+          <div>
+            <div class="sds-row"><div class="sds-label">Institutional fee</div><div class="sds-price">On request</div><div class="sds-price-note">Enquire for partnership terms</div></div>
+            <div class="sds-row"><div class="sds-label">Format</div><div class="sds-val">Flexible</div><div class="sds-sub">Aligned to academic calendar</div></div>
+          </div>
+          <div class="pcs-actions">
+            <a href="contact.html" class="pcs-enrol">Partner with Us →</a>
+            <a href="universities.html" class="pcs-info">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coming soon placeholders -->
+    <div class="prog-card-soon" data-cat="individual">
+      <div class="pcs-soon-icon">🔜</div>
+      <div>
+        <div class="pcs-soon-title">Sales &amp; Distribution Track · Coming soon</div>
+        <div class="pcs-soon-sub">Register interest and we'll notify you when this opens. Expected Q3 2025.</div>
+      </div>
+    </div>
+    <div class="prog-card-soon" data-cat="individual">
+      <div class="pcs-soon-icon">🔜</div>
+      <div>
+        <div class="pcs-soon-title">Actuarial &amp; Analytics Track · Coming soon</div>
+        <div class="pcs-soon-sub">Register interest and we'll notify you when this opens. Expected Q3 2025.</div>
+      </div>
+    </div>
+    <div class="prog-card-soon" data-cat="individual">
+      <div class="pcs-soon-icon">🔜</div>
+      <div>
+        <div class="pcs-soon-title">DPDP Act for Insurance — 2-Day Cohort · Coming soon</div>
+        <div class="pcs-soon-sub">Regulatory awareness programme for insurers, brokers and InsurTechs. Expected Q2 2025.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="benefits">
+  <div class="wrap">
+    <div class="ey-dk">What every NeoProEd programme includes</div>
+    <h2 class="h2-dk">Built into every programme — not sold separately</h2>
+    <div class="benefits-grid">
+      <div class="ben-c"><div class="ben-icon">👥</div><div class="ben-title">Practitioner faculty</div><div class="ben-text">Every session led by an active industry professional — not an academic or generalist trainer</div></div>
+      <div class="ben-c"><div class="ben-icon">📚</div><div class="ben-title">Real case studies</div><div class="ben-text">Cases drawn from India's market — regulatory decisions, claims disputes, product launches, and digital transformations</div></div>
+      <div class="ben-c"><div class="ben-icon">🌐</div><div class="ben-title">Peer cohort access</div><div class="ben-text">Learn alongside professionals from across the ecosystem — insurers, brokers, insurtechs, GCCs, and allied services</div></div>
+      <div class="ben-c"><div class="ben-icon">📋</div><div class="ben-title">Certificate of Completion</div><div class="ben-text">NeoProEd Certificate of Completion + LinkedIn digital badge on meeting attendance and participation requirements</div></div>
+      <div class="ben-c"><div class="ben-icon">🎙️</div><div class="ben-title">Guest practitioners</div><div class="ben-text">Each programme includes guest sessions from specialists beyond the core faculty — underwriters, actuaries, regulators, and founders</div></div>
+      <div class="ben-c"><div class="ben-icon">🏗️</div><div class="ben-title">Applied assignments</div><div class="ben-text">Assignments are drawn from real industry challenges — not invented exercises. You build something you can talk about in interviews</div></div>
+      <div class="ben-c"><div class="ben-icon">💬</div><div class="ben-title">Community access</div><div class="ben-text">Ongoing access to the NeoProEd professional community — updates, job postings, and industry discussions</div></div>
+      <div class="ben-c"><div class="ben-icon">🔗</div><div class="ben-title">Stackable credentials</div><div class="ben-text">Every programme counts toward the next. Complete the flagship, then add role-based tracks as your career grows</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO APPLY -->
+<section id="apply">
+  <div class="wrap">
+    <div class="ey-lt">How to apply</div>
+    <h2 class="h2-lt">Four steps from interest to cohort</h2>
+    <p class="body-lt" style="margin-bottom:4px;">A straightforward, transparent application process — no entrance tests, no essay questions.</p>
+    <div class="apply-steps">
+      <div class="as-c">
+        <div class="as-num">1</div>
+        <div class="as-title">Choose your programme</div>
+        <div class="as-text">Select the programme that matches your role, stage and ambition. If you're unsure, the Enrol page includes a short selector to help you choose.</div>
+      </div>
+      <div class="as-c">
+        <div class="as-num">2</div>
+        <div class="as-title">Submit your application</div>
+        <div class="as-text">Fill in the enrolment form with your details and professional background. Takes under 5 minutes. No essay or statement of purpose required.</div>
+      </div>
+      <div class="as-c">
+        <div class="as-num">3</div>
+        <div class="as-title">Receive confirmation</div>
+        <div class="as-text">The NeoProEd team reviews your application within 2 business days and sends a confirmation with payment details and cohort information.</div>
+      </div>
+      <div class="as-c">
+        <div class="as-num">4</div>
+        <div class="as-title">Pay and join your cohort</div>
+        <div class="as-text">Complete payment to confirm your seat. You'll receive access to the Learnyst student portal and pre-programme resources before cohort start date.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="ey-lt">Common questions</div>
+    <h2 class="h2-lt">Before you apply</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I do more than one programme?<span class="faq-icon"></span></div>
+        <div class="faq-a">Yes — all NeoProEd programmes are designed to be stackable. Completing the Insurtech Professional Program gives you a strong foundation; role-based tracks let you deepen expertise in a specific function. Credits from completed programmes are recognised across the NeoProEd curriculum.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What if I have no prior insurance knowledge?<span class="faq-icon"></span></div>
+        <div class="faq-a">The flagship Insurtech Professional Program is designed to accommodate participants with no prior insurance background. Module 1 covers Ecosystem &amp; Foundations — giving you everything you need to follow the rest of the programme. A short pre-read document is shared before cohort starts.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can my employer sponsor my enrolment?<span class="faq-icon"></span></div>
+        <div class="faq-a">Yes. Many participants are sponsored by their employers. A GST invoice is issued in the company's name. For bulk enrolments (3+ seats), contact us for group pricing. The Organisations page has more detail on how sponsored enrolment works.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is there an EMI option?<span class="faq-icon"></span></div>
+        <div class="faq-a">Yes — payment in two instalments is available for the flagship programme. Details are provided at the payment stage after your application is confirmed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">What happens if I miss sessions?<span class="faq-icon"></span></div>
+        <div class="faq-a">Sessions are recorded and available on the Learnyst platform for 30 days after each session. However, live attendance is strongly encouraged — much of the value comes from cohort discussion. The certificate requires 75% attendance. If you know in advance that you'll miss several sessions, contact us before applying.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Is there a refund policy?<span class="faq-icon"></span></div>
+        <div class="faq-a">A full refund is available if you withdraw more than 14 days before the cohort start date. Within 14 days of the start date, a 50% refund is offered. No refunds are issued after the programme has started. Full terms are shared at the payment stage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section id="cta-strip">
+  <div class="wrap">
+    <div class="cta-strip-inner">
+      <div class="cta-strip-text">
+        <h3>Ready to join the founding cohort?</h3>
+        <p>Limited seats. High interaction. Direct access to founders. The founding cohort is a rare opportunity — available only once.</p>
+      </div>
+      <div class="cta-strip-btns">
+        <a href="enrol.html" class="csb-p">Enrol Now →</a>
+        <a href="contact.html" class="csb-s">Talk to Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Neo<em>Pro</em>Ed</div><div class="foot-tag">Industry-led professional education for India's insurance ecosystem.</div><div class="soc-row">
+  <a href="https://www.linkedin.com/company/neoproed" target="_blank" rel="noopener" class="si" style="background:#0A66C2;border-color:#0A66C2;color:#FFF;font-weight:900;font-size:11px;">in</a>
+  <a href="#" class="si" style="background:#FF0000;border-color:#FF0000;color:#FFF;font-size:10px;">&#9654;</a>
+  <a href="#" class="si" style="background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-color:#d6249f;color:#FFF;font-size:13px;">&#9711;</a>
+  <a href="mailto:neoproed@gmail.com" class="si" style="background:#EA4335;border-color:#EA4335;color:#FFF;font-size:12px;">&#9993;</a>
+</div></div>
+      <div><div class="foot-col-h">Programmes</div><a href="programmes.html" class="foot-link">All Programmes</a><a href="#" class="foot-link">Insurtech Professional Program</a><a href="#" class="foot-link">Role-based tracks</a><a href="#" class="foot-link">Corporate training</a></div>
+      <div><div class="foot-col-h">Who we serve</div><a href="professionals.html" class="foot-link">For Professionals</a><a href="corporate.html" class="foot-link">For Organisations</a><a href="universities.html" class="foot-link">For Universities</a><a href="students.html" class="foot-link">For Students</a></div>
+      <div><div class="foot-col-h">Company</div><a href="about.html" class="foot-link">About us</a><a href="faculty.html" class="foot-link">Faculty</a><a href="contact.html" class="foot-link">Contact</a></div>
+    </div>
+        <div class="foot-bot"><div class="foot-legal" style="color:#3A5A78;">© 2026 NeoProEd Private Limited</div><div class="foot-legal" style="color:#3A5A78;"><a href="privacy-policy.html" style="color:#3A5A78;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#3A5A78;text-decoration:none;">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+<script>
+function filterCards(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[data-cat]').forEach(card => {
+    if (cat === 'all' || card.dataset.cat.includes(cat)) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
+</script>
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    var x=document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s,x);
+  }
+}
+</script>
+</body>
+</html>

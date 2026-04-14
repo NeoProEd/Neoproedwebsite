@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeoProEd — For Universities & Colleges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; background: #FFFFFF; color: #071A2E; overflow-x: hidden; max-width: 100vw; }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+@media (min-width: 900px) { .wrap { padding: 0 48px; } }
+
+.ey-dk { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #A8C0D4; margin-bottom: 10px; }
+.ey-lt { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #1860AA; margin-bottom: 10px; }
+.h2-dk { font-size: 28px; font-weight: 900; color: #F5F9FF; line-height: 1.15; letter-spacing: -.03em; margin-bottom: 12px; }
+.h2-lt { font-size: 28px; font-weight: 900; color: #071A2E; line-height: 1.15; letter-spacing: -.03em; margin-bottom: 12px; }
+.body-dk { font-size: 15px; font-weight: 600; color: #E0EAF4; line-height: 1.75; }
+.body-lt { font-size: 15px; font-weight: 600; color: #1E3A54; line-height: 1.75; }
+@media (min-width: 900px) { .h2-dk, .h2-lt { font-size: 36px; } .body-dk, .body-lt { font-size: 16px; } }
+
+/* NAV */
+nav { background: #06101A; border-bottom: 1px solid #162638; position: sticky; top: 0; z-index: 100; }
+.nav-inner { display: flex; align-items: center; padding: 15px 24px; max-width: 1080px; margin: 0 auto; }
+@media (min-width: 900px) { .nav-inner { padding: 15px 48px; } }
+.logo { font-size: 20px; font-weight: 900; color: #F5F9FF; letter-spacing: -.02em; text-decoration: none; flex-shrink: 0; }
+.logo em { color: #4DA8FF; font-style: normal; }
+.nav-links { display: flex; gap: 4px; margin-left: 24px; }
+.nav-links a { font-size: 13px; font-weight: 700; color: #A8C0D4; padding: 6px 10px; border-radius: 5px; text-decoration: none; }
+.nav-links a:hover { color: #F5F9FF; background: #0C1E30; }
+.nav-links a.active { color: #F5F9FF; }
+@media (max-width: 700px) { .nav-links { display: none; } }
+.nav-sp { flex: 1; }
+.nav-r { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-ghost { font-size: 13px; font-weight: 700; color: #A8C0D4; padding: 7px 14px; border: 1px solid #1E3A52; border-radius: 6px; background: transparent; cursor: pointer; }
+.btn-primary { font-size: 13px; font-weight: 800; color: #F5F9FF; padding: 7px 16px; border-radius: 6px; background: #1860AA; border: 1px solid #1860AA; cursor: pointer; }
+
+/* BREADCRUMB */
+.breadcrumb { background: #F2F7FC; border-bottom: 1px solid #C8DCF0; padding: 10px 24px; }
+@media (min-width: 900px) { .breadcrumb { padding: 10px 48px; } }
+.bc-inner { max-width: 1080px; margin: 0 auto; display: flex; gap: 6px; align-items: center; font-size: 12px; }
+.bc-link { color: #1860AA; font-weight: 600; text-decoration: none; }
+.bc-sep { color: #8AAEC8; }
+.bc-cur { color: #2E4A62; font-weight: 600; }
+
+/* HERO: DARK — outcomes-focused, institutional */
+#hero { background: #06101A; padding: 64px 0 56px; }
+.hero-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
+@media (min-width: 840px) { .hero-grid { grid-template-columns: 3fr 2fr; gap: 52px; align-items: center; } }
+.hero-seg { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #F5F9FF; display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.hero-seg-line { height: 2px; width: 28px; background: #4DA8FF; flex-shrink: 0; }
+.hero-h1 { font-size: 28px; font-weight: 900; color: #F5F9FF; line-height: 1.12; letter-spacing: -.03em; margin-bottom: 16px; }
+.hero-h1 em { color: #4DA8FF; font-style: normal; }
+@media (min-width: 600px) { .hero-h1 { font-size: 36px; } }
+@media (min-width: 900px) { .hero-h1 { font-size: 44px; } }
+.hero-sub { font-size: 15px; font-weight: 600; color: #E0EAF4; line-height: 1.8; margin-bottom: 28px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-btns a { font-size: 14px; font-weight: 800; padding: 13px 26px; border-radius: 7px; text-decoration: none; display: inline-block; white-space: nowrap; }
+.hb-p { background: #1860AA; color: #F5F9FF; border: 2px solid #1860AA; }
+.hb-s { background: transparent; color: #F5F9FF; border: 2px solid #2A4A6A; }
+
+.hero-trust { background: #0B1828; border: 1px solid #1E3A52; border-radius: 14px; padding: 24px; }
+.ht-label { font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #A8C0D4; margin-bottom: 14px; }
+.ht-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #162638; }
+.ht-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.ht-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.ht-title { font-size: 13px; font-weight: 800; color: #F5F9FF; margin-bottom: 3px; }
+.ht-text { font-size: 12px; font-weight: 600; color: #E0EAF4; line-height: 1.6; }
+
+/* WHAT WE OFFER: LIGHT */
+#offer { background: #FFFFFF; padding: 64px 0; border-top: 1px solid #C8DCF0; }
+.offer-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 700px) { .offer-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .offer-grid { grid-template-columns: repeat(3, 1fr); } }
+.oc { background: #F2F7FC; border: 1px solid #C8DCF0; border-radius: 12px; padding: 24px; }
+.oc.featured { background: #FFFFFF; border-color: #1860AA; border-width: 2px; }
+.oc-icon { font-size: 28px; margin-bottom: 14px; }
+.oc-tag { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #1860AA; margin-bottom: 7px; }
+.oc-title { font-size: 15px; font-weight: 900; color: #071A2E; margin-bottom: 8px; }
+.oc-text { font-size: 13px; font-weight: 600; color: #1E3A54; line-height: 1.7; margin-bottom: 14px; }
+.oc-list { list-style: none; }
+.oc-list li { font-size: 12px; font-weight: 600; color: #4A6A88; padding: 5px 0; border-bottom: 1px solid #EEF4FA; display: flex; gap: 8px; }
+.oc-list li:last-child { border-bottom: none; }
+.oc-dot { color: #1860AA; font-weight: 900; flex-shrink: 0; }
+
+/* IMAGE BREAK */
+.img-break { padding: 64px 24px; text-align: center; position: relative; overflow: hidden; }
+@media (min-width: 900px) { .img-break { padding: 88px 48px; } }
+.break-inner { max-width: 680px; margin: 0 auto; position: relative; z-index: 1; }
+.break-pattern { position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, #0A1C2E 0, #0A1C2E 1px, transparent 0, transparent 50%); background-size: 32px 32px; opacity: .45; }
+.break-label { font-size: 10px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: #4DA8FF; margin-bottom: 14px; }
+.break-h { font-size: 22px; font-weight: 900; color: #F5F9FF; line-height: 1.3; letter-spacing: -.02em; margin-bottom: 14px; }
+@media (min-width: 600px) { .break-h { font-size: 28px; } }
+.break-sub { font-size: 15px; font-weight: 600; color: #E0EAF4; line-height: 1.75; }
+
+/* HOW WE WORK: DARK */
+#how { background: #0B1828; padding: 64px 0; border-top: 1px solid #162638; }
+.how-steps { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 32px; }
+@media (min-width: 700px) { .how-steps { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .how-steps { grid-template-columns: repeat(4, 1fr); } }
+.step-c { background: #06101A; border: 1px solid #1E3A52; border-radius: 12px; padding: 22px; }
+.step-n { font-size: 36px; font-weight: 900; color: #F5F9FF; opacity: .1; line-height: 1; margin-bottom: 14px; }
+.step-title { font-size: 14px; font-weight: 900; color: #F5F9FF; margin-bottom: 7px; }
+.step-text { font-size: 12px; font-weight: 600; color: #E0EAF4; line-height: 1.7; }
+
+/* CURRICULUM PREVIEW: LIGHT */
+#curriculum { background: #F2F7FC; padding: 64px 0; border-top: 1px solid #C8DCF0; }
+.curr-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 700px) { .curr-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.curr-c { background: #FFFFFF; border: 1px solid #C8DCF0; border-radius: 12px; padding: 20px; }
+.curr-dur { font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #1860AA; margin-bottom: 6px; }
+.curr-title { font-size: 15px; font-weight: 900; color: #071A2E; margin-bottom: 7px; }
+.curr-text { font-size: 12px; font-weight: 600; color: #1E3A54; line-height: 1.65; margin-bottom: 12px; }
+.curr-pills { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.curr-pill { font-size: 10px; font-weight: 800; padding: 2px 9px; border-radius: 20px; background: #E6F1FB; color: #0A3A6A; }
+.curr-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid #EEF4FA; }
+.curr-meta { font-size: 11px; font-weight: 600; color: #6A8CA8; }
+.curr-btn { font-size: 11px; font-weight: 900; color: #1860AA; cursor: pointer; background: none; border: none; }
+
+/* PLACEMENT PATHWAY: DARK */
+#placement { background: #06101A; padding: 64px 0; border-top: 1px solid #162638; }
+.placement-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 28px; }
+@media (min-width: 700px) { .placement-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.plc { background: #0B1828; border: 1px solid #1E3A52; border-radius: 12px; padding: 22px; }
+.plc-icon { font-size: 28px; margin-bottom: 12px; }
+.plc-title { font-size: 14px; font-weight: 900; color: #F5F9FF; margin-bottom: 7px; }
+.plc-text { font-size: 12px; font-weight: 600; color: #E0EAF4; line-height: 1.7; }
+.plc-note { font-size: 11px; font-weight: 600; color: #4A6A88; margin-top: 8px; font-style: italic; }
+
+/* FACULTY: DARK (abbreviated) */
+#faculty { background: #0B1828; padding: 64px 0; border-top: 1px solid #162638; }
+.fac-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 900px) { .fac-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; } }
+.fc { background: #06101A; border: 1px solid #1E3A52; border-radius: 14px; overflow: hidden; }
+.fc-photo { height: 100px; display: flex; align-items: flex-end; justify-content: flex-start; padding: 10px; }
+@media (min-width: 600px) { .fc-photo { height: 120px; } }
+.fc-photo-tag { font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; background: rgba(6,16,26,.85); color: #E0EAF4; padding: 3px 7px; border-radius: 4px; }
+.fc-body { padding: 14px; }
+.fc-name { font-size: 14px; font-weight: 900; color: #F5F9FF; margin-bottom: 3px; }
+.fc-spec { font-size: 11px; font-weight: 800; color: #A8C0D4; margin-bottom: 6px; }
+.fc-bio { font-size: 11px; font-weight: 600; color: #E0EAF4; line-height: 1.6; margin-bottom: 8px; }
+.fc-exp { font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 20px; background: #0C1E30; color: #F5F9FF; border: 1px solid #1E3A52; display: inline-block; }
+
+/* WHY NEOPRÓED: LIGHT */
+#why { background: #FFFFFF; padding: 64px 0; border-top: 1px solid #C8DCF0; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (min-width: 800px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
+.why-c { background: #F2F7FC; border: 1px solid #C8DCF0; border-radius: 12px; padding: 22px 18px; }
+.why-num { font-size: 32px; font-weight: 900; color: #071A2E; opacity: .08; line-height: 1; margin-bottom: 12px; }
+.why-title { font-size: 13px; font-weight: 900; color: #071A2E; margin-bottom: 6px; }
+.why-text { font-size: 12px; font-weight: 600; color: #1E3A54; line-height: 1.7; }
+
+/* CTA: DARK */
+#cta { background: #06101A; padding: 64px 0; border-top: 1px solid #162638; }
+.cta-2col { display: grid; grid-template-columns: 1fr; gap: 36px; }
+@media (min-width: 768px) { .cta-2col { grid-template-columns: 1fr 1fr; align-items: start; } }
+.cta-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: #A8C0D4; margin-bottom: 12px; }
+.cta-h { font-size: 26px; font-weight: 900; color: #F5F9FF; letter-spacing: -.02em; margin-bottom: 12px; }
+@media (min-width: 600px) { .cta-h { font-size: 32px; } }
+.cta-p { font-size: 15px; font-weight: 600; color: #E0EAF4; line-height: 1.8; margin-bottom: 22px; }
+.cta-reassure { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+.cr-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; font-weight: 600; color: #E0EAF4; }
+.cr-tick { color: #4DA8FF; font-weight: 900; flex-shrink: 0; font-size: 14px; }
+.cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.cta-bp { font-size: 14px; font-weight: 800; padding: 13px 26px; border-radius: 7px; background: #1860AA; color: #FFFFFF; border: none; cursor: pointer; }
+.cta-bs { font-size: 14px; font-weight: 800; padding: 13px 26px; border-radius: 7px; background: transparent; color: #F5F9FF; border: 2px solid #2A4A6A; cursor: pointer; }
+
+.cta-form { background: #0B1828; border: 1px solid #1E3A52; border-radius: 14px; padding: 28px; }
+.cf-title { font-size: 16px; font-weight: 900; color: #F5F9FF; margin-bottom: 4px; }
+.cf-sub { font-size: 13px; font-weight: 600; color: #A8C0D4; margin-bottom: 18px; }
+.cf-inp, .cf-sel { width: 100%; font-size: 13px; font-weight: 600; padding: 11px 13px; border: 1px solid #1E3A52; border-radius: 7px; margin-bottom: 10px; background: #06101A; color: #F5F9FF; outline: none; }
+.cf-sel { color: #A8C0D4; margin-bottom: 14px; }
+.cf-btn { background: #1860AA; color: #FFFFFF; border: none; padding: 13px; border-radius: 7px; font-size: 15px; font-weight: 900; cursor: pointer; width: 100%; }
+.cf-note { font-size: 11px; font-weight: 600; color: #4A6A88; text-align: center; margin-top: 10px; line-height: 1.5; }
+
+/* FOOTER */
+footer { background: #06101A; padding: 48px 0 24px; border-top: 1px solid #162638; }
+.foot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+@media (min-width: 768px) { .foot-grid { grid-template-columns: 2fr 1fr 1fr 1fr; } }
+.foot-brand { font-size: 19px; font-weight: 900; color: #F5F9FF; margin-bottom: 10px; }
+.foot-brand em { color: #4DA8FF; font-style: normal; }
+.foot-tag { font-size: 13px; font-weight: 600; color: #A8C0D4; line-height: 1.75; }
+.foot-col-h { font-size: 12px; font-weight: 900; color: #F5F9FF; margin-bottom: 12px; }
+.foot-link { font-size: 13px; font-weight: 600; color: #A8C0D4; display: block; margin-bottom: 8px; text-decoration: none; }
+.foot-bot { display: flex; flex-direction: column; gap: 6px; padding-top: 18px; border-top: 1px solid #162638; }
+@media (min-width: 600px) { .foot-bot { flex-direction: row; align-items: center; justify-content: space-between; } }
+.foot-legal { font-size: 11px; font-weight: 600; color: #2A4060; }
+.soc-row { display: flex; gap: 8px; margin-top: 16px; }
+.si { width: 32px; height: 32px; border-radius: 7px; border: 1px solid #1E3A52; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #A8C0D4; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+            <div class="nav-links">
+      <a href="programmes.html">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html">For Organisations</a>
+      <a href="universities.html" class="active">For Universities</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+            <a href="student-login.html" class="btn-ghost">Student Login</a>
+      <button class="btn-primary">Talk to us</button>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-cur">For Universities &amp; Colleges</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-seg"><div class="hero-seg-line"></div>For Universities &amp; Colleges</div>
+        <h1 class="hero-h1">Give your students a <em>genuine edge</em> in one of India's fastest-growing industries</h1>
+        <p class="hero-sub">NeoProEd partners with universities and colleges to design and deliver insurance electives, short programmes, and student pathways — built by industry practitioners and connected to employer networks.</p>
+        <div class="hero-btns">
+          <a href="#cta" class="hb-p">Discuss a Partnership</a>
+          <a href="#offer" class="hb-s">See What We Offer</a>
+        </div>
+      </div>
+      <div class="hero-trust">
+        <div class="ht-label">What a NeoProEd partnership gives you</div>
+        <div class="ht-row">
+          <div class="ht-icon">📋</div>
+          <div><div class="ht-title">Industry-designed curriculum</div><div class="ht-text">Insurance electives built by practitioners — relevant, current, and credible to employers</div></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-icon">🌐</div>
+          <div><div class="ht-title">Live industry connections</div><div class="ht-text">Your students interact with practitioners, not just professors — building real networks before they graduate</div></div>
+        </div>
+        <div class="ht-row">
+          <div class="ht-icon">🚀</div>
+          <div><div class="ht-title">Employment pathway support</div><div class="ht-text">We help connect your graduates to opportunities across our industry network — without making promises we can't keep</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE OFFER -->
+<section id="offer">
+  <div class="wrap">
+    <div class="ey-lt">Partnership formats</div>
+    <h2 class="h2-lt">Three ways to work with NeoProEd</h2>
+    <p class="body-lt" style="margin-bottom:28px;">Every university is different. We design the partnership around what your institution and students actually need.</p>
+    <div class="offer-grid">
+      <div class="oc featured">
+        <div class="oc-icon">📚</div>
+        <div class="oc-tag">Most requested</div>
+        <div class="oc-title">Insurance Elective Programme</div>
+        <div class="oc-text">A co-designed, credit-compatible insurance elective for your MBA or undergraduate students — built with NeoProEd curriculum and delivered by industry practitioners, either on campus or online.</div>
+        <ul class="oc-list">
+          <li><span class="oc-dot">•</span>Co-designed curriculum — tailored to your student profile</li>
+          <li><span class="oc-dot">•</span>Practitioner faculty — not outsourced academics</li>
+          <li><span class="oc-dot">•</span>Flexible format — in-person, online, or hybrid</li>
+          <li><span class="oc-dot">•</span>4-session, semester, or full-year options</li>
+          <li><span class="oc-dot">•</span>NeoProEd certification for completing students</li>
+        </ul>
+      </div>
+      <div class="oc">
+        <div class="oc-icon">🤝</div>
+        <div class="oc-tag">Cohort enrolment</div>
+        <div class="oc-title">Open Programme Access</div>
+        <div class="oc-text">Enrol batches of your students into NeoProEd's open cohort programmes. Ideal for institutions that want to offer industry education without running a dedicated elective.</div>
+        <ul class="oc-list">
+          <li><span class="oc-dot">•</span>Group pricing for student batches</li>
+          <li><span class="oc-dot">•</span>Access to flagship and role-based tracks</li>
+          <li><span class="oc-dot">•</span>Progress reporting for academic records</li>
+          <li><span class="oc-dot">•</span>Peer cohort with working professionals</li>
+        </ul>
+      </div>
+      <div class="oc">
+        <div class="oc-icon">🎓</div>
+        <div class="oc-tag">Internship pipeline</div>
+        <div class="oc-title">Student Internship &amp; Placement Support</div>
+        <div class="oc-text">NeoProEd connects trained students to internship and entry-level opportunities across our insurance industry network — supporting placement without making guarantees we cannot deliver.</div>
+        <ul class="oc-list">
+          <li><span class="oc-dot">•</span>Structured internship matching</li>
+          <li><span class="oc-dot">•</span>Industry network introductions</li>
+          <li><span class="oc-dot">•</span>Pre-placement preparation sessions</li>
+          <li><span class="oc-dot">•</span>Available for programme alumni</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGE BREAK -->
+<div class="img-break" style="background:#071422;">
+  <div class="break-pattern"></div>
+  <div class="break-inner">
+    <div class="break-label">Our approach</div>
+    <h2 class="break-h">"We don't drop a standard programme on your students. We design with you — because every institution is different."</h2>
+    <p class="break-sub">Every partnership begins with understanding your students, your institution's goals, and what success looks like for both of us.</p>
+  </div>
+</div>
+
+<!-- HOW WE WORK -->
+<section id="how">
+  <div class="wrap">
+    <div class="ey-dk">How a partnership works</div>
+    <h2 class="h2-dk">From first conversation to student outcomes</h2>
+    <p class="body-dk">A transparent, structured process — with no surprises on either side.</p>
+    <div class="how-steps">
+      <div class="step-c">
+        <div class="step-n">01</div>
+        <div class="step-title">Discovery meeting</div>
+        <div class="step-text">We meet with your academic coordinator or placement officer to understand your students, your institution's profile, and what a successful programme looks like for you</div>
+      </div>
+      <div class="step-c">
+        <div class="step-n">02</div>
+        <div class="step-title">Programme design</div>
+        <div class="step-text">We draft a curriculum proposal — session structure, faculty assignment, assessment format, and delivery schedule — aligned to your academic calendar and student level</div>
+      </div>
+      <div class="step-c">
+        <div class="step-n">03</div>
+        <div class="step-title">MoU &amp; onboarding</div>
+        <div class="step-text">We formalise the partnership with a simple MoU — defining responsibilities, timelines, and outcomes for both parties before any programme begins</div>
+      </div>
+      <div class="step-c">
+        <div class="step-n">04</div>
+        <div class="step-title">Delivery &amp; support</div>
+        <div class="step-text">Programme delivered as agreed, with NeoProEd managing faculty, content, and student interaction. Attendance and engagement reporting shared throughout</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM PREVIEW -->
+<section id="curriculum">
+  <div class="wrap">
+    <div class="ey-lt">What your students learn</div>
+    <h2 class="h2-lt">Programme formats for universities</h2>
+    <p class="body-lt" style="margin-bottom:28px;">From a short elective slot to a full semester course — structured around how students actually engage with professional content.</p>
+    <div class="curr-grid">
+      <div class="curr-c">
+        <div class="curr-dur">Short Format</div>
+        <div class="curr-title">Insurance Foundations Elective</div>
+        <div class="curr-text">4 sessions × 2 hours. A concise, high-impact introduction to the insurance industry — designed to fit into an MBA or BBA elective slot. Covers ecosystem, regulation, technology, and career pathways.</div>
+        <div class="curr-pills"><span class="curr-pill">8 hours total</span><span class="curr-pill">4 sessions</span><span class="curr-pill">Certificate</span></div>
+        <div class="curr-footer"><span class="curr-meta">MBA / BBA elective</span><button class="curr-btn">View outline →</button></div>
+      </div>
+      <div class="curr-c">
+        <div class="curr-dur">Semester Format</div>
+        <div class="curr-title">Insurance: The Business of Risk</div>
+        <div class="curr-text">A full semester elective covering the complete insurance value chain — ecosystem, regulation, technology, functions, global case studies, and career pathways. Includes guest practitioners and a capstone project.</div>
+        <div class="curr-pills"><span class="curr-pill">30–40 hours</span><span class="curr-pill">12–15 sessions</span><span class="curr-pill">Capstone</span><span class="curr-pill">NeoProEd cert</span></div>
+        <div class="curr-footer"><span class="curr-meta">MBA elective · preferred format</span><button class="curr-btn">View outline →</button></div>
+      </div>
+      <div class="curr-c">
+        <div class="curr-dur">Year Programme</div>
+        <div class="curr-title">Insurance Professional Track</div>
+        <div class="curr-text">A 12-month programme combining the semester elective with role-based specialisation, industry exposure visits, and a structured internship placement process. Designed for institutions serious about insurance as a career pathway.</div>
+        <div class="curr-pills"><span class="curr-pill">Full year</span><span class="curr-pill">Internship inbuilt</span><span class="curr-pill">Industry visits</span></div>
+        <div class="curr-footer"><span class="curr-meta">Dedicated insurance track</span><button class="curr-btn">Discuss →</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLACEMENT PATHWAY -->
+<section id="placement">
+  <div class="wrap">
+    <div class="ey-dk">Student outcomes</div>
+    <h2 class="h2-dk">What we can offer your students</h2>
+    <p class="body-dk" style="margin-bottom:4px;">We are honest about what we promise and what we don't. Our commitment is to structured support — not guaranteed outcomes.</p>
+    <div class="placement-grid">
+      <div class="plc">
+        <div class="plc-icon">🎓</div>
+        <div class="plc-title">Industry-recognised education</div>
+        <div class="plc-text">A NeoProEd certificate that signals genuine insurance knowledge to employers — not a generic business certification with an insurance label.</div>
+        <div class="plc-note">Designed by practitioners. Recognised by the industry professionals who interview your graduates.</div>
+      </div>
+      <div class="plc">
+        <div class="plc-icon">🌐</div>
+        <div class="plc-title">Live industry network access</div>
+        <div class="plc-text">Students interact with working insurance professionals throughout the programme — building real connections before they enter the job market.</div>
+        <div class="plc-note">Guest sessions, cohort peers from the industry, and access to NeoProEd's growing professional community.</div>
+      </div>
+      <div class="plc">
+        <div class="plc-icon">🚀</div>
+        <div class="plc-title">Employment pathway support</div>
+        <div class="plc-text">NeoProEd connects programme alumni to internship and entry-level opportunities across our industry network — including insurers, brokers, insurtechs, and GCCs.</div>
+        <div class="plc-note">We support placement without guaranteeing it. Our commitment is to open doors — not to promise outcomes we cannot control.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACULTY -->
+<section id="faculty">
+  <div class="wrap">
+    <div class="ey-dk">Who teaches your students</div>
+    <h2 class="h2-dk">Practitioners — not visiting lecturers</h2>
+    <p class="body-dk" style="margin-bottom:28px;">Your students will learn from people who have built insurance businesses, run operations, and navigated the industry firsthand.</p>
+    <div class="fac-grid">
+      <div class="fc"><div class="fc-photo" style="background:#0C2240;"><div class="fc-photo-tag">Strategy &amp; M&amp;A</div></div><div class="fc-body"><div class="fc-name">Sneha Gokarn</div><div class="fc-spec">Former CEO, Gallagher India</div><div class="fc-bio">Brings the perspective of a CEO who has run one of India's largest insurance broking businesses — including M&A, market strategy, and building teams from scratch.</div><span class="fc-exp">20+ years</span></div></div>
+      <div class="fc"><div class="fc-photo" style="background:#082A1A;"><div class="fc-photo-tag">Distribution</div></div><div class="fc-body"><div class="fc-name">Yashesh Sampat</div><div class="fc-spec">Distribution Leader · CII Member</div><div class="fc-bio">25 years leading insurance distribution. Students learn how the industry's sales and distribution engine actually works — from agency to bancassurance to digital channels.</div><span class="fc-exp">25+ years</span></div></div>
+      <div class="fc"><div class="fc-photo" style="background:#241400;"><div class="fc-photo-tag">Operations</div></div><div class="fc-body"><div class="fc-name">Sumeet Darak</div><div class="fc-spec">Former COO, Gallagher India</div><div class="fc-bio">Led operations across an MNC insurance broking business. Teaches the realities of running insurance operations — process, technology, and the human side of change.</div><span class="fc-exp">20+ years</span></div></div>
+      <div class="fc"><div class="fc-photo" style="background:#180A28;"><div class="fc-photo-tag">Professional Ed</div></div><div class="fc-body"><div class="fc-name">Kirtan Shah</div><div class="fc-spec">TEDx Speaker · Edutech Co-founder</div><div class="fc-bio">Co-founder of FPA Edutech and LinkedIn Top Voice. Brings expertise in making complex financial services concepts engaging and accessible for students entering the sector.</div><span class="fc-exp">Edutech co-founder</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NEOPRÓED -->
+<section id="why">
+  <div class="wrap">
+    <div class="ey-lt">Why NeoProEd</div>
+    <h2 class="h2-lt">What makes us the right partner for your students</h2>
+    <p class="body-lt" style="margin-bottom:28px;">Most insurance education is designed for regulators or generic professional development. Ours is designed specifically for the career a student is trying to build.</p>
+    <div class="why-grid">
+      <div class="why-c"><div class="why-num">01</div><div class="why-title">Insurance-exclusive</div><div class="why-text">Everything we build is for insurance. No generic financial services content with an insurance label attached.</div></div>
+      <div class="why-c"><div class="why-num">02</div><div class="why-title">Employer-connected</div><div class="why-text">Our faculty and network are active in the industry. When we connect students to employers, it's through real relationships — not a job board.</div></div>
+      <div class="why-c"><div class="why-num">03</div><div class="why-title">Honest on outcomes</div><div class="why-text">We do not promise placement. We promise structured support, industry exposure, and genuine connections that give students a real advantage.</div></div>
+      <div class="why-c"><div class="why-num">04</div><div class="why-title">Flexible partnership</div><div class="why-text">No rigid template. We design the partnership around your academic calendar, your student profile, and your institutional goals.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <div class="cta-2col">
+      <div>
+        <div class="cta-eyebrow">Start a conversation</div>
+        <h2 class="cta-h">Let's design something right for your students</h2>
+        <p class="cta-p">We begin every university partnership with a discovery conversation — no standard decks, no generic proposals. Tell us about your institution and what you are trying to achieve for your students.</p>
+        <div class="cta-reassure">
+          <div class="cr-item"><span class="cr-tick">✓</span>Senior team involved from first call</div>
+          <div class="cr-item"><span class="cr-tick">✓</span>No obligation after initial discussion</div>
+          <div class="cr-item"><span class="cr-tick">✓</span>Flexible MoU — designed around your needs</div>
+          <div class="cr-item"><span class="cr-tick">✓</span>Honest about what we can and cannot deliver</div>
+        </div>
+        <div class="cta-btns">
+          <a href="contact.html" class="cta-bp" style="display:inline-block;text-decoration:none;">Schedule a Call →</a>
+          <button class="cta-bs">Download Partnership Note</button>
+        </div>
+      </div>
+      <div class="cta-form">
+        <div class="cf-title">Get in touch</div>
+        <div class="cf-sub">Tell us about your institution — we'll respond within one business day.</div>
+        <input class="cf-inp" type="text" placeholder="Your name" />
+        <input class="cf-inp" type="text" placeholder="University / College name" />
+        <input class="cf-inp" type="email" placeholder="Work email address" />
+        <input class="cf-inp" type="tel" placeholder="Phone number" />
+        <select class="cf-sel">
+          <option>Your role</option>
+          <option>Academic Coordinator</option>
+          <option>Placement Officer</option>
+          <option>Dean / HOD</option>
+          <option>Administrative staff</option>
+          <option>Other</option>
+        </select>
+        <select class="cf-sel">
+          <option>What are you looking for?</option>
+          <option>MBA elective programme</option>
+          <option>Undergraduate elective</option>
+          <option>Student cohort enrolment</option>
+          <option>Internship / placement support</option>
+          <option>Full year track</option>
+          <option>Exploring options</option>
+        </select>
+        <!-- DPDP CONSENT BLOCK -->
+              <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+                <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                  <input type="checkbox" id="consent-check" required style="margin-top:3px;flex-shrink:0;accent-color:#1860AA;width:16px;height:16px;">
+                  <span style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">
+                    I agree to NeoProEd processing my information for the purpose of responding to this enquiry and sharing relevant programme updates. I confirm I am 18 years of age or older. I can withdraw consent at any time by emailing <a href="/cdn-cgi/l/email-protection#1060627966717369507e757f6062d3a375743e737f7d" style="color:#1860AA;">privacy@neopróed.com</a>. View our <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+              <button class="cf-btn">Send Enquiry →</button>
+        <div class="cf-note">Responds within 1 business day · All discussions are confidential</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Neo<em>Pro</em>Ed</div><div class="foot-tag">Industry-led professional education for India's insurance ecosystem. Built by practitioners, designed for careers.</div><div class="soc-row">
+  <a href="https://www.linkedin.com/company/neoproed" target="_blank" rel="noopener" class="si" style="background:#0A66C2;border-color:#0A66C2;color:#FFF;font-weight:900;font-size:11px;">in</a>
+  <a href="#" class="si" style="background:#FF0000;border-color:#FF0000;color:#FFF;font-size:10px;">&#9654;</a>
+  <a href="#" class="si" style="background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-color:#d6249f;color:#FFF;font-size:13px;">&#9711;</a>
+  <a href="mailto:neoproed@gmail.com" class="si" style="background:#EA4335;border-color:#EA4335;color:#FFF;font-size:12px;">&#9993;</a>
+</div></div>
+      <div><div class="foot-col-h">For Institutions</div><a href="corporate.html" class="foot-link">For Insurance Companies</a><a href="#" class="foot-link">For Universities</a><a href="#" class="foot-link">Bespoke Programmes</a></div>
+      <div><div class="foot-col-h">Programmes</div><a href="#" class="foot-link">Insurtech Professional Program</a><a href="#" class="foot-link">Role-based tracks</a><a href="#" class="foot-link">University programmes</a></div>
+      <div><div class="foot-col-h">Company</div><a href="about.html" class="foot-link">About us</a><a href="faculty.html" class="foot-link">Faculty</a><a href="faculty.html#advisory" class="foot-link">Advisory board</a><a href="contact.html" class="foot-link">Contact</a></div>
+    </div>
+        <div class="foot-bot"><div class="foot-legal" style="color:#3A5A78;">© 2026 NeoProEd Private Limited</div><div class="foot-legal" style="color:#3A5A78;"><a href="privacy-policy.html" style="color:#3A5A78;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#3A5A78;text-decoration:none;">Terms of Use</a></div></div>
+  </div>
+</footer>
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/

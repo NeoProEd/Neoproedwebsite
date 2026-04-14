@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get in Touch | NeoProEd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#FFFFFF;color:#071A2E;overflow-x:hidden;max-width:100vw;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+.ey-dk{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#A8C0D4;margin-bottom:10px;}
+.ey-lt{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#1860AA;margin-bottom:10px;}
+nav{background:#06101A;border-bottom:1px solid #162638;position:sticky;top:0;z-index:100;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;flex-shrink:0;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-links{display:flex;gap:4px;margin-left:24px;}
+.nav-links a{font-size:12px;font-weight:700;color:#A8C0D4;padding:6px 9px;border-radius:5px;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:#F5F9FF;background:#0C1E30;}
+@media(max-width:800px){.nav-links{display:none;}}
+.nav-sp{flex:1;}
+.nav-r{display:flex;gap:8px;flex-shrink:0;align-items:center;}
+.btn-ghost{font-size:12px;font-weight:700;color:#A8C0D4;padding:7px 13px;border:1px solid #1E3A52;border-radius:6px;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+.btn-primary{font-size:12px;font-weight:800;color:#F5F9FF;padding:7px 14px;border-radius:6px;background:#1860AA;border:1px solid #1860AA;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}
+.breadcrumb{background:#F2F7FC;border-bottom:1px solid #C8DCF0;padding:10px 24px;}
+@media(min-width:900px){.breadcrumb{padding:10px 48px;}}
+.bc-inner{max-width:1080px;margin:0 auto;display:flex;gap:6px;align-items:center;font-size:12px;flex-wrap:wrap;}
+.bc-link{color:#1860AA;font-weight:600;text-decoration:none;}
+.bc-sep{color:#8AAEC8;}
+.bc-cur{color:#2E4A62;font-weight:600;}
+
+/* HERO */
+#hero{background:#06101A;padding:56px 0 48px;}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:36px;}
+@media(min-width:840px){.hero-grid{grid-template-columns:1fr 1fr;gap:52px;align-items:start;}}
+.hero-ey{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#F5F9FF;display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.hero-ey-line{height:2px;width:28px;background:#4DA8FF;flex-shrink:0;}
+.hero-h1{font-size:28px;font-weight:900;color:#F5F9FF;line-height:1.15;letter-spacing:-.03em;margin-bottom:14px;}
+@media(min-width:600px){.hero-h1{font-size:36px;}}
+.hero-sub{font-size:15px;font-weight:600;color:#E0EAF4;line-height:1.8;margin-bottom:28px;}
+.contact-channels{display:flex;flex-direction:column;gap:12px;}
+.cc{background:#0B1828;border:1px solid #1E3A52;border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:16px;text-decoration:none;}
+.cc:hover{border-color:#1860AA;}
+.cc-icon{font-size:22px;flex-shrink:0;}
+.cc-label{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#A8C0D4;margin-bottom:2px;}
+.cc-val{font-size:14px;font-weight:800;color:#F5F9FF;}
+.cc-note{font-size:12px;font-weight:600;color:#A8C0D4;margin-top:2px;}
+
+/* CONTACT TABS + FORMS */
+#contact-forms{background:#F2F7FC;padding:56px 0;}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:28px;}
+.tab-btn{font-size:13px;font-weight:800;padding:9px 20px;border-radius:20px;border:1px solid #C8DCF0;color:#4A6A88;background:#FFFFFF;cursor:pointer;white-space:nowrap;transition:all .15s;}
+.tab-btn.active{background:#1860AA;border-color:#1860AA;color:#FFFFFF;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.form-layout{display:grid;grid-template-columns:1fr;gap:24px;}
+@media(min-width:768px){.form-layout{grid-template-columns:3fr 2fr;align-items:start;}}
+.form-card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;padding:28px;}
+.fc-title{font-size:18px;font-weight:900;color:#071A2E;margin-bottom:4px;}
+.fc-sub{font-size:13px;font-weight:600;color:#4A6A88;margin-bottom:20px;}
+.form-row{display:grid;grid-template-columns:1fr;gap:10px;margin-bottom:0;}
+@media(min-width:600px){.form-row{grid-template-columns:1fr 1fr;}}
+.cf-inp,.cf-sel,.cf-ta{width:100%;font-size:13px;font-weight:600;padding:11px 13px;border:1px solid #A8C0D4;border-radius:7px;margin-bottom:10px;background:#FFFFFF;color:#071A2E;outline:none;font-family:inherit;}
+.cf-sel{color:#3A5A78;}
+.cf-ta{resize:vertical;min-height:90px;line-height:1.6;}
+.cf-btn{background:#1860AA;color:#FFFFFF;border:none;padding:13px;border-radius:7px;font-size:15px;font-weight:900;cursor:pointer;width:100%;font-family:inherit;}
+.cf-note{font-size:11px;font-weight:600;color:#6A8CA8;text-align:center;margin-top:10px;line-height:1.5;}
+/* reassurance sidebar */
+.reassure-card{background:#06101A;border:1px solid #1E3A52;border-radius:14px;padding:24px;}
+.rc-title{font-size:14px;font-weight:900;color:#F5F9FF;margin-bottom:14px;}
+.rc-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #162638;}
+.rc-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.rc-tick{color:#3DB890;font-size:14px;font-weight:900;flex-shrink:0;margin-top:2px;}
+.rc-text{font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;}
+
+/* WHAT HAPPENS NEXT */
+#next-steps{background:#FFFFFF;padding:56px 0;border-top:1px solid #C8DCF0;}
+.steps3{display:grid;grid-template-columns:1fr;gap:10px;}
+@media(min-width:700px){.steps3{grid-template-columns:repeat(3,1fr);}}
+.step3-c{background:#F2F7FC;border:1px solid #C8DCF0;border-radius:12px;padding:22px;}
+.step3-num{width:36px;height:36px;border-radius:50%;background:#1860AA;color:#FFFFFF;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.step3-title{font-size:14px;font-weight:900;color:#071A2E;margin-bottom:6px;}
+.step3-text{font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;}
+
+/* SUCCESS STATE */
+.success-state{display:none;text-align:center;padding:40px 20px;}
+.success-state.show{display:block;}
+.success-icon{font-size:48px;margin-bottom:16px;}
+.success-title{font-size:22px;font-weight:900;color:#071A2E;margin-bottom:8px;}
+.success-text{font-size:14px;font-weight:600;color:#1E3A54;line-height:1.75;}
+
+footer{background:#06101A;padding:48px 0 24px;border-top:1px solid #162638;}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+@media(min-width:768px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr;}}
+.foot-brand{font-size:19px;font-weight:900;color:#F5F9FF;margin-bottom:10px;}
+.foot-brand em{color:#4DA8FF;font-style:normal;}
+.foot-tag{font-size:13px;font-weight:600;color:#A8C0D4;line-height:1.75;}
+.foot-col-h{font-size:12px;font-weight:900;color:#F5F9FF;margin-bottom:12px;}
+.foot-link{font-size:13px;font-weight:600;color:#A8C0D4;display:block;margin-bottom:8px;text-decoration:none;}
+.foot-bot{display:flex;flex-direction:column;gap:6px;padding-top:18px;border-top:1px solid #162638;}
+@media(min-width:600px){.foot-bot{flex-direction:row;align-items:center;justify-content:space-between;}}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+.soc-row{display:flex;gap:8px;margin-top:16px;}
+.si{width:32px;height:32px;border-radius:7px;border:1px solid #1E3A52;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#A8C0D4;text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+            <div class="nav-links">
+      <a href="programmes.html">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html">For Organisations</a>
+      <a href="universities.html">For Universities</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+      <a href="student-login.html" class="btn-ghost">Student Login</a>
+      <a href="enrol.html" class="btn-primary">Enrol now</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-cur">Get in Touch</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-ey"><div class="hero-ey-line"></div>Contact NeoProEd</div>
+        <h1 class="hero-h1">Let's start with a real conversation</h1>
+        <p class="hero-sub">We don't send generic proposals before understanding your situation. Tell us who you are and what you're trying to achieve — and we'll respond with what's genuinely relevant.</p>
+        <div class="contact-channels">
+          <a href="/cdn-cgi/l/email-protection#e68e838a8a89a6888389969425558382c885898b" class="cc">
+            <div class="cc-icon">✉️</div>
+            <div><div class="cc-label">Email us</div><div class="cc-val">hello@neopróed.com</div><div class="cc-note">For all general enquiries</div></div>
+          </a>
+          <a href="https://wa.me/91XXXXXXXXXX" class="cc" target="_blank" rel="noopener">
+            <div class="cc-icon">💬</div>
+            <div><div class="cc-label">WhatsApp</div><div class="cc-val">+91 XXXXX XXXXX</div><div class="cc-note">Quick questions · Business hours</div></div>
+          </a>
+          <a href="https://www.linkedin.com/company/neopróed" class="cc" target="_blank" rel="noopener">
+            <div class="cc-icon">🔗</div>
+            <div><div class="cc-label">LinkedIn</div><div class="cc-val">NeoProEd</div><div class="cc-note">Follow for industry insights and updates</div></div>
+          </a>
+        </div>
+      </div>
+      <!-- Response promise card -->
+      <div style="background:#0B1828;border:1px solid #1E3A52;border-radius:14px;padding:24px;">
+        <div class="ey-dk" style="margin-bottom:14px;">Our commitment to you</div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid #162638;">
+            <span style="color:#3DB890;font-size:16px;font-weight:900;flex-shrink:0;">✓</span>
+            <div><div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:3px;">Response within 1 business day</div><div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.6;">All enquiries receive a personalised response — not a template</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid #162638;">
+            <span style="color:#3DB890;font-size:16px;font-weight:900;flex-shrink:0;">✓</span>
+            <div><div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:3px;">Senior team responds directly</div><div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.6;">Institutional enquiries are handled by a founding partner — not a sales representative</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid #162638;">
+            <span style="color:#3DB890;font-size:16px;font-weight:900;flex-shrink:0;">✓</span>
+            <div><div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:3px;">All enquiries are confidential</div><div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.6;">Your information is never shared with third parties</div></div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="color:#3DB890;font-size:16px;font-weight:900;flex-shrink:0;">✓</span>
+            <div><div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:3px;">No obligation after first conversation</div><div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.6;">We share relevant information. Whether you proceed is entirely your decision.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABBED CONTACT FORMS -->
+<section id="contact-forms">
+  <div class="wrap">
+    <div class="ey-lt" style="margin-bottom:10px;">What are you contacting us about?</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('org', this)">🏢 For Organisations</button>
+      <button class="tab-btn" onclick="switchTab('uni', this)">🎓 For Universities</button>
+      <button class="tab-btn" onclick="switchTab('pro', this)">💼 For Professionals</button>
+      <button class="tab-btn" onclick="switchTab('gen', this)">✉️ General Enquiry</button>
+    </div>
+
+    <!-- ORGANISATIONS -->
+    <div class="tab-panel active" id="tab-org">
+      <div class="form-layout">
+        <div class="form-card">
+          <div class="fc-title">Institutional Partnership Enquiry</div>
+          <div class="fc-sub">For insurance companies, brokers, reinsurers, GCCs, and allied organisations.</div>
+          <div class="form-row">
+            <input class="cf-inp" type="text" placeholder="Your name" required />
+            <input class="cf-inp" type="text" placeholder="Your role / title" />
+          </div>
+          <input class="cf-inp" type="text" placeholder="Organisation name" required />
+          <div class="form-row">
+            <input class="cf-inp" type="email" placeholder="Work email address" required />
+            <input class="cf-inp" type="tel" placeholder="Phone number" />
+          </div>
+          <select class="cf-sel">
+            <option value="">Organisation type</option>
+            <option>Life Insurer</option>
+            <option>General Insurer</option>
+            <option>Insurance Broker</option>
+            <option>Reinsurer</option>
+            <option>TPA / Surveyor</option>
+            <option>GCC / Technology firm</option>
+            <option>Other allied services</option>
+          </select>
+          <select class="cf-sel">
+            <option value="">What are you looking for?</option>
+            <option>Bespoke in-house training programme</option>
+            <option>Sponsored cohort enrolment for team</option>
+            <option>Graduate / talent pipeline</option>
+            <option>Discussing options — not decided yet</option>
+          </select>
+          <select class="cf-sel">
+            <option value="">Approximate team size for training</option>
+            <option>1–5 people</option>
+            <option>6–20 people</option>
+            <option>21–50 people</option>
+            <option>50+ people</option>
+          </select>
+          <textarea class="cf-ta" placeholder="Tell us briefly what you're trying to achieve — the more context you give, the more useful our response will be"></textarea>
+          <!-- DPDP CONSENT BLOCK -->
+              <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+                <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                  <input type="checkbox" id="consent-check" required style="margin-top:3px;flex-shrink:0;accent-color:#1860AA;width:16px;height:16px;">
+                  <span style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">
+                    I agree to NeoProEd processing my information for the purpose of responding to this enquiry and sharing relevant programme updates. I confirm I am 18 years of age or older. I can withdraw consent at any time by emailing <a href="/cdn-cgi/l/email-protection#2a5a58435c4b49536a444f455a58e9994f4e04494547" style="color:#1860AA;">privacy@neopróed.com</a>. View our <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+              <button class="cf-btn" onclick="submitForm('org')">Send Enquiry →</button>
+          <div class="cf-note">Senior team responds within 1 business day · All enquiries are confidential</div>
+        </div>
+        <div class="reassure-card">
+          <div class="rc-title">What happens after you send this</div>
+          <div class="rc-row"><span class="rc-tick">1</span><div class="rc-text">A founding partner reviews your enquiry personally within 1 business day</div></div>
+          <div class="rc-row"><span class="rc-tick">2</span><div class="rc-text">We respond with a brief summary of how NeoProEd can address your specific situation — not a generic brochure</div></div>
+          <div class="rc-row"><span class="rc-tick">3</span><div class="rc-text">If relevant, we schedule a 30-minute discovery call — no pitch deck, just a conversation</div></div>
+          <div class="rc-row"><span class="rc-tick">4</span><div class="rc-text">If there's a fit, we prepare a programme outline tailored to your team and objectives</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- UNIVERSITIES -->
+    <div class="tab-panel" id="tab-uni">
+      <div class="form-layout">
+        <div class="form-card">
+          <div class="fc-title">University Partnership Enquiry</div>
+          <div class="fc-sub">For universities and colleges looking to offer insurance education to their students.</div>
+          <div class="form-row">
+            <input class="cf-inp" type="text" placeholder="Your name" required />
+            <input class="cf-inp" type="text" placeholder="Your role" />
+          </div>
+          <input class="cf-inp" type="text" placeholder="University / College name" required />
+          <div class="form-row">
+            <input class="cf-inp" type="email" placeholder="Work email address" required />
+            <input class="cf-inp" type="tel" placeholder="Phone number" />
+          </div>
+          <select class="cf-sel">
+            <option value="">Your role at the institution</option>
+            <option>Academic Coordinator / HOD</option>
+            <option>Placement Officer</option>
+            <option>Dean / Principal</option>
+            <option>Administrative staff</option>
+            <option>Other</option>
+          </select>
+          <select class="cf-sel">
+            <option value="">What are you exploring?</option>
+            <option>MBA elective programme</option>
+            <option>Undergraduate elective</option>
+            <option>Student cohort enrolment</option>
+            <option>Full year insurance track</option>
+            <option>Placement / internship support</option>
+            <option>Not sure yet — exploring options</option>
+          </select>
+          <select class="cf-sel">
+            <option value="">Approximate student intake</option>
+            <option>Under 30 students</option>
+            <option>30–60 students</option>
+            <option>60–100 students</option>
+            <option>100+ students</option>
+          </select>
+          <textarea class="cf-ta" placeholder="Any context on your programme goals or timeline would be helpful"></textarea>
+          <!-- DPDP CONSENT BLOCK -->
+              <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+                <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                  <input type="checkbox" id="consent-check" required style="margin-top:3px;flex-shrink:0;accent-color:#1860AA;width:16px;height:16px;">
+                  <span style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">
+                    I agree to NeoProEd processing my information for the purpose of responding to this enquiry and sharing relevant programme updates. I confirm I am 18 years of age or older. I can withdraw consent at any time by emailing <a href="/cdn-cgi/l/email-protection#7202001b0413110b321c171d0200b1c117165c111d1f" style="color:#1860AA;">privacy@neopróed.com</a>. View our <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+              <button class="cf-btn" onclick="submitForm('uni')">Send Enquiry →</button>
+          <div class="cf-note">Responds within 1 business day · All discussions are confidential</div>
+        </div>
+        <div class="reassure-card">
+          <div class="rc-title">What we offer universities</div>
+          <div class="rc-row"><span class="rc-tick">✓</span><div class="rc-text">Co-designed insurance electives — tailored to your student profile and academic calendar</div></div>
+          <div class="rc-row"><span class="rc-tick">✓</span><div class="rc-text">Practitioner faculty — every session led by an active insurance professional</div></div>
+          <div class="rc-row"><span class="rc-tick">✓</span><div class="rc-text">Industry network for your students — connections built during the programme</div></div>
+          <div class="rc-row"><span class="rc-tick">✓</span><div class="rc-text">Simple MoU — clear terms for both parties before any programme begins</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFESSIONALS -->
+    <div class="tab-panel" id="tab-pro">
+      <div class="form-layout">
+        <div class="form-card">
+          <div class="fc-title">Professional Enquiry</div>
+          <div class="fc-sub">Have a question about a programme before applying? Ask us here.</div>
+          <div class="form-row">
+            <input class="cf-inp" type="text" placeholder="Your name" required />
+            <input class="cf-inp" type="tel" placeholder="Phone number" />
+          </div>
+          <input class="cf-inp" type="email" placeholder="Email address" required />
+          <select class="cf-sel">
+            <option value="">I am a...</option>
+            <option>Insurance professional — upskilling</option>
+            <option>BFSI professional — entering insurance</option>
+            <option>Graduate or early-career</option>
+            <option>Insurance agent</option>
+          </select>
+          <select class="cf-sel">
+            <option value="">Programme I'm asking about</option>
+            <option>Insurtech Professional Program (Flagship)</option>
+            <option>Role-Based Certification Track</option>
+            <option>Not sure yet — help me choose</option>
+          </select>
+          <textarea class="cf-ta" placeholder="What's your question? The more specific, the more helpful our answer."></textarea>
+          <!-- DPDP CONSENT BLOCK -->
+              <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+                <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                  <input type="checkbox" id="consent-check" required style="margin-top:3px;flex-shrink:0;accent-color:#1860AA;width:16px;height:16px;">
+                  <span style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">
+                    I agree to NeoProEd processing my information for the purpose of responding to this enquiry and sharing relevant programme updates. I confirm I am 18 years of age or older. I can withdraw consent at any time by emailing <a href="/cdn-cgi/l/email-protection#f383819a8592908ab39d969c838130409697dd909c9e" style="color:#1860AA;">privacy@neopróed.com</a>. View our <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+              <button class="cf-btn" onclick="submitForm('pro')">Send Question →</button>
+          <div class="cf-note">We reply within 1 business day · Or just <a href="enrol.html" style="color:#1860AA;">go ahead and apply →</a></div>
+        </div>
+        <div class="reassure-card">
+          <div class="rc-title">You might not need to ask</div>
+          <div class="rc-row"><span class="rc-tick">→</span><div class="rc-text">Read the full programme FAQ on the <a href="programmes.html" style="color:#4DA8FF;">Programmes page</a></div></div>
+          <div class="rc-row"><span class="rc-tick">→</span><div class="rc-text">Download the programme brochure for full curriculum and pricing detail</div></div>
+          <div class="rc-row"><span class="rc-tick">→</span><div class="rc-text">Ready to apply? The <a href="enrol.html" style="color:#4DA8FF;">Enrol page</a> takes under 5 minutes</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GENERAL -->
+    <div class="tab-panel" id="tab-gen">
+      <div class="form-layout">
+        <div class="form-card">
+          <div class="fc-title">General Enquiry</div>
+          <div class="fc-sub">Media, partnerships, faculty opportunities, or anything else.</div>
+          <div class="form-row">
+            <input class="cf-inp" type="text" placeholder="Your name" required />
+            <input class="cf-inp" type="tel" placeholder="Phone number" />
+          </div>
+          <input class="cf-inp" type="email" placeholder="Email address" required />
+          <select class="cf-sel">
+            <option value="">What is this about?</option>
+            <option>Media / press enquiry</option>
+            <option>Faculty or speaking opportunity</option>
+            <option>Partnership proposal</option>
+            <option>Feedback or suggestion</option>
+            <option>Other</option>
+          </select>
+          <textarea class="cf-ta" placeholder="Tell us what's on your mind" style="min-height:120px;"></textarea>
+          <!-- DPDP CONSENT BLOCK -->
+              <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+                <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                  <input type="checkbox" id="consent-check" required style="margin-top:3px;flex-shrink:0;accent-color:#1860AA;width:16px;height:16px;">
+                  <span style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">
+                    I agree to NeoProEd processing my information for the purpose of responding to this enquiry and sharing relevant programme updates. I confirm I am 18 years of age or older. I can withdraw consent at any time by emailing <a href="/cdn-cgi/l/email-protection#9dedeff4ebfcfee4ddf3f8f2edef5e2ef8f9b3fef2f0" style="color:#1860AA;">privacy@neopróed.com</a>. View our <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+              <button class="cf-btn" onclick="submitForm('gen')">Send →</button>
+          <div class="cf-note">We respond to all messages within 2 business days</div>
+        </div>
+        <div class="reassure-card">
+          <div class="rc-title">Other ways to reach us</div>
+          <div class="rc-row"><span class="rc-tick">✉️</span><div class="rc-text">Email: hello@neopróed.com</div></div>
+          <div class="rc-row"><span class="rc-tick">🔗</span><div class="rc-text">LinkedIn: Follow NeoProEd for updates and insights</div></div>
+          <div class="rc-row"><span class="rc-tick">🎙️</span><div class="rc-text">Podcast: The Insurance Insider on Spotify and Apple Podcasts</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT HAPPENS NEXT -->
+<section id="next-steps">
+  <div class="wrap">
+    <div class="ey-lt">What happens after you submit</div>
+    <h2 style="font-size:26px;font-weight:900;color:#071A2E;margin-bottom:24px;">Three steps to a genuine conversation</h2>
+    <div class="steps3">
+      <div class="step3-c"><div class="step3-num">1</div><div class="step3-title">We read your enquiry carefully</div><div class="step3-text">A senior team member reviews every submission personally — not a CRM auto-reply. Your context matters to the quality of our response.</div></div>
+      <div class="step3-c"><div class="step3-num">2</div><div class="step3-title">We respond within 1 business day</div><div class="step3-text">You receive a direct, personalised response — not a brochure. For institutional enquiries, we include an initial read of what might work for your situation.</div></div>
+      <div class="step3-c"><div class="step3-num">3</div><div class="step3-title">We schedule a call if relevant</div><div class="step3-text">For organisation and university enquiries, we'll propose a 30-minute discovery call — no pitch deck, just a structured conversation to understand your needs.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Neo<em>Pro</em>Ed</div><div class="foot-tag">Industry-led professional education for India's insurance ecosystem.</div><div class="soc-row">
+  <a href="https://www.linkedin.com/company/neoproed" target="_blank" rel="noopener" class="si" style="background:#0A66C2;border-color:#0A66C2;color:#FFF;font-weight:900;font-size:11px;">in</a>
+  <a href="#" class="si" style="background:#FF0000;border-color:#FF0000;color:#FFF;font-size:10px;">&#9654;</a>
+  <a href="#" class="si" style="background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);border-color:#d6249f;color:#FFF;font-size:13px;">&#9711;</a>
+  <a href="mailto:neoproed@gmail.com" class="si" style="background:#EA4335;border-color:#EA4335;color:#FFF;font-size:12px;">&#9993;</a>
+</div></div>
+      <div><div class="foot-col-h">Programmes</div><a href="programmes.html" class="foot-link">All Programmes</a><a href="#" class="foot-link">Insurtech Professional Program</a><a href="#" class="foot-link">Role-based tracks</a></div>
+      <div><div class="foot-col-h">Who we serve</div><a href="professionals.html" class="foot-link">For Professionals</a><a href="corporate.html" class="foot-link">For Organisations</a><a href="universities.html" class="foot-link">For Universities</a><a href="students.html" class="foot-link">For Students</a></div>
+      <div><div class="foot-col-h">Company</div><a href="about.html" class="foot-link">About us</a><a href="faculty.html" class="foot-link">Faculty</a><a href="contact.html" class="foot-link">Contact</a></div>
+    </div>
+        <div class="foot-bot"><div class="foot-legal" style="color:#3A5A78;">© 2026 NeoProEd Private Limited</div><div class="foot-legal" style="color:#3A5A78;"><a href="privacy-policy.html" style="color:#3A5A78;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#3A5A78;text-decoration:none;">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+function submitForm(type) {
+  // Gather name and email from the active form
+  const panel = document.querySelector('.tab-panel.active');
+  const nameEl = panel.querySelector('input[type="text"]');
+  const emailEl = panel.querySelector('input[type="email"]');
+  const name = nameEl ? nameEl.value.trim() : '';
+  const email = emailEl ? emailEl.value.trim() : '';
+  if (!email) { alert('Please enter your email address so we can respond to you.'); return; }
+  const para
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.pu

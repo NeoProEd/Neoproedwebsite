@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enrol Now | NeoProEd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#FFFFFF;color:#071A2E;overflow-x:hidden;max-width:100vw;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+.ey-lt{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#1860AA;margin-bottom:10px;}
+.ey-dk{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#A8C0D4;margin-bottom:10px;}
+nav{background:#06101A;border-bottom:1px solid #162638;position:sticky;top:0;z-index:100;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;flex-shrink:0;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-links{display:flex;gap:4px;margin-left:24px;}
+.nav-links a{font-size:12px;font-weight:700;color:#A8C0D4;padding:6px 9px;border-radius:5px;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover{color:#F5F9FF;background:#0C1E30;}
+@media(max-width:800px){.nav-links{display:none;}}
+.nav-sp{flex:1;}
+.nav-r{display:flex;gap:8px;flex-shrink:0;align-items:center;}
+.btn-ghost{font-size:12px;font-weight:700;color:#A8C0D4;padding:7px 13px;border:1px solid #1E3A52;border-radius:6px;background:transparent;cursor:pointer;text-decoration:none;display:inline-block;white-space:nowrap;}
+.btn-primary{font-size:12px;font-weight:800;color:#F5F9FF;padding:7px 14px;border-radius:6px;background:#1860AA;border:1px solid #1860AA;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block;}
+.breadcrumb{background:#F2F7FC;border-bottom:1px solid #C8DCF0;padding:10px 24px;}
+@media(min-width:900px){.breadcrumb{padding:10px 48px;}}
+.bc-inner{max-width:1080px;margin:0 auto;display:flex;gap:6px;align-items:center;font-size:12px;flex-wrap:wrap;}
+.bc-link{color:#1860AA;font-weight:600;text-decoration:none;}
+.bc-sep{color:#8AAEC8;}
+.bc-cur{color:#2E4A62;font-weight:600;}
+
+/* STEP INDICATOR */
+#step-bar{background:#F2F7FC;border-bottom:1px solid #C8DCF0;padding:16px 24px;}
+@media(min-width:900px){#step-bar{padding:16px 48px;}}
+.step-bar-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:0;}
+.step-item{display:flex;align-items:center;gap:8px;flex:1;}
+.step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;}
+.step-circle.done{background:#3DB890;color:#FFFFFF;}
+.step-circle.active{background:#1860AA;color:#FFFFFF;}
+.step-circle.pending{background:#FFFFFF;border:2px solid #C8DCF0;color:#8AAEC8;}
+.step-label{font-size:12px;font-weight:700;}
+.step-label.active{color:#071A2E;}
+.step-label.pending{color:#8AAEC8;}
+@media(max-width:600px){.step-label{display:none;}}
+.step-connector{height:2px;flex:1;background:#C8DCF0;margin:0 8px;}
+.step-connector.done{background:#3DB890;}
+.step-connector.active{background:#1860AA;}
+
+/* PAGE LAYOUT */
+#enrol-main{background:#F2F7FC;padding:48px 0;min-height:60vh;}
+.enrol-layout{display:grid;grid-template-columns:1fr;gap:20px;}
+@media(min-width:900px){.enrol-layout{grid-template-columns:1fr 360px;align-items:start;}}
+
+/* STEPS */
+.step-panel{display:none;}
+.step-panel.active{display:block;}
+
+/* STEP 1 — Choose programme */
+.prog-selector{display:flex;flex-direction:column;gap:10px;margin-bottom:20px;}
+.ps-card{background:#FFFFFF;border:2px solid #C8DCF0;border-radius:12px;padding:18px 20px;cursor:pointer;transition:all .15s;display:flex;gap:16px;align-items:flex-start;}
+.ps-card:hover,.ps-card.selected{border-color:#1860AA;background:#F0F7FF;}
+.ps-radio{width:20px;height:20px;border-radius:50%;border:2px solid #C8DCF0;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.ps-card.selected .ps-radio{border-color:#1860AA;background:#1860AA;}
+.ps-radio-dot{width:8px;height:8px;border-radius:50%;background:#FFFFFF;display:none;}
+.ps-card.selected .ps-radio-dot{display:block;}
+.ps-content{flex:1;}
+.ps-badge{font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:4px;background:#1860AA;color:#FFF;display:inline-block;margin-bottom:6px;}
+.ps-badge-soon{background:#F59E0B;color:#1A0A00;}
+.ps-title{font-size:15px;font-weight:900;color:#071A2E;margin-bottom:4px;}
+.ps-meta{font-size:12px;font-weight:600;color:#4A6A88;}
+.ps-price{font-size:14px;font-weight:900;color:#1860AA;margin-top:6px;}
+
+/* FORM CARD */
+.form-card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;padding:28px;}
+.fc-step-label{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1860AA;margin-bottom:8px;}
+.fc-title{font-size:18px;font-weight:900;color:#071A2E;margin-bottom:4px;}
+.fc-sub{font-size:13px;font-weight:600;color:#4A6A88;margin-bottom:20px;}
+.form-row{display:grid;grid-template-columns:1fr;gap:10px;}
+@media(min-width:500px){.form-row{grid-template-columns:1fr 1fr;}}
+.cf-inp,.cf-sel,.cf-ta{width:100%;font-size:13px;font-weight:600;padding:11px 13px;border:1px solid #A8C0D4;border-radius:7px;margin-bottom:10px;background:#FFFFFF;color:#071A2E;outline:none;font-family:inherit;}
+.cf-sel{color:#3A5A78;}
+.cf-ta{resize:vertical;min-height:80px;line-height:1.6;}
+.cf-inp:focus,.cf-sel:focus,.cf-ta:focus{border-color:#1860AA;box-shadow:0 0 0 3px rgba(24,96,170,.1);}
+.cf-label{font-size:11px;font-weight:700;color:#4A6A88;margin-bottom:4px;margin-top:4px;display:block;}
+.form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:6px;gap:12px;}
+.btn-back{font-size:13px;font-weight:800;padding:12px 22px;border-radius:7px;background:transparent;color:#1860AA;border:2px solid #1860AA;cursor:pointer;}
+.btn-next{font-size:13px;font-weight:800;padding:12px 22px;border-radius:7px;background:#1860AA;color:#FFF;border:none;cursor:pointer;flex:1;}
+@media(min-width:500px){.btn-next{flex:none;padding:12px 32px;}}
+
+/* SIDEBAR — order summary */
+.order-summary{background:#06101A;border:1px solid #1E3A52;border-radius:14px;padding:24px;position:sticky;top:80px;}
+.os-title{font-size:13px;font-weight:800;color:#A8C0D4;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;}
+.os-prog{font-size:15px;font-weight:900;color:#F5F9FF;margin-bottom:4px;}
+.os-prog-meta{font-size:12px;font-weight:600;color:#A8C0D4;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #162638;}
+.os-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;font-size:13px;}
+.os-row-label{font-weight:600;color:#A8C0D4;}
+.os-row-val{font-weight:800;color:#F5F9FF;text-align:right;}
+.os-total{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid #162638;margin-top:4px;}
+.os-total-label{font-size:13px;font-weight:800;color:#E0EAF4;}
+.os-total-val{font-size:20px;font-weight:900;color:#F5F9FF;}
+.os-gst{font-size:11px;font-weight:600;color:#4A6A88;margin-top:4px;text-align:right;}
+.os-placeholder{font-size:13px;font-weight:600;color:#2A4060;font-style:italic;}
+/* trust badges */
+.trust-badges{margin-top:16px;padding-top:16px;border-top:1px solid #162638;display:flex;flex-direction:column;gap:8px;}
+.tb{display:flex;align-items:center;gap:8px;}
+.tb-icon{font-size:13px;flex-shrink:0;}
+.tb-text{font-size:11px;font-weight:600;color:#A8C0D4;line-height:1.4;}
+
+/* STEP 3 — CONFIRMATION */
+.confirm-card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;padding:36px;text-align:center;}
+.confirm-icon{font-size:56px;margin-bottom:16px;}
+.confirm-title{font-size:24px;font-weight:900;color:#071A2E;margin-bottom:8px;}
+.confirm-text{font-size:14px;font-weight:600;color:#1E3A54;line-height:1.8;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto;}
+.confirm-details{background:#F2F7FC;border:1px solid #C8DCF0;border-radius:10px;padding:16px 20px;margin-bottom:24px;text-align:left;}
+.cd-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #E0EAF4;font-size:13px;}
+.cd-row:last-child{border-bottom:none;}
+.cd-label{font-weight:700;color:#4A6A88;}
+.cd-val{font-weight:800;color:#071A2E;}
+.confirm-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cb-p{font-size:14px;font-weight:800;padding:12px 26px;border-radius:7px;background:#1860AA;color:#FFF;text-decoration:none;display:inline-block;}
+.cb-s{font-size:14px;font-weight:800;padding:12px 26px;border-radius:7px;background:transparent;color:#1860AA;border:2px solid #1860AA;text-decoration:none;display:inline-block;}
+
+footer{background:#06101A;padding:40px 0 20px;border-top:1px solid #162638;}
+.foot-bot{display:flex;flex-direction:column;gap:6px;padding:18px 24px;align-items:center;}
+@media(min-width:600px){.foot-bot{flex-direction:row;justify-content:space-between;padding:18px 48px;}}
+.foot-legal{font-size:11px;font-weight:600;color:#2A4060;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+            <div class="nav-links">
+      <a href="programmes.html">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html">For Organisations</a>
+      <a href="universities.html">For Universities</a>
+      <a href="faculty.html">Faculty</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+      <a href="student-login.html" class="btn-ghost">Student Login</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <a href="programmes.html" class="bc-link">Programmes</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-cur">Enrol Now</span>
+  </div>
+</div>
+
+<!-- STEP BAR -->
+<div id="step-bar">
+  <div class="step-bar-inner">
+    <div class="step-item">
+      <div class="step-circle active" id="sc1">1</div>
+      <span class="step-label active" id="sl1">Choose programme</span>
+    </div>
+    <div class="step-connector" id="con1"></div>
+    <div class="step-item">
+      <div class="step-circle pending" id="sc2">2</div>
+      <span class="step-label pending" id="sl2">Your details</span>
+    </div>
+    <div class="step-connector" id="con2"></div>
+    <div class="step-item">
+      <div class="step-circle pending" id="sc3">3</div>
+      <span class="step-label pending" id="sl3">Confirmation</span>
+    </div>
+  </div>
+</div>
+
+<!-- ENROL MAIN -->
+<section id="enrol-main">
+  <div class="wrap">
+    <div class="enrol-layout">
+
+      <!-- LEFT — STEP PANELS -->
+      <div>
+
+        <!-- STEP 1: CHOOSE PROGRAMME -->
+        <div class="step-panel active" id="step1">
+          <div class="form-card">
+            <div class="fc-step-label">Step 1 of 2</div>
+            <div class="fc-title">Choose your programme</div>
+            <div class="fc-sub">Select the programme you'd like to enrol in. Not sure? <a href="programmes.html" style="color:#1860AA;font-weight:700;">Browse all programmes →</a></div>
+
+            <div class="prog-selector" id="prog-selector">
+              <div class="ps-card selected" onclick="selectProg(this,'ipp','Insurtech Professional Program','₹50,000','Part 1 · June 2025 cohort')" data-prog="ipp">
+                <div class="ps-radio"><div class="ps-radio-dot"></div></div>
+                <div class="ps-content">
+                  <div class="ps-badge">Flagship · Recommended</div>
+                  <div class="ps-title">Insurtech Professional Program — Part 1</div>
+                  <div class="ps-meta">12 weeks · 60 hours · Online + residential capstone · Founding cohort</div>
+                  <div class="ps-price">₹50,000 per part + GST</div>
+                </div>
+              </div>
+              <div class="ps-card" onclick="selectProg(this,'ipp2','Insurtech Professional Program — Part 2','₹50,000','Part 2 · Follows Part 1')" data-prog="ipp2">
+                <div class="ps-radio"><div class="ps-radio-dot"></div></div>
+                <div class="ps-content">
+                  <div class="ps-badge">Stackable</div>
+                  <div class="ps-title">Insurtech Professional Program — Part 2</div>
+                  <div class="ps-meta">6 weeks · 40 hours · Online · Follows Part 1</div>
+                  <div class="ps-price">₹50,000 per part + GST</div>
+                </div>
+              </div>
+              <div class="ps-card" onclick="selectProg(this,'underwriting','Underwriting Certification Track','₹18,000','Coming soon')" data-prog="underwriting">
+                <div class="ps-radio"><div class="ps-radio-dot"></div></div>
+                <div class="ps-content">
+                  <div class="ps-badge ps-badge-soon">Coming Soon — Register Interest</div>
+                  <div class="ps-title">Underwriting Certification Track</div>
+                  <div class="ps-meta">6 weeks · 20 hours · Online live sessions</div>
+                  <div class="ps-price">₹18,000 + GST</div>
+                </div>
+              </div>
+              <div class="ps-card" onclick="selectProg(this,'claims','Claims Management Certification Track','₹18,000','Coming soon')" data-prog="claims">
+                <div class="ps-radio"><div class="ps-radio-dot"></div></div>
+                <div class="ps-content">
+                  <div class="ps-badge ps-badge-soon">Coming Soon — Register Interest</div>
+                  <div class="ps-title">Claims Management Certification Track</div>
+                  <div class="ps-meta">6 weeks · 20 hours · Online live sessions</div>
+                  <div class="ps-price">₹18,000 + GST</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-nav" style="justify-content:flex-end;">
+              <button class="btn-next" onclick="goStep(2)">Continue with Details →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: YOUR DETAILS -->
+        <div class="step-panel" id="step2">
+          <div class="form-card">
+            <div style="background:#FEF3C7;border:1px solid #F59E0B;border-radius:7px;padding:10px 14px;margin-bottom:12px;font-size:12px;font-weight:600;color:#78350F;">This programme is open to individuals aged 18 and above.</div>
+            <div class="fc-step-label">Step 2 of 2</div>
+            <div class="fc-title">Your details</div>
+            <div class="fc-sub">Complete your application. Takes under 5 minutes. No essay or statement of purpose required.</div>
+
+            <div class="cf-label">Personal details</div>
+            <div class="form-row">
+              <input class="cf-inp" type="text" id="fname" placeholder="First name" required />
+              <input class="cf-inp" type="text" id="lname" placeholder="Last name" required />
+            </div>
+            <input class="cf-inp" type="email" id="email" placeholder="Email address" required />
+            <input class="cf-inp" type="tel" id="phone" placeholder="Phone number (WhatsApp preferred)" required />
+            <input class="cf-inp" type="text" id="city" placeholder="City / Location" />
+
+            <div class="cf-label" style="margin-top:8px;">Professional background</div>
+            <select class="cf-sel" id="profile">
+              <option value="">I am a...</option>
+              <option>Insurance professional — upskilling</option>
+              <option>BFSI professional — entering insurance</option>
+              <option>MBA student or graduate</option>
+              <option>Final year student</option>
+              <option>Recent graduate (0–2 years)</option>
+              <option>Insurance agent</option>
+              <option>Other</option>
+            </select>
+            <input class="cf-inp" type="text" id="org" placeholder="Current organisation / college (optional)" />
+            <input class="cf-inp" type="text" id="role" placeholder="Current role / year of study (optional)" />
+
+            <div class="cf-label" style="margin-top:8px;">How did you hear about NeoProEd? <span style="color:#8AAEC8;">(optional)</span></div>
+            <select class="cf-sel">
+              <option value="">Select source</option>
+              <option>LinkedIn</option>
+              <option>Friend or colleague</option>
+              <option>University / College</option>
+              <option>Google search</option>
+              <option>Instagram / Facebook</option>
+              <option>The Insurance Insider podcast</option>
+              <option>Other</option>
+            </select>
+
+            <div class="cf-label" style="margin-top:8px;">Anything you'd like us to know? <span style="color:#8AAEC8;">(optional)</span></div>
+            <textarea class="cf-ta" placeholder="e.g. questions about the programme, group enrolment, or anything else"></textarea>
+
+            <!-- Payment note -->
+            <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:12px 14px;margin-bottom:12px;">
+              <div style="font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#1860AA;margin-bottom:4px;">Payment</div>
+              <div style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">Payment is not made here. After you submit, our team will review your application and send payment instructions within 2 business days. You'll receive your seat confirmation only after payment is complete.</div>
+            </div>
+
+            <div class="form-nav">
+              <button class="btn-back" onclick="goStep(1)">← Back</button>
+              <!-- DPDP CONSENT BLOCK -->
+              <div style="background:#F2F7FC;border:1px solid #C8DCF0;border-radius:8px;padding:14px 16px;margin-bottom:12px;">
+                <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;">
+                  <input type="checkbox" id="consent-check" required style="margin-top:3px;flex-shrink:0;accent-color:#1860AA;width:16px;height:16px;">
+                  <span style="font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;">
+                    I agree to NeoProEd processing my information for the purpose of responding to this enquiry and sharing relevant programme updates. I confirm I am 18 years of age or older. I can withdraw consent at any time by emailing <a href="/cdn-cgi/l/email-protection#90e0e2f9e6f1f3e9d0fef5ffe0e25323f5f4bef3fffd" style="color:#1860AA;">privacy@neopróed.com</a>. View our <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.
+                  </span>
+                </label>
+              </div>
+              <div style="font-size:11px;font-weight:600;color:#4A6A88;margin-bottom:10px;line-height:1.6;">By submitting, you agree to our <a href="terms-of-use.html" style="color:#1860AA;">Terms & Conditions</a> and <a href="privacy-policy.html" style="color:#1860AA;">Privacy Policy</a>.*</div>
+              <button class="btn-next" onclick="submitApplication()">Submit Application →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: CONFIRMATION -->
+        <div class="step-panel" id="step3">
+          <div class="confirm-card">
+            <div class="confirm-icon">✅</div>
+            <div class="confirm-title">Application received</div>
+            <div class="confirm-text">Thank you for applying to NeoProEd. We'll review your application and send you a personalised response within 2 business days — including payment details and next steps.</div>
+            <div class="confirm-details" id="confirm-summary">
+              <div class="cd-row"><span class="cd-label">Programme</span><span class="cd-val" id="cd-prog">—</span></div>
+              <div class="cd-row"><span class="cd-label">Name</span><span class="cd-val" id="cd-name">—</span></div>
+              <div class="cd-row"><span class="cd-label">Email</span><span class="cd-val" id="cd-email">—</span></div>
+              <div class="cd-row"><span class="cd-label">Next step</span><span class="cd-val">Team responds within 2 business days</span></div>
+            </div>
+            <div class="confirm-btns">
+              <a href="index.html" class="cb-s">Back to Home</a>
+              <a href="#" class="cb-p" id="proceed-to-payment" onclick="goToPayment()">Proceed to Payment →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT — ORDER SUMMARY SIDEBAR -->
+      <div class="order-summary" id="order-summary">
+        <div class="os-title">Your Application</div>
+        <div class="os-prog" id="os-prog-name">Insurtech Professional Program</div>
+        <div class="os-prog-meta" id="os-prog-meta">Part 1 · Founding Cohort · June 2025</div>
+        <div class="os-row"><span class="os-row-label">Programme fee</span><span class="os-row-val" id="os-price">₹50,000</span></div>
+        <div class="os-row"><span class="os-row-label">GST (18%)</span><span class="os-row-val" id="os-gst-amt">₹9,000</span></div>
+        <div class="os-total">
+          <span class="os-total-label">Total payable</span>
+          <span class="os-total-val" id="os-total">₹59,000</span>
+        </div>
+        <div class="os-gst">Payment not collected here — team sends instructions after review</div>
+        <div class="trust-badges">
+          
+          <div class="tb"><div class="tb-icon">📋</div><div class="tb-text">GST invoice issued in your name or company</div></div>
+          
+          
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="text-align:center;padding:12px;background:#F2F7FC;border-top:1px solid #C8DCF0;font-size:12px;font-weight:600;color:#4A6A88;">Questions? Call <a href="tel:+919967639432" style="color:#1860AA;">+91 99676 39432</a> or email <a href="mailto:neoproed@gmail.com" style="color:#1860AA;">neoproed@gmail.com</a></div>
+      <div class="foot-bot"><div class="foot-legal" style="color:#3A5A78;">© 2026 NeoProEd Private Limited</div><div class="foot-legal" style="color:#3A5A78;"><a href="privacy-policy.html" style="color:#3A5A78;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#3A5A78;text-decoration:none;">Terms of Use</a></div></div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// State
+let selectedProg = { name:'Insurtech Professional Program', price:'₹50,000', meta:'Part 1 · Founding Cohort · June 2025' };
+
+function selectProg(card, id, name, price, meta) {
+  document.querySelectorAll('.ps-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  selectedProg = { name, price, meta };
+  updateSidebar();
+}
+
+function updateSidebar() {
+  document.getElementById('os-prog-name').textContent = selectedProg.name;
+  document.getElementById('os-prog-meta').textContent = selectedProg.meta;
+  document.getElementById('os-price').textContent = selectedProg.price;
+  // Calculate GST
+  const base = parseInt(selectedProg.price.replace(/[₹,]/g,'')) || 0;
+  const gst = Math.round(base * 0.18);
+  document.getElementById('os-gst-amt').textContent = '₹' + gst.toLocaleString('en-IN');
+  document.getElementById('os-total').textContent = '₹' + (base + gst).toLocaleString('en-IN');
+}
+
+function goStep(n) {
+  document.querySelectorAll('.step-panel').forEach((p,i) => p.classList.toggle('active', i === n-1));
+  // Step circles
+  [1,2,3].forEach(i => {
+    const circle = document.getElementById('sc'+i);
+    const label = document.getElementById('sl'+i);
+    circle.className = 'step-circle ' + (i < n ? 'done' : i === n ? 'active' : 'pending');
+    label.className = 'step-label ' + (i === n ? 'active' : 'pending');
+  });
+  [1,2].forEach(i => {
+    document.getElementById('con'+i).className = 'step-connector ' + (i < n ? 'done' : i === n ? 'active' : '');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goToPayment() {
+  const fee = selectedProg.price.replace(/[₹,]/g,'');
+  const params = new URLSearchParams({
+    prog: selectedProg.name,
+    fee: fee
+  });
+  window.location.href = 'payment.html?' + params.toString();
+}
+
+function validateEmail(e){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);}
+function validatePhone(p){return !p||p.replace(/\D/g,'').length>=10;}
+function submitApplication() {
+  const name = document.getElementById('fname').value.trim() + ' ' + document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  if (!name.trim()) { alert('Please enter your name.'); return; }
+  if (!email || !validateEmail(email)) { alert('Please enter a valid email address.'); return; }
+  if (phone && !validatePhone(phone)) { alert('Please enter a valid phone number (at least 10 digits).'); return; }
+  // Update confirmation card
+  document.getElementById('cd-prog').textContent = selectedProg.name;
+  document.getElementById('cd-name').textContent = name;
+  document.getElementById('cd-email').textContent = email;
+  goStep(3);
+  // Hide sidebar on confirmation
+  document.getElementById('order-summary').style.display = 'none';
+  // TODO: POST to form handler
+}
+
+updateSidebar();
+</script>
+<!-- DPDP COOKIE CONSENT BANNER -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#06101A;border-top:1px solid #1E3A52;padding:16px 24px;z-index:9999;box-shadow:0 -4px 20px rgba(0,0,0,.3);">
+  <div style="max-width:1080px;margin:0 auto;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:260px;">
+      <div style="font-size:13px;font-weight:800;color:#F5F9FF;margin-bottom:4px;">We use cookies</div>
+      <div style="font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;">NeoProEd uses cookies for analytics and advertising. We share data with Google, LinkedIn and Meta only with your consent. View our <a href="privacy-policy.html" style="color:#4DA8FF;">Privacy Policy</a>.</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-shrink:0;flex-wrap:wrap;">
+      <button onclick="acceptCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:#1860AA;color:#FFF;border:none;cursor:pointer;">Accept all</button>
+      <button onclick="declineCookies()" style="font-size:13px;font-weight:800;padding:10px 22px;border-radius:6px;background:transparent;color:#A8C0D4;border:1px solid #2A4A6A;cursor:pointer;">Essential only</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var consent = localStorage.getItem('npe_cookie_consent');
+  if(!consent) document.getElementById('cookie-banner').style.display='block';
+  if(consent === 'accepted') loadTrackingPixels();
+})();
+function acceptCookies(){
+  localStorage.setItem('npe_cookie_consent','accepted');
+  document.getElementById('cookie-banner').style.display='none';
+  loadTrackingPixels();
+}
+function declineCookies(){
+  localStorage.setItem('npe_cookie_consent','declined');
+  document.getElementById('cookie-banner').style.display='none';
+}
+function loadTrackingPixels(){
+  // GA4 — replace G-XXXXXXXXXX with real measurement ID
+  if(!window.gtag){
+    var s=document.createElement('script');
+    s.src='https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+    s.async=true; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js',new Date()); gtag('config','G-XXXXXXXXXX');
+  }
+  // Meta Pixel — replace XXXXXXXXXXXXXXX with real Pixel ID
+  if(!window.fbq){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  }
+  // LinkedIn Insight Tag — replace XXXXXXX with real Partner ID
+  if(!window._linkedin_data_partner_ids){
+    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+    window._linkedin_data_partner_ids.push('XXXXXXX');
+    var s=document.createElement('script'); s.type='text/javascript'; s.async=true;
+    s.src='https://snap.licdn.com/

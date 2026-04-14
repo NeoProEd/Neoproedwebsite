@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faculty | NeoProEd — Insurance Professional Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;background:#FFFFFF;color:#071A2E;overflow-x:hidden;}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+@media(min-width:900px){.wrap{padding:0 48px;}}
+.ey-dk{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#A8C0D4;margin-bottom:10px;}
+.ey-lt{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#1860AA;margin-bottom:10px;}
+.h2-dk{font-size:28px;font-weight:900;color:#F5F9FF;line-height:1.15;letter-spacing:-.03em;margin-bottom:12px;}
+.h2-lt{font-size:28px;font-weight:900;color:#071A2E;line-height:1.15;letter-spacing:-.03em;margin-bottom:12px;}
+@media(min-width:600px){.h2-dk,.h2-lt{font-size:36px;}}
+.body-dk{font-size:15px;font-weight:600;color:#E0EAF4;line-height:1.75;}
+.body-lt{font-size:15px;font-weight:600;color:#1E3A54;line-height:1.75;}
+
+/* NAV */
+nav{background:#06101A;border-bottom:1px solid #162638;position:sticky;top:0;z-index:100;}
+.nav-inner{display:flex;align-items:center;padding:15px 24px;max-width:1080px;margin:0 auto;}
+@media(min-width:900px){.nav-inner{padding:15px 48px;}}
+.logo{font-size:20px;font-weight:900;color:#F5F9FF;letter-spacing:-.02em;text-decoration:none;}
+.logo em{color:#4DA8FF;font-style:normal;}
+.nav-links{display:flex;gap:4px;margin-left:24px;}
+.nav-links a{font-size:12px;font-weight:700;color:#A8C0D4;padding:6px 9px;border-radius:5px;text-decoration:none;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.active{color:#F5F9FF;background:#0C1E30;}
+@media(max-width:800px){.nav-links{display:none;}}
+.nav-sp{flex:1;}
+.nav-r{display:flex;gap:8px;}
+.btn-ghost{font-size:12px;font-weight:700;color:#A8C0D4;padding:7px 13px;border:1px solid #1E3A52;border-radius:6px;background:transparent;text-decoration:none;display:inline-block;}
+.btn-primary{font-size:12px;font-weight:800;color:#F5F9FF;padding:7px 14px;border-radius:6px;background:#1860AA;border:1px solid #1860AA;text-decoration:none;display:inline-block;}
+
+/* BREADCRUMB */
+.breadcrumb{background:#F2F7FC;border-bottom:1px solid #C8DCF0;padding:10px 24px;}
+@media(min-width:900px){.breadcrumb{padding:10px 48px;}}
+.bc-inner{max-width:1080px;margin:0 auto;display:flex;gap:6px;font-size:12px;}
+.bc-link{color:#1860AA;font-weight:600;text-decoration:none;}
+.bc-sep{color:#8AAEC8;}
+.bc-cur{color:#2E4A62;font-weight:600;}
+
+/* HERO */
+#hero{background:#06101A;padding:56px 0 48px;}
+
+/* ── FACULTY CAROUSEL ── */
+#faculty-full{background:#F2F7FC;padding:56px 0;}
+.carousel-outer{position:relative;padding:0 52px;}
+@media(max-width:600px){.carousel-outer{padding:0 36px;}}
+.carousel-track-wrap{overflow:hidden;}
+.carousel-track{display:flex;gap:16px;transition:transform .38s cubic-bezier(.4,0,.2,1);will-change:transform;}
+
+/* Each card is a fixed fraction of viewport */
+.fac-slide{flex:0 0 calc(33.333% - 11px);min-width:0;}
+@media(max-width:900px){.fac-slide{flex:0 0 calc(50% - 8px);}}
+@media(max-width:560px){.fac-slide{flex:0 0 calc(100% - 0px);}}
+
+/* Card */
+.fac-card{background:#FFFFFF;border:1px solid #C8DCF0;border-radius:14px;padding:20px;height:100%;display:flex;flex-direction:column;}
+.fac-card.placeholder{background:#F8FBFF;border:1.5px dashed #C8DCF0;}
+
+/* Photo placeholder */
+.fac-photo{width:72px;height:72px;border-radius:50%;background:#F2F7FC;border:2px dashed #C8DCF0;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:14px;flex-shrink:0;}
+.fac-photo-icon{font-size:22px;line-height:1;}
+.fac-photo-lbl{font-size:8px;font-weight:800;color:#8AAEC8;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+.fac-badge{display:inline-block;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;background:#E6F1FB;color:#0C447C;margin-bottom:8px;}
+.fac-name{font-size:14px;font-weight:900;color:#071A2E;margin-bottom:2px;}
+.fac-role{font-size:12px;font-weight:700;color:#1860AA;margin-bottom:3px;}
+.fac-prev{font-size:11px;font-weight:600;color:#4A6A88;margin-bottom:10px;}
+.fac-bio{font-size:12px;font-weight:600;color:#1E3A54;line-height:1.65;border-top:1px solid #E8F0F8;padding-top:10px;margin-top:auto;}
+
+/* Placeholder card text colours */
+.fac-card.placeholder .fac-name{color:#8AAEC8;}
+.fac-card.placeholder .fac-role{color:#A8C0D4;}
+.fac-card.placeholder .fac-prev{color:#C8DCF0;}
+.fac-card.placeholder .fac-bio{color:#C8DCF0;border-top-color:#E8F0F8;}
+
+/* Arrow buttons */
+.car-arrow{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;background:#FFFFFF;border:1.5px solid #C8DCF0;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;font-weight:900;color:#1860AA;z-index:10;box-shadow:0 2px 12px rgba(0,0,0,.09);transition:all .15s;padding:0;line-height:1;}
+.car-arrow:hover{background:#1860AA;color:#FFFFFF;border-color:#1860AA;}
+.car-arrow:disabled{opacity:.25;cursor:default;pointer-events:none;}
+.car-prev{left:0;}
+.car-next{right:0;}
+@media(max-width:600px){.car-arrow{width:32px;height:32px;font-size:15px;}}
+
+/* Dots */
+.car-dots{display:flex;gap:7px;justify-content:center;margin-top:22px;}
+.car-dot{width:8px;height:8px;border-radius:50%;background:#C8DCF0;border:none;cursor:pointer;padding:0;transition:all .2s;}
+.car-dot.active{background:#1860AA;width:22px;border-radius:4px;}
+
+/* WHAT FACULTY */
+#what{background:#0B1828;padding:56px 0;border-top:1px solid #162638;}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:28px;}
+@media(min-width:800px){.feat-grid{grid-template-columns:repeat(4,1fr);}}
+.feat-c{background:#06101A;border:1px solid #1E3A52;border-radius:12px;padding:18px 16px;}
+.feat-icon{font-size:24px;margin-bottom:10px;}
+.feat-title{font-size:13px;font-weight:900;color:#F5F9FF;margin-bottom:5px;}
+.feat-text{font-size:12px;font-weight:600;color:#E0EAF4;line-height:1.65;}
+
+/* ADVISORY BOARD */
+#advisory{background:#FFFFFF;padding:56px 0;border-top:1px solid #C8DCF0;}
+.adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px;}
+@media(min-width:700px){.adv-grid{grid-template-columns:repeat(3,1fr);}}
+@media(min-width:1000px){.adv-grid{grid-template-columns:repeat(4,1fr);}}
+.adv-card{background:#F8FBFF;border:1px solid #C8DCF0;border-radius:12px;padding:20px;display:flex;flex-direction:column;}
+.adv-card.confirmed{background:#FFFFFF;border-color:#C8DCF0;}
+.adv-card.placeholder{background:#FAFCFF;border:1.5px dashed #C8DCF0;}
+.adv-photo{width:56px;height:56px;border-radius:50%;background:#F2F7FC;border:2px dashed #C8DCF0;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-bottom:12px;flex-shrink:0;}
+.adv-name{font-size:13px;font-weight:900;color:#071A2E;margin-bottom:2px;}
+.adv-role{font-size:11px;font-weight:700;color:#1860AA;margin-bottom:3px;}
+.adv-spec{font-size:11px;font-weight:600;color:#4A6A88;line-height:1.55;}
+.adv-tag{display:inline-block;font-size:9px;font-weight:800;padding:2px 9px;border-radius:20px;background:#E6F1FB;color:#0C447C;margin-top:8px;}
+
+/* CTA */
+#cta{background:#F2F7FC;padding:56px 0;text-align:center;border-top:1px solid #C8DCF0;}
+.cta-h{font-size:24px;font-weight:900;color:#071A2E;margin-bottom:8px;}
+@media(min-width:600px){.cta-h{font-size:30px;}}
+.cta-sub{font-size:14px;font-weight:600;color:#1E3A54;line-height:1.75;margin-bottom:24px;}
+.cta-btn-p{font-size:14px;font-weight:800;padding:13px 28px;border-radius:7px;background:#1860AA;color:#FFF;text-decoration:none;display:inline-block;margin:5px 6px;}
+.cta-btn-s{font-size:14px;font-weight:800;padding:12px 28px;border-radius:7px;background:transparent;color:#1860AA;border:2px solid #1860AA;text-decoration:none;display:inline-block;margin:5px 6px;}
+
+/* FOOTER */
+footer{background:#06101A;padding:40px 0 24px;border-top:1px solid #162638;}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:20px;}
+@media(min-width:768px){.foot-grid{grid-template-columns:2fr 1fr 1fr 1fr;}}
+.foot-brand{font-size:19px;font-weight:900;color:#F5F9FF;margin-bottom:8px;}
+.foot-brand em{color:#4DA8FF;font-style:normal;}
+.foot-tag{font-size:13px;font-weight:600;color:#A8C0D4;line-height:1.75;}
+.foot-col-h{font-size:12px;font-weight:900;color:#F5F9FF;margin-bottom:10px;}
+.foot-link{font-size:13px;font-weight:600;color:#A8C0D4;display:block;margin-bottom:7px;text-decoration:none;}
+.foot-bot{display:flex;flex-direction:column;gap:6px;padding-top:16px;border-top:1px solid #162638;}
+@media(min-width:600px){.foot-bot{flex-direction:row;justify-content:space-between;}}
+.foot-legal{font-size:11px;font-weight:600;color:#3A5A78;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Neo<em>Pro</em>Ed</a>
+    <div class="nav-links">
+      <a href="programmes.html">Programmes</a>
+      <a href="professionals.html">For Professionals</a>
+      <a href="corporate.html">For Organisations</a>
+      <a href="universities.html">For Universities</a>
+      <a href="faculty.html" class="active">Faculty</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-sp"></div>
+    <div class="nav-r">
+      <a href="student-login.html" class="btn-ghost">Student Login</a>
+      <a href="enrol.html" class="btn-primary">Enrol now</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <div class="bc-inner">
+    <a href="index.html" class="bc-link">Home</a>
+    <span class="bc-sep">›</span>
+    <span class="bc-cur">Faculty</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="ey-dk">Who teaches at NeoProEd</div>
+    <h1 class="h2-dk">Practitioners who have held the role they teach</h1>
+    <p class="body-dk" style="max-width:620px;">Every faculty member is an active professional — not an academic or a generalist trainer. When they use a case study, it is usually one they lived through.</p>
+  </div>
+</section>
+
+<!-- FACULTY CAROUSEL -->
+<section id="faculty-full">
+  <div class="wrap">
+    <div class="ey-lt">Confirmed faculty</div>
+    <h2 class="h2-lt">The people behind the programme</h2>
+    <div style="margin-top:32px;">
+      <div class="carousel-outer">
+        <button class="car-arrow car-prev" id="fac-prev" aria-label="Previous">&#8592;</button>
+        <button class="car-arrow car-next" id="fac-next" aria-label="Next">&#8594;</button>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="fac-track">
+
+            <!-- Card 1 — Sneha Gokarn -->
+            <div class="fac-slide">
+              <div class="fac-card confirmed">
+                <div class="fac-photo"><div class="fac-photo-icon">📷</div><div class="fac-photo-lbl">Photo</div></div>
+                <span class="fac-badge">Co-founder</span>
+                <div class="fac-name">Sneha Gokarn</div>
+                <div class="fac-role">Insurance Strategy & Distribution</div>
+                <div class="fac-prev">Former CEO, Gallagher India · 20+ years</div>
+                <div class="fac-bio">Leads sessions on insurance distribution models, strategic partnerships, and the evolving role of brokers in India's market.</div>
+              </div>
+            </div>
+
+            <!-- Card 2 — Yashesh Sampat -->
+            <div class="fac-slide">
+              <div class="fac-card confirmed">
+                <div class="fac-photo"><div class="fac-photo-icon">📷</div><div class="fac-photo-lbl">Photo</div></div>
+                <span class="fac-badge">Co-founder</span>
+                <div class="fac-name">Yashesh Sampat</div>
+                <div class="fac-role">Sales, Distribution & Market Development</div>
+                <div class="fac-prev">Insurance leader · CII member · Angel investor · 25+ years</div>
+                <div class="fac-bio">Covers sales strategy, distribution ecosystem design, and building sustainable agency networks across Life, Non-Life, and Health.</div>
+              </div>
+            </div>
+
+            <!-- Card 3 — Sumeet Darak -->
+            <div class="fac-slide">
+              <div class="fac-card confirmed">
+                <div class="fac-photo"><div class="fac-photo-icon">📷</div><div class="fac-photo-lbl">Photo</div></div>
+                <span class="fac-badge">Co-founder</span>
+                <div class="fac-name">Sumeet Darak</div>
+                <div class="fac-role">Operations, Technology & M&A</div>
+                <div class="fac-prev">Former COO, Gallagher India · 20+ years</div>
+                <div class="fac-bio">Leads sessions on insurance operations transformation, technology decision-making at the leadership level, and M&A integration.</div>
+              </div>
+            </div>
+
+            <!-- Card 4 — Uttara Vaid -->
+            <div class="fac-slide">
+              <div class="fac-card confirmed">
+                <div class="fac-photo"><div class="fac-photo-icon">📷</div><div class="fac-photo-lbl">Photo</div></div>
+                <span class="fac-badge">Advisory Board</span>
+                <div class="fac-name">Uttara Vaid</div>
+                <div class="fac-role">Liability Insurance & Risk</div>
+                <div class="fac-prev">Liability, D&O & PI specialist</div>
+                <div class="fac-bio">Covers liability lines, Directors & Officers insurance, professional indemnity, and risk management frameworks for corporate clients.</div>
+              </div>
+            </div>
+
+            <!-- Cards 5–8: hidden placeholders — present in DOM, not shown until more faculty confirmed -->
+            <div class="fac-slide" data-placeholder="true" style="display:none;">
+              <div class="fac-card placeholder">
+                <div class="fac-photo"><div class="fac-photo-icon" style="color:#C8DCF0;">📷</div><div class="fac-photo-lbl">TBC</div></div>
+                <div class="fac-name">Underwriting specialist</div>
+                <div class="fac-role">Technical underwriting</div>
+                <div class="fac-prev">To be confirmed at launch</div>
+                <div class="fac-bio">Risk assessment, pricing, portfolio management — faculty profile to be announced.</div>
+              </div>
+            </div>
+            <div class="fac-slide" data-placeholder="true" style="display:none;">
+              <div class="fac-card placeholder">
+                <div class="fac-photo"><div class="fac-photo-icon" style="color:#C8DCF0;">📷</div><div class="fac-photo-lbl">TBC</div></div>
+                <div class="fac-name">Claims & TPA expert</div>
+                <div class="fac-role">Claims management</div>
+                <div class="fac-prev">To be confirmed at launch</div>
+                <div class="fac-bio">End-to-end claims, fraud identification, digital claims — faculty profile to be announced.</div>
+              </div>
+            </div>
+            <div class="fac-slide" data-placeholder="true" style="display:none;">
+              <div class="fac-card placeholder">
+                <div class="fac-photo"><div class="fac-photo-icon" style="color:#C8DCF0;">📷</div><div class="fac-photo-lbl">TBC</div></div>
+                <div class="fac-name">Reinsurance professional</div>
+                <div class="fac-role">Treaty & facultative reinsurance</div>
+                <div class="fac-prev">To be confirmed at launch</div>
+                <div class="fac-bio">Global reinsurance markets, treaty and facultative structures — faculty profile to be announced.</div>
+              </div>
+            </div>
+            <div class="fac-slide" data-placeholder="true" style="display:none;">
+              <div class="fac-card placeholder">
+                <div class="fac-photo"><div class="fac-photo-icon" style="color:#C8DCF0;">📷</div><div class="fac-photo-lbl">TBC</div></div>
+                <div class="fac-name">InsurTech & digital innovation</div>
+                <div class="fac-role">Digital & embedded insurance</div>
+                <div class="fac-prev">To be confirmed at launch</div>
+                <div class="fac-bio">AI in underwriting, embedded insurance, digital distribution — faculty profile to be announced.</div>
+              </div>
+            </div>
+
+          </div><!-- /carousel-track -->
+        </div><!-- /carousel-track-wrap -->
+      </div><!-- /carousel-outer -->
+      <div class="car-dots" id="fac-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT MAKES FACULTY DIFFERENT -->
+<section id="what">
+  <div class="wrap">
+    <div class="ey-dk">What sets NeoProEd faculty apart</div>
+    <h2 class="h2-dk">Not generalists. Practitioners.</h2>
+    <div class="feat-grid">
+      <div class="feat-c"><div class="feat-icon">🏗️</div><div class="feat-title">Lived the role</div><div class="feat-text">Every faculty member has held the function they teach — not as a consultant, but as a professional in the role</div></div>
+      <div class="feat-c"><div class="feat-icon">🇮🇳</div><div class="feat-title">India-market fluent</div><div class="feat-text">Cases and frameworks drawn from Indian market reality — IRDAI regulation, Indian distribution structures, Indian claims patterns</div></div>
+      <div class="feat-c"><div class="feat-icon">📅</div><div class="feat-title">Currently active</div><div class="feat-text">Faculty are working professionals bringing current market intelligence into every session — not retired experts</div></div>
+      <div class="feat-c"><div class="feat-icon">🎙️</div><div class="feat-title">Guest specialists</div><div class="feat-text">Each programme brings in guest sessions from actuaries, regulators, and founders beyond the core faculty</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISORY BOARD -->
+<section id="advisory">
+  <div class="wrap">
+    <div class="ey-lt">Advisory board</div>
+    <h2 class="h2-lt">Senior practitioners guiding the programme</h2>
+    <p class="body-lt" style="margin-bottom:32px;">NeoProEd's advisory board brings senior domain expertise that shapes curriculum, validates outcomes, and opens doors across the industry.</p>
+    <div class="adv-grid">
+
+      <!-- Confirmed: Uttara Vaid -->
+      <div class="adv-card confirmed">
+        <div class="adv-photo"><div style="font-size:16px;">📷</div><div style="font-size:8px;font-weight:800;color:#8AAEC8;text-transform:uppercase;letter-spacing:.06em;margin-top:2px;">Photo</div></div>
+        <div class="adv-name">Uttara Vaid</div>
+        <div class="adv-role">Liability Insurance & Risk Practices</div>
+        <div class="adv-spec">D&O · Professional Indemnity · Liability lines · Risk management frameworks</div>
+        <span class="adv-tag">Confirmed member</span>
+      </div>
+
+      <!-- Placeholder 2 -->
+      <div class="adv-card placeholder">
+        <div class="adv-photo" style="opacity:.4;"><div style="font-size:16px;">📷</div></div>
+        <div class="adv-name" style="color:#8AAEC8;">Member · To be announced</div>
+        <div class="adv-role" style="color:#A8C0D4;">Student attraction & industry engagement</div>
+        <div class="adv-spec" style="color:#C8DCF0;">Profile to be confirmed before launch</div>
+      </div>
+
+      <!-- Placeholder 3 -->
+      <div class="adv-card placeholder">
+        <div class="adv-photo" style="opacity:.4;"><div style="font-size:16px;">📷</div></div>
+        <div class="adv-name" style="color:#8AAEC8;">Member · To be announced</div>
+        <div class="adv-role" style="color:#A8C0D4;">Placement & employer connections</div>
+        <div class="adv-spec" style="color:#C8DCF0;">Profile to be confirmed before launch</div>
+      </div>
+
+      <!-- Placeholder 4 -->
+      <div class="adv-card placeholder">
+        <div class="adv-photo" style="opacity:.4;"><div style="font-size:16px;">📷</div></div>
+        <div class="adv-name" style="color:#8AAEC8;">Member · To be announced</div>
+        <div class="adv-role" style="color:#A8C0D4;">University & college partnerships</div>
+        <div class="adv-spec" style="color:#C8DCF0;">Profile to be confirmed before launch</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="wrap">
+    <h2 class="cta-h">Want to learn from this faculty?</h2>
+    <p class="cta-sub">The founding cohort gives you direct access to every faculty member — small group, high interaction.</p>
+    <a href="enrol.html" class="cta-btn-p">Enrol in the Founding Cohort →</a>
+    <a href="programmes.html" class="cta-btn-s">View all programmes</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div><div class="foot-brand">Neo<em>Pro</em>Ed</div><div class="foot-tag">Industry-led professional education for India's insurance ecosystem. Built by practitioners, designed for careers.</div></div>
+      <div><div class="foot-col-h">Programmes</div><a href="programmes.html" class="foot-link">All Programmes</a><a href="enrol.html" class="foot-link">Enrol Now</a></div>
+      <div><div class="foot-col-h">Who we serve</div><a href="professionals.html" class="foot-link">For Professionals</a><a href="corporate.html" class="foot-link">For Organisations</a><a href="universities.html" class="foot-link">For Universities</a><a href="students.html" class="foot-link">For Students</a></div>
+      <div><div class="foot-col-h">Company</div><a href="about.html" class="foot-link">About Us</a><a href="faculty.html" class="foot-link">Faculty</a><a href="contact.html" class="foot-link">Contact</a><a href="privacy-policy.html" class="foot-link">Privacy Policy</a></div>
+    </div>
+    <div class="foot-bot">
+      <div class="foot-legal">© 2026 NeoProEd Private Limited</div>
+      <div class="foot-legal"><a href="privacy-policy.html" style="color:#3A5A78;text-decoration:none;">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-use.html" style="color:#3A5A78;text-decoration:none;">Terms of Use</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var track   = document.getElementById('fac-track');
+  var dotsEl  = document.getElementById('fac-dots');
+  var prevBtn = document.getElementById('fac-prev');
+  var nextBtn = document.getElementById('fac-next');
+  // Only show non-placeholder slides
+  var slides  = Array.from(track.querySelectorAll('.fac-slide:not([data-placeholder="true"])'));
+  var cur = 0;
+
+  function perPage(){
+    var w = window.innerWidth;
+    if(w >= 900) return 3;
+    if(w >= 560) return 2;
+    return 1;
+  }
+
+  function pages(){ return Math.max(1, Math.ceil(slides.length / perPage())); }
+
+  function buildDots(){
+    dotsEl.innerHTML = '';
+    var n = pages();
+    for(var i=0;i<n;i++){
+      var d=document.createElement('button');
+      d.className='car-dot'+(i===cur?' active':'');
+      d.setAttribute('aria-label','Page '+(i+1));
+      (function(idx){ d.onclick=function(){ go(idx); }; })(i);
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function go(page){
+    var n = pages();
+    cur = Math.max(0, Math.min(page, n-1));
+    // Calculate slide width including gap
+    var slideW = slides[0] ? slides[0].offsetWidth + 16 : 0;
+    track.style.transform = 'translateX(-'+(cur * perPage() * slideW)+'px)';
+    prevBtn.disabled = (cur === 0);
+    nextBtn.disabled = (cur >= n-1);
+    document.querySelectorAll('.car-dot').forEach(function(d,i){
+      d.classList.toggle('active', i===cur);
+    });
+  }
+
+  function init(){ cur=0; buildDots(); go(0); }
+
+  prevBtn.onclick = function(){ go(cur-1); };
+  nextBtn.onclick = function(){ go(cur+1); };
+
+  init();
+  window.addEventListener('resize', init);
+})();
+</script>
+
+</body>
+</html>
